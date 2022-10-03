@@ -7,12 +7,12 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'title' => env('APP_NAME', 'UBUNTUNET'),
-    'prefix' => 'ubuntu',
+    'title' => env('APP_NAME', 'UbuntuNet Alliance'),
+    'prefix' => 'UbuntuNetAlliance',
     'suffix' => 'tic',
     'logo' => '',
     'favicon' => 'adminetic/static/favicon.png',
-    'description' => 'A data collection tool for ubuntunet',
+    'description' => 'A data collection tool for UbuntuNet Alliance',
     'admin_home' => '/admin/dashboard',
     'dark_mode' => false,
 

@@ -52,35 +52,35 @@
                     </div>
                     <div class="mb-3">
                             <label> NREN</label>
-                            <input class="form-control" type="text" value="{{$profile->nren}}" name="nren" placeholder=" eg.KENET" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->nren}}" name="nren" placeholder=" eg.KENET" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> NETWORK NAME</label>
-                            <input class="form-control" type="text" value="{{$profile->networkname}}"  name="networkname" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->networkname}}"  name="networkname" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Website URL</label>
-                            <input class="form-control" type="text" value="{{$profile->website}}" name="website" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->website}}" name="website" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Address</label>
-                            <input class="form-control" type="text" value="{{$profile->addresss}}"  name="address" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->addresss}}"  name="address" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Gen. email</label>
-                            <input class="form-control" type="email" value="{{$profile->generalemail}}"  name="generalemail" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="email" required="" value="{{$profile->generalemail}}"  name="generalemail" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Tel</label>
-                            <input class="form-control" type="text" name="tel"value="{{$profile->tel}}"   placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" name="tel"value="{{$profile->tel}}"   placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Fax</label>
-                            <input class="form-control" type="text" name="fax" value="{{$profile->fax}}"  placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" name="fax" value="{{$profile->fax}}"  placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Year of creation</label>
-                            <input class="form-control" type="year" name="yearofcreation" value="{{$profile->yearofcreation}}"  placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="year" required="" name="yearofcreation" value="{{$profile->yearofcreation}}"  placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <br>
                           <div class="row">
@@ -156,7 +156,7 @@
                         <div class="">
                           <div class="mb-3">
                             <label> Governance</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea4" name="governance" rows="3" name ="details">{{$profile->governance}}</textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="governance" required="" rows="3" name ="details">{{$profile->governance}}</textarea>
                           </div>
                         </div>
                       </div>

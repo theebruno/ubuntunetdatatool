@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="a data collection tool for ubuntunet">
-    <meta name="author" content="Pratik Shrestha">
+    <meta name="author" content="UbuntuNet Alliance">
     <link rel="icon" href="{{ favicon() }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ favicon() }}" type="image/x-icon">
-    <title>UBUNTUNET</title>
+    <title>UbuntuNet Alliance</title>
     {{-- ASSET LINKS --}}
     @include('adminetic::admin.layouts.assets.links')
 </head>

@@ -35,18 +35,53 @@ class infocontroller extends Controller
 
         if($nrencount>0){
            //updating nren
+            if($request->input('legalentitytype')){
+                  $l=$request->input('legalentitytype');
 
-           $update = DB::table('nren')->where('userid',$request->input('userid'))->update(['userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($request->input('relationshipwithgovernment')),"legalentitytype"=>json_encode($request->input('legalentitytype')),"governance"=>$request->input('governance'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
+            }else{
+                  $l[]="not answered";
+
+
+            }
+
+            if($request->input('relationshipwithgovernment')){
+                $r=$request->input('relationshipwithgovernment');
+
+            }
+            else{
+                $r[]="not answered";
+            }
+
+           $update = DB::table('nren')->where('userid',$request->input('userid'))->update(['userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
 
         }
         else
         {
             // adding nren
-            $data=array('userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($request->input('relationshipwithgovernment')),"legalentitytype"=>json_encode($request->input('legalentitytype')),"governance"=>$request->input('governance'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+
+               if($request->input('legalentitytype')){
+                  $l=$request->input('legalentitytype');
+
+            }else{
+                  $l[]="not answered";
+
+                  
+
+            }
+
+            if($request->input('relationshipwithgovernment')){
+                $r=$request->input('relationshipwithgovernment');
+
+            }
+            else{
+                $r[]="not answered";
+            }
+
+            $data=array('userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
             DB::table('nren')->insert($data);
 
         }
-        return back()->with('success', "Status has been updated!");
+        return back()->with('success', "NREN has been updated!");
         
     }
 

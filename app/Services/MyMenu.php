@@ -40,7 +40,7 @@ class MyMenu implements SidebarInterface
             ],
             [
                 'type' => 'link',
-                'name' => ' My replies',
+                'name' => ' My responses',
                 'icon' => 'fa fa-book',
                 'link' => route('replies'),
             ],

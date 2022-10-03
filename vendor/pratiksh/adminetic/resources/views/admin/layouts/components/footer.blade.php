@@ -3,7 +3,7 @@
           <div class="row">
               <div class="col-md-12 footer-copyright text-center">
                   <p class="mb-0">Copyright {{ \Carbon\Carbon::now()->year }} ©
-                      DATA COLLECTION TOOL by UBUNTUNET ALLIANCE </p>
+                      DATA COLLECTION TOOL by UbuntuNet Alliance </p>
               </div>
           </div>
       </div>
