@@ -142,16 +142,7 @@ Scope of NREN intervention:</b></td>
                      </tr>
              
     @endif
-    @if($answer->questionid==36)   
-    <tr role="row" class="odd">
-                        <td >36</td>
-                            <td><b></b></td>
-                            
-                            <td> </td>
-                                        
-                     </tr>
-             
-    @endif
+  
 
     <!--  -->
     @if($answer->questionid==36)   
@@ -168,16 +159,7 @@ Scope of NREN intervention:</b></td>
                      </tr>
              
     @endif
-    @if($answer->questionid==42)   
-    <tr role="row" class="odd">
-                        <td >42</td>
-                            <td><b></b></td>
-                            
-                         
-                                        
-                     </tr>
-             
-    @endif
+
     <!--  -->
     @if($answer->questionid==42)   
    
@@ -193,16 +175,7 @@ Scope of NREN intervention:</b></td>
                      </tr>
              
     @endif
-    @if($answer->questionid==48)   
-    <tr role="row" class="odd">
-                        <td >48</td>
-                            <td><b></b></td>
-                            
-                            <td> </td>
-                                        
-                     </tr>
-             
-    @endif
+
     <!--  -->
     @if($answer->questionid==48)   
    
@@ -218,16 +191,7 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==54)   
-   <tr role="row" class="odd">
-                       <td >54</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-            
-   @endif
+
     <!--  -->
     @if($answer->questionid==54)   
    
@@ -243,16 +207,7 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==60)   
-   <tr role="row" class="odd">
-                       <td >54</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-            
-   @endif
+ 
     <!--  -->
     @if($answer->questionid==60)   
    
@@ -268,16 +223,7 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==66)   
-   <tr role="row" class="odd">
-                       <td >66</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-            
-   @endif
+  
     <!--  -->
     @if($answer->questionid==66)   
    
@@ -293,15 +239,7 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==72)   
-   <tr role="row" class="odd">
-                       <td >72</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-                    @endif
+   
             
     <!--  -->
     @if($answer->questionid==72)   
@@ -318,15 +256,7 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==78)   
-   <tr role="row" class="odd">
-                       <td >78</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-                    @endif
+
     <!--  -->
     @if($answer->questionid==78)   
    
@@ -342,30 +272,12 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
-   @if($answer->questionid==84)   
-   <tr role="row" class="odd">
-                       <td >84</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-                    </tr>
-                    @endif
-    <!--  -->
-    @if($answer->questionid==92)   
-    <tr role="row" class="odd">
-                       <td >92</td>
-                           <td><b></b></td>
-                           
-                           <td> </td>
-                                       
-              
-            
-                    </tr>
+   @if($answer->questionid==85)   
+   
                               
    <tr role="row" class="odd">
-                       <td >92</td>
-                           <td><b>Government departments (national, regional, local):</b></td>
+                       <td >85</td>
+                           <td><b> </b></td>
                            
                            <td> </td>
                                        
@@ -374,18 +286,68 @@ Scope of NREN intervention:</b></td>
                     </tr>
             
    @endif
+
+
+    <!--  -->
+    @if($answer->questionid==92)   
+   
+                              
+   <tr role="row" class="odd">
+                       <td >92</td>
+                           <td><b></b></td>
+                           
+                           <td> </td>
+                                       
+              
+            
+                    </tr>
+            
+   @endif
+    @if($answer->questionid==92)   
+   
+                              
+   <tr role="row" class="odd">
+                       <td >92</td>
+                           <td><b>National network infrastructure:</b></td>
+                           
+                           <td> </td>
+                                       
+              
+            
+                    </tr>
+            
+   @endif
+
+
+   @if($answer->questionid==95)   
+   
+                              
+   <tr role="row" class="odd">
+                       <td >95</td>
+                           <td><b>{{url($template->name)}}</b></td>
+                           
+                           <td> </td>
+                                       
+              
+            
+                    </tr>
+            
+   @endif
+  
    @if($answer->questionid==96)   
+   
+                              
    <tr role="row" class="odd">
                        <td >96</td>
                            <td><b></b></td>
                            
                            <td> </td>
                                        
+              
+            
                     </tr>
-                    @endif
-
-    
-  
+            
+   @endif
     <tr role="row" class="odd">
                         <td tabindex="0" class="sorting_1">{{$template->id}}</td>
                             <td>{{$template->name}}</td>
