@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2022 at 02:15 PM
+-- Generation Time: Oct 04, 2022 at 07:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -196,9 +196,7 @@ CREATE TABLE `nren` (
 --
 
 INSERT INTO `nren` (`id`, `userid`, `nren`, `networkname`, `country`, `website`, `address`, `generalemail`, `tel`, `fax`, `yearofcreation`, `relationshipwithgovernment`, `legalentitytype`, `governance`, `created_at`, `updated_at`) VALUES
-(3, '12', 'KENET', 'Kenya Network', 'Uganda', 'ken.com', 'Kampala Uganda', 'brunodonatelo@gmail.com', '0708689975', '84399393', '2000', '[\"Endorsed by Ministry of Education\",\"part of Government Ministry, Department or Agency\"]', '[\"not-for-profit trust\",\"others\"]', 'not relevant', '2022-09-27 02:56:19', NULL),
-(4, '1', 'admin net', 'Kenya Network', 'Albania', 'yy', 'adress', 'u@t.ciom', '000', '00', '88', '[\"Endorsed by Ministry of Education\"]', '[\"not-for profit membership organisation\"]', 'hh', '2022-10-01 12:09:58', '2022-10-01 18:34:26'),
-(11, '14', 'KENET', 'Kenya Network', 'Uganda', 'k', 'Kàmpalà. City', 'brunodonatelo@gmail.com', '9988', 'none', '2020', '[\"none\",\"Endorsed by Ministry of Education\"]', '[\"not-for profit membership organisation\",\"not-for-profit trust\"]', 'jj', '2022-10-01 13:12:10', '2022-10-01 13:12:27');
+(14, '1', 'KENET', 'Kenya Network', 'Uganda', 'ket.ug', 'Kàmpalà. City', 'brunodonatelo@gmail.com', 'oi', 'yet', '2000', '[\"not answered\"]', '[\"limited liability company\"]', 'jj', '2022-10-03 19:54:20', '2022-10-03 19:54:27');
 
 -- --------------------------------------------------------
 
@@ -333,7 +331,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `username`, `profile_pic`, `status`, `gender`, `martial_status`, `blood_group`, `country`, `address`, `phone_no`, `email`, `birthday`, `facebook`, `instagram`, `twitter`, `linkedin`, `father_name`, `mother_name`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, 1, NULL, NULL, NULL, 'Uganda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-06 12:15:01', '2022-10-01 09:28:54'),
+(1, 1, NULL, 'admin/user/Rcw7OTG94f2lwyBG1GSq0AstLM0qQYOOgOac7EWX.jpg', 1, NULL, NULL, NULL, 'Uganda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-06 12:15:01', '2022-10-03 16:53:27'),
 (4, 12, NULL, NULL, 1, NULL, NULL, NULL, 'Uganda', 'Kampala,Uganda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-20 12:28:04', '2022-09-26 12:00:00'),
 (5, 13, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-28 08:14:41', '2022-09-28 08:14:41'),
 (6, 14, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-28 08:25:13', '2022-09-28 08:25:13');
@@ -429,6 +427,132 @@ CREATE TABLE `saved` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `saved`
+--
+
+INSERT INTO `saved` (`id`, `name`, `questionid`, `surveyid`, `userid`, `created_at`, `updated_at`) VALUES
+(1081, 'not answered', '1', '20', '1', '2022-10-04 11:11:05', NULL),
+(1082, 'not answered', '2', '20', '1', '2022-10-04 11:11:05', NULL),
+(1083, 'not answered', '7', '20', '1', '2022-10-04 11:11:05', NULL),
+(1084, 'not answered', '9', '20', '1', '2022-10-04 11:11:05', NULL),
+(1085, 'not answered', '10', '20', '1', '2022-10-04 11:11:05', NULL),
+(1086, 'not answered', '11', '20', '1', '2022-10-04 11:11:05', NULL),
+(1087, 'not answered', '12', '20', '1', '2022-10-04 11:11:05', NULL),
+(1088, 'not answered', '13', '20', '1', '2022-10-04 11:11:05', NULL),
+(1089, 'not answered', '14', '20', '1', '2022-10-04 11:11:05', NULL),
+(1090, 'not answered', '15', '20', '1', '2022-10-04 11:11:05', NULL),
+(1091, 'not answered', '16', '20', '1', '2022-10-04 11:11:05', NULL),
+(1092, 'not answered', '17', '20', '1', '2022-10-04 11:11:05', NULL),
+(1093, 'not answered', '18', '20', '1', '2022-10-04 11:11:05', NULL),
+(1094, 'not answered', '19', '20', '1', '2022-10-04 11:11:05', NULL),
+(1095, 'not answered', '20', '20', '1', '2022-10-04 11:11:05', NULL),
+(1096, 'not answered', '21', '20', '1', '2022-10-04 11:11:05', NULL),
+(1097, 'not answered', '22', '20', '1', '2022-10-04 11:11:05', NULL),
+(1098, 'not answered', '23', '20', '1', '2022-10-04 11:11:05', NULL),
+(1099, 'not answered', '24', '20', '1', '2022-10-04 11:11:05', NULL),
+(1100, 'not answered', '25', '20', '1', '2022-10-04 11:11:05', NULL),
+(1101, 'not answered', '26', '20', '1', '2022-10-04 11:11:05', NULL),
+(1102, 'not answered', '27', '20', '1', '2022-10-04 11:11:05', NULL),
+(1103, 'not answered', '28', '20', '1', '2022-10-04 11:11:05', NULL),
+(1104, 'not answered', '29', '20', '1', '2022-10-04 11:11:05', NULL),
+(1105, 'not answered', '30', '20', '1', '2022-10-04 11:11:05', NULL),
+(1106, 'not answered', '31', '20', '1', '2022-10-04 11:11:05', NULL),
+(1107, 'not answered', '32', '20', '1', '2022-10-04 11:11:05', NULL),
+(1108, 'not answered', '33', '20', '1', '2022-10-04 11:11:05', NULL),
+(1109, 'not answered', '34', '20', '1', '2022-10-04 11:11:05', NULL),
+(1110, 'not answered', '35', '20', '1', '2022-10-04 11:11:05', NULL),
+(1111, 'not answered', '36', '20', '1', '2022-10-04 11:11:05', NULL),
+(1112, 'not answered', '37', '20', '1', '2022-10-04 11:11:05', NULL),
+(1113, 'not answered', '38', '20', '1', '2022-10-04 11:11:05', NULL),
+(1114, 'not answered', '39', '20', '1', '2022-10-04 11:11:05', NULL),
+(1115, 'not answered', '40', '20', '1', '2022-10-04 11:11:05', NULL),
+(1116, 'not answered', '41', '20', '1', '2022-10-04 11:11:05', NULL),
+(1117, 'not answered', '42', '20', '1', '2022-10-04 11:11:05', NULL),
+(1118, 'not answered', '43', '20', '1', '2022-10-04 11:11:05', NULL),
+(1119, 'not answered', '44', '20', '1', '2022-10-04 11:11:05', NULL),
+(1120, 'not answered', '45', '20', '1', '2022-10-04 11:11:05', NULL),
+(1121, 'not answered', '46', '20', '1', '2022-10-04 11:11:05', NULL),
+(1122, 'not answered', '47', '20', '1', '2022-10-04 11:11:05', NULL),
+(1123, 'not answered', '48', '20', '1', '2022-10-04 11:11:05', NULL),
+(1124, 'not answered', '49', '20', '1', '2022-10-04 11:11:05', NULL),
+(1125, 'not answered', '50', '20', '1', '2022-10-04 11:11:05', NULL),
+(1126, 'not answered', '51', '20', '1', '2022-10-04 11:11:05', NULL),
+(1127, 'not answered', '52', '20', '1', '2022-10-04 11:11:05', NULL),
+(1128, 'not answered', '53', '20', '1', '2022-10-04 11:11:05', NULL),
+(1129, 'not answered', '54', '20', '1', '2022-10-04 11:11:05', NULL),
+(1130, 'not answered', '55', '20', '1', '2022-10-04 11:11:05', NULL),
+(1131, 'not answered', '56', '20', '1', '2022-10-04 11:11:05', NULL),
+(1132, 'not answered', '57', '20', '1', '2022-10-04 11:11:05', NULL),
+(1133, 'not answered', '58', '20', '1', '2022-10-04 11:11:05', NULL),
+(1134, 'not answered', '59', '20', '1', '2022-10-04 11:11:05', NULL),
+(1135, 'not answered', '60', '20', '1', '2022-10-04 11:11:05', NULL),
+(1136, 'not answered', '61', '20', '1', '2022-10-04 11:11:05', NULL),
+(1137, 'not answered', '62', '20', '1', '2022-10-04 11:11:05', NULL),
+(1138, 'not answered', '63', '20', '1', '2022-10-04 11:11:05', NULL),
+(1139, 'not answered', '64', '20', '1', '2022-10-04 11:11:05', NULL),
+(1140, 'not answered', '65', '20', '1', '2022-10-04 11:11:05', NULL),
+(1141, 'not answered', '66', '20', '1', '2022-10-04 11:11:05', NULL),
+(1142, 'not answered', '67', '20', '1', '2022-10-04 11:11:05', NULL),
+(1143, 'not answered', '68', '20', '1', '2022-10-04 11:11:05', NULL),
+(1144, 'not answered', '69', '20', '1', '2022-10-04 11:11:05', NULL),
+(1145, 'not answered', '70', '20', '1', '2022-10-04 11:11:05', NULL),
+(1146, 'not answered', '71', '20', '1', '2022-10-04 11:11:05', NULL),
+(1147, 'not answered', '72', '20', '1', '2022-10-04 11:11:05', NULL),
+(1148, 'not answered', '73', '20', '1', '2022-10-04 11:11:05', NULL),
+(1149, 'not answered', '74', '20', '1', '2022-10-04 11:11:05', NULL),
+(1150, 'not answered', '75', '20', '1', '2022-10-04 11:11:05', NULL),
+(1151, 'not answered', '76', '20', '1', '2022-10-04 11:11:05', NULL),
+(1152, 'not answered', '77', '20', '1', '2022-10-04 11:11:05', NULL),
+(1153, 'not answered', '78', '20', '1', '2022-10-04 11:11:05', NULL),
+(1154, 'not answered', '79', '20', '1', '2022-10-04 11:11:05', NULL),
+(1155, 'not answered', '80', '20', '1', '2022-10-04 11:11:05', NULL),
+(1156, 'not answered', '81', '20', '1', '2022-10-04 11:11:05', NULL),
+(1157, 'not answered', '82', '20', '1', '2022-10-04 11:11:05', NULL),
+(1158, 'not answered', '83', '20', '1', '2022-10-04 11:11:05', NULL),
+(1159, 'not answered', '84', '20', '1', '2022-10-04 11:11:05', NULL),
+(1160, 'not answered', '85', '20', '1', '2022-10-04 11:11:05', NULL),
+(1161, 'not answered', '86', '20', '1', '2022-10-04 11:11:05', NULL),
+(1162, 'not answered', '87', '20', '1', '2022-10-04 11:11:05', NULL),
+(1163, 'not answered', '88', '20', '1', '2022-10-04 11:11:05', NULL),
+(1164, 'not answered', '92', '20', '1', '2022-10-04 11:11:05', NULL),
+(1165, 'not answered', '93', '20', '1', '2022-10-04 11:11:05', NULL),
+(1166, 'not answered', '94', '20', '1', '2022-10-04 11:11:05', NULL),
+(1167, 'not answered', '96', '20', '1', '2022-10-04 11:11:05', NULL),
+(1168, 'not answered', '97', '20', '1', '2022-10-04 11:11:05', NULL),
+(1169, 'Done by NREN', '98', '20', '1', '2022-10-04 11:11:05', NULL),
+(1170, 'Done by NREN', '99', '20', '1', '2022-10-04 11:11:05', NULL),
+(1171, 'Done by NREN', '106', '20', '1', '2022-10-04 11:11:05', NULL),
+(1172, 'not answered', '107', '20', '1', '2022-10-04 11:11:05', NULL),
+(1173, 'not answered', '108', '20', '1', '2022-10-04 11:11:05', NULL),
+(1174, 'not answered', '109', '20', '1', '2022-10-04 11:11:05', NULL),
+(1175, 'not answered', '110', '20', '1', '2022-10-04 11:11:05', NULL),
+(1176, 'not answered', '111', '20', '1', '2022-10-04 11:11:05', NULL),
+(1177, 'NREN has a network and is connected to UbuntuNet backbone', '115', '20', '1', '2022-10-04 11:11:05', NULL),
+(1178, 'not answered', '116', '20', '1', '2022-10-04 11:11:05', NULL),
+(1179, 'not answered', '117', '20', '1', '2022-10-04 11:11:05', NULL),
+(1180, 'not answered', '118', '20', '1', '2022-10-04 11:11:05', NULL),
+(1181, 'not answered', '119', '20', '1', '2022-10-04 11:11:05', NULL),
+(1182, 'not answered', '120', '20', '1', '2022-10-04 11:11:05', NULL),
+(1183, 'not answered', '121', '20', '1', '2022-10-04 11:11:05', NULL),
+(1184, 'not answered', '122', '20', '1', '2022-10-04 11:11:05', NULL),
+(1185, 'not answered', '123', '20', '1', '2022-10-04 11:11:05', NULL),
+(1186, 'not answered', '124', '20', '1', '2022-10-04 11:11:05', NULL),
+(1187, 'not answered', '125', '20', '1', '2022-10-04 11:11:05', NULL),
+(1188, 'not answered', '126', '20', '1', '2022-10-04 11:11:05', NULL),
+(1189, 'NO', '130', '20', '1', '2022-10-04 11:11:05', NULL),
+(1190, 'NO', '131', '20', '1', '2022-10-04 11:11:05', NULL),
+(1191, 'Monopoly', '132', '20', '1', '2022-10-04 11:11:05', NULL),
+(1192, 'not answered', '133', '20', '1', '2022-10-04 11:11:05', NULL),
+(1193, 'not answered', '134', '20', '1', '2022-10-04 11:11:05', NULL),
+(1194, 'not answered', '135', '20', '1', '2022-10-04 11:11:05', NULL),
+(1195, 'not answered', '136', '20', '1', '2022-10-04 11:11:05', NULL),
+(1196, 'not answered', '137', '20', '1', '2022-10-04 11:11:05', NULL),
+(1197, 'not answered', '138', '20', '1', '2022-10-04 11:11:05', NULL),
+(1198, 'not answered', '139', '20', '1', '2022-10-04 11:11:05', NULL),
+(1199, 'not answered', '140', '20', '1', '2022-10-04 11:11:05', NULL),
+(1200, 'not answered', '141', '20', '1', '2022-10-04 11:11:05', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -470,6 +594,13 @@ CREATE TABLE `surveys` (
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `surveys`
+--
+
+INSERT INTO `surveys` (`id`, `userid`, `title`, `details`, `year`, `start`, `end`, `created_at`, `updated_at`, `step`, `status`) VALUES
+(20, '1', 'h', 'jhj', '1997', '2022-10-04', '2022-10-07', '2022-10-04 11:10:31', NULL, 0, 'running');
+
 -- --------------------------------------------------------
 
 --
@@ -484,13 +615,6 @@ CREATE TABLE `surveystatus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `surveystatus`
---
-
-INSERT INTO `surveystatus` (`id`, `surveyid`, `userid`, `status`, `created_at`, `updated_at`) VALUES
-(17, '18', '12', 'answered', '2022-10-01 09:20:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -517,8 +641,9 @@ CREATE TABLE `template` (
 INSERT INTO `template` (`id`, `name`, `options`, `type`, `surveyid`, `userid`, `created_at`, `updated_at`, `step`) VALUES
 (1, 'Country', '', 'text', '0', '1', NULL, NULL, 1),
 (2, 'Name of NREN', '', 'text', '0', '1', NULL, NULL, 1),
-(7, 'Website', '', 'text', '0', '1', NULL, NULL, 1),
-(9, 'When was your NREN established?', '', 'date', '0', '', NULL, NULL, 2),
+(3, 'Website', '', 'text', '0', '1', NULL, NULL, 1),
+(4, 'When was your NREN established?', '', 'text', '0', '', NULL, NULL, 2),
+(5, 'What is the type of legal structure of your NREN?', '', 'text', '', '', NULL, NULL, 2),
 (10, 'Give an outline of the main development stages that your NREN has gone through since establishment', '', 'textarea', '0', '', NULL, NULL, 2),
 (11, 'What Governance structure doues your NREN have?', '', 'text', '0', '', NULL, NULL, 2),
 (12, 'What is the Composition of the Governance?', '', 'text', '0', '', NULL, NULL, 2),
@@ -533,7 +658,7 @@ INSERT INTO `template` (`id`, `name`, `options`, `type`, `surveyid`, `userid`, `
 (21, 'Other', '', 'textarea', '', '', NULL, NULL, 2),
 (22, 'Existing NREN roadmap or stratetigic plan', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '0', '1', NULL, NULL, 2),
 (23, 'Provide key elements', '', 'textarea', '0', '', NULL, NULL, 2),
-(24, 'When did your NREN become a member of UbuntuNet Alliance?', '', 'date', '0', '1', NULL, NULL, 2),
+(24, 'When did your NREN become a member of UbuntuNet Alliance?', '', 'text', '0', '1', NULL, NULL, 2),
 (25, 'Operating', '', 'text', '2', '', NULL, NULL, 3),
 (26, 'Investment', '', 'text', '2', '', NULL, NULL, 3),
 (27, ' Tell us about you NREN\'s Business model', '', 'textarea', '', '', NULL, NULL, 3),
@@ -604,14 +729,16 @@ INSERT INTO `template` (`id`, `name`, `options`, `type`, `surveyid`, `userid`, `
 (95, 'Operational national network architecture', '', 'file', '', '', NULL, NULL, 5),
 (96, 'Does your NREN operate Dark fiber on its network?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
 (97, 'Does your NREN have Leased Lines?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
-(98, 'Who does infrastructure, equipment and services supervision for the NREN?', '{\"first\":\"Done by NREN\",\"second\":\"Done by telecommunications operator\",\"third\":\"Other\",\"fourth\":\"No answer\"}', 'single', '', '', NULL, NULL, 5),
-(99, 'Who does and administration of equipment and supervision tools, ticketing, modification implementation for the NREN?', '{\"first\":\"Done by NREN\",\"second\":\"Done by telecommunications operator\",\"third\":\"Other\",\"fourth\":\"No answer\"}', 'single', '', '', NULL, NULL, 5),
+(98, 'if Yes, what is the planned average bandwith of the leases lines', '', 'text', '', '', NULL, NULL, 5),
+(104, 'Who does infrastructure, equipment and services supervision for the NREN?', '{\"first\":\"Done by NREN\",\"second\":\"Done by telecommunications operator\",\"third\":\"Other\",\"fourth\":\"No answer\"}', 'single', '', '', NULL, NULL, 5),
+(105, 'Who does and administration of equipment and supervision tools, ticketing, modification implementation for the NREN?', '{\"first\":\"Done by NREN\",\"second\":\"Done by telecommunications operator\",\"third\":\"Other\",\"fourth\":\"No answer\"}', 'single', '', '', NULL, NULL, 5),
 (106, 'Who does network maintenance for the NREN?', '{\"first\":\"Done by NREN\",\"second\":\"Done by telecommunications operator\",\"third\":\"Other\",\"fourth\":\"No answer\"}', 'single', '', '', NULL, NULL, 5),
 (107, 'Campus networks enable end to end services to find users', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
 (108, 'Main issues', '', 'textarea', '', '', NULL, NULL, 5),
 (109, 'The NREN financially participates into AfricaConnect 3', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
 (110, 'The NREN is connected through AfricaConnect 3', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
 (111, 'NREN has a Transit contract with a telecommunications operator', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 5),
+(112, 'Planned connection date', '', 'text', '', '', NULL, NULL, 5),
 (115, ' Does your NREN currently get connectivity services from UbuntuNet Alliance?\r\n', '{\"first\":\"NREN has a network and is connected to UbuntuNet backbone\",\"second\":\"NREN has a network, but is not connected to the UbuntuNet backbone\",\"third\":\"NREN does not yet have a network\"}', 'single', '', '', NULL, NULL, 5),
 (116, 'Can you share any network developments/upgrades plans that your NREN has', '', 'textarea', '', '', NULL, NULL, 5),
 (117, ' List any Deployed and operational services that your NREN has.', '', 'textarea', '', '', NULL, NULL, 6),
@@ -619,11 +746,13 @@ INSERT INTO `template` (`id`, `name`, `options`, `type`, `surveyid`, `userid`, `
 (119, ' Does your NREN have a CERT?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
 (120, 'Is there an existing national Datacenter in your country?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
 (121, 'Does your NREN connect to the Datacenter?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
-(122, 'Existence of national High Performance Computing?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
-(123, 'HPC connected to the NREN?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
-(124, 'Examples of content available on the NREN', '', 'textarea', '', '', NULL, NULL, 6),
-(125, 'Existing Internet Exchange Point (IXP) in the country', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 7),
-(126, 'Url', '', 'url', '', '', NULL, NULL, 7),
+(122, 'If NREN is not connected to national Datacenter, is it planned?', '', 'text', '', '', NULL, NULL, 6),
+(123, 'Existence of national High Performance Computing?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
+(124, 'HPC connected to the NREN?', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 6),
+(125, 'If NO, Are thre any plans for HPC?', '', 'text', '', '', NULL, NULL, 6),
+(127, 'Examples of content available on the NREN', '', 'textarea', '', '', NULL, NULL, 6),
+(128, 'Existing Internet Exchange Point (IXP) in the country', '{\"zero\":\"not answered\",\"first\":\"YES\",\"second\":\"NO\"}', 'single', '', '', NULL, NULL, 7),
+(129, 'Url', '', 'url', '', '', NULL, NULL, 7),
 (130, 'Is it operated by the NREN?', '{\"first\":\"NO\",\"second\":\"YES\"}', 'single', '', '', NULL, NULL, 7),
 (131, 'Is your NREN peering on this IXP?', '{\"first\":\"NO\",\"second\":\"YES\"}', 'single', '', '', NULL, NULL, 7),
 (132, 'Telecom Market', '{\"first\":\"Monopoly\",\"second\":\"Duopoly\",\"third\":\"Competitive\"}', 'single', '', '', NULL, NULL, 7),
@@ -828,7 +957,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `nren`
 --
 ALTER TABLE `nren`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -882,7 +1011,7 @@ ALTER TABLE `role_user`
 -- AUTO_INCREMENT for table `saved`
 --
 ALTER TABLE `saved`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1081;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1201;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -894,7 +1023,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `surveys`
 --
 ALTER TABLE `surveys`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `surveystatus`
@@ -906,7 +1035,7 @@ ALTER TABLE `surveystatus`
 -- AUTO_INCREMENT for table `template`
 --
 ALTER TABLE `template`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `users`
