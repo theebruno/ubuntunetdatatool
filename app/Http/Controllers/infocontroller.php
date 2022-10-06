@@ -318,10 +318,12 @@ class infocontroller extends Controller
     {
         //
         // echo();
+        $surveystatuses = DB::table('surveystatus')->get();
         $surveys = DB::table('surveys')->where('id',$id)->get();
         $users = DB::table('users')->get();
+        $nrens = DB::table('nren')->get();
         // var_dump($surveys);
-        return view('admin.information.infodetails',['surveys'=>$surveys,'users'=>$users]);
+        return view('admin.information.infodetails',['surveys'=>$surveys,'users'=>$users,'surveystatuses'=>$surveystatuses,'nrens'=>$nrens]);
         
     }
     public function view($survey,$user,$year,$name)

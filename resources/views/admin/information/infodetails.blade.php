@@ -31,17 +31,40 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
-                              <th>Title</th>
-                             
+                                   
+                              <th>NREN</th>
+                              <th>User</th>
+                              <th>Answered</th>
                               <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
     @foreach ($users as $user)
                         <tr role="row" class="odd">
+                        <td>
+                                @foreach($nrens as $nren)   
+                                @if($user->id==$nren->userid)
+                                {{$nren->nren}}
+                               
+                                @endif
+                
+                               @endforeach
+                              
+                            </td>
                             <td tabindex="0" class="sorting_1">{{$user->name}}</td>
+                            <td>
+                                @foreach($surveystatuses as $status)   
+                                @if($user->id==$status->userid && $status->status=="answered")
+                                <span class="badge rounded-pill badge-primary">YES</span>
+                                @endif
+                            
+                               
+                               @endforeach
+                              
+                            </td>
                             
                             <td>
+                                
                         <div>
     <div>
         <div class="form-group text-center">
@@ -58,6 +81,7 @@
 
 
                   </td>
+              
                             
                           </tr>
     @endforeach                 
@@ -86,25 +110,25 @@
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                    columns: [ 0, 1]
+                    columns: [ 0, 1,2]
                 }
             },
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [ 0, 1]
+                    columns: [ 0, 1,2]
                 }
             },
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [ 0, 1]
+                    columns: [ 0, 1,2]
                 }
             },
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [ 0, 1]
+                    columns: [ 0, 1,2]
                 }
             },
             
