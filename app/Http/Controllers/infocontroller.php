@@ -376,10 +376,11 @@ class infocontroller extends Controller
     {
         //
         $replies = DB::table('surveystatus')->where('userid',Auth::id())->count();
+        $repliesall = DB::table('surveystatus')->count();
         $users = DB::table('users')->count();
         $surveys = DB::table('surveys')->count();
         $templates = DB::table('template')->count();
-        return view('admin.dashboard.index',['surveys'=>$surveys,'users'=>$users,'templates'=>$templates,'replies'=>$replies]);
+        return view('admin.dashboard.index',['surveys'=>$surveys,'users'=>$users,'templates'=>$templates,'replies'=>$replies,'repliesall'=>$repliesall]);
         
         
     }

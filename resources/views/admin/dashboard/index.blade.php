@@ -46,7 +46,18 @@
                     <div class="media static-top-widget">
                       <div class="media-body">
                         <h6 class="font-roboto">Responses</h6>
-                        <h4 class="mb-0 counter">{{$replies}}</h4>
+                        <h4 class="mb-0 counter">
+                        @if(auth()->user()->hasRole('admin'))  
+                        
+                        
+                   
+                      {{$repliesall}}
+                      @else
+                      {{$replies}}
+                      @endif
+                      
+                      
+                      </h4>
                       </div>
                   
                      <i class="fa fa-clipboard-check fa-4x" style="color:#198754;" ></i>
