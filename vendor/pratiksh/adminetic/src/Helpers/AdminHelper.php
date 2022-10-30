@@ -1,5 +1,5 @@
 <?php
-
+use DB;
 if (! function_exists('getClassesList')) {
     function getClassesList($dir)
     {
@@ -72,6 +72,47 @@ if (! function_exists('getProfilePlaceholder')) {
         return isset($profile->profile_pic) ? (Illuminate\Support\Str::contains($profile->profile_pic, ['https://', 'http://']) ? $profile->profile_pic : asset('storage/'.$profile->profile_pic)) : asset('adminetic/static/profile.jpg');
     }
 }
+
+if (! function_exists('getUserPlaceholder')) {
+    function getUserPlaceholder($p)
+
+    {
+    
+        $nren= DB::table('profiles')->where('user_id',$p)->get();
+        $n= DB::table('profiles')->where('user_id',$p)->count();
+        foreach($nren as $nren){
+        if($nren->profile_pic){
+        return asset('storage/'.$nren->profile_pic);
+        }
+        else{
+        return asset('adminetic/static/profile.jpg');
+        }
+        }
+        // $profile = $p ?? Auth::user()->profile ?? Auth::user()->profile()->create();
+
+        // return isset($profile->profile_pic) ? (Illuminate\Support\Str::contains($profile->profile_pic, ['https://', 'http://']) ? $profile->profile_pic : asset('storage/'.$profile->profile_pic)) : asset('adminetic/static/profile.jpg');
+    }
+}
+
+if (! function_exists('getNren')) {
+    function getNren($p)
+
+    {
+    
+        $nren= DB::table('nrenuser')->where('userid',$p)->get();
+        $n= DB::table('nrenuser')->where('userid',$p)->count();
+      
+        if(!$n>0){
+        return "<option value=\"0\">NOT ASSIGNED</option>";
+        
+        }
+        // $profile = $p ?? Auth::user()->profile ?? Auth::user()->profile()->create();
+
+        // return isset($profile->profile_pic) ? (Illuminate\Support\Str::contains($profile->profile_pic, ['https://', 'http://']) ? $profile->profile_pic : asset('storage/'.$profile->profile_pic)) : asset('adminetic/static/profile.jpg');
+    }
+}
+
+
 
 if (! function_exists('title')) {
     function title()

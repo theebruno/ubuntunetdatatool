@@ -33,12 +33,15 @@ Route::get('home', [infocontroller::class, 'dashboard'])->name('dashboard');
 Route::get('/dashboard', [infocontroller::class, 'dashboard'])->name('home');
 Route::get('/replies', [infocontroller::class, 'replies'])->name('replies');
 Route::post('/nren', [infocontroller::class, 'nren'])->name('nren');
+Route::get('/nrenreports', [infocontroller::class, 'nrenreports'])->name('nrenreports');
 Route::get('/reports', [infocontroller::class, 'reports'])->name('reports');
 Route::get('/viewreport', [infocontroller::class, 'reports'])->name('viewreport');
 Route::post('/upload', [infocontroller::class, 'upload'])->name('upload');
-
-
-
-
+Route::get('/nreninfo', [infocontroller::class, 'nreninfo'])->name('nreninfo');
+Route::get('/assignnren', [infocontroller::class, 'assignnren'])->name('assignnren');
+Route::get('/nrenedit/{id}', [infocontroller::class, 'nrenedit'])->name('nrenedit');
+Route::get('/nrenadd', [infocontroller::class, 'nrenadd'])->name('nrenadd');
+Route::get('/reassignnren', [infocontroller::class, 'reassignnren'])->name('reassignnren');
+Route::post('/destroynren', [infocontroller::class, 'destroynren'])->name('destroynren');
 
 

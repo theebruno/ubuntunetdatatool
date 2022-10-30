@@ -31,7 +31,7 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
-                                   
+                          <th>ID</th>    
                               <th>NREN</th>
                               <th>User</th>
                               <th>Answered</th>
@@ -42,14 +42,22 @@
     @foreach ($users as $user)
                         <tr role="row" class="odd">
                         <td>
-                                @foreach($nrens as $nren)   
-                                @if($user->id==$nren->userid)
-                                {{$nren->nren}}
+                            {{$user->id}}
+</td>
+                        <td>
+                    @foreach($nrenusers as $nrenuser) 
+                        @if($user->id==$nrenuser->userid)
+                            @foreach($nrens as $nren) 
+
+                                @if($nren->id==$nrenuser->nrenid)
+
+                                 {{$nren->nren}}
                                
                                 @endif
                 
-                               @endforeach
-                              
+                            @endforeach
+                        @endif       
+                    @endforeach     
                             </td>
                             <td tabindex="0" class="sorting_1">{{$user->name}}</td>
                             <td>
@@ -110,25 +118,25 @@
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                    columns: [ 0, 1,2]
+                    columns: [ 0, 1,2,3]
                 }
             },
             {
                 extend: 'excelHtml5',
                 exportOptions: {
-                    columns: [ 0, 1,2]
+                    columns: [ 0, 1,2,3]
                 }
             },
             {
                 extend: 'pdfHtml5',
                 exportOptions: {
-                    columns: [ 0, 1,2]
+                    columns: [ 0, 1,2,3]
                 }
             },
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [ 0, 1,2]
+                    columns: [ 0, 1,2,3]
                 }
             },
             

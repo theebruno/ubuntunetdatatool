@@ -44,7 +44,13 @@ class ProfileController extends Controller
 
     {
         // return $profile->id;
-        $nren= DB::table('nren')->where('userid',$profile->user_id)->get();
+
+        $nrenusers= DB::table('nrenuser')->where('userid',$profile->user_id)->get();
+     
+      
+        foreach($nrenusers as $nrenuser){
+
+        $nren= DB::table('nren')->where('id',$nrenuser->nrenid)->get();
         foreach($nren as $nren){
            
             $profile->nren=$nren->nren;
@@ -59,10 +65,14 @@ class ProfileController extends Controller
             $profile->legalentitytype=$nren->legalentitytype;
             $profile->governance=$nren->governance;
             $profile->countryy=$nren->country;
+            $profile->nrenid=$nrenuser->nrenid;
+            $profile->existed="yes";
+            
 
         }
-       
-
+   
+    }
+    
         return $this->checkAuthorization($profile) ? view('adminetic::admin.profile.edit', $this->profileRepositoryInterface->editProfile($profile)) : abort(403);
     }
 

@@ -219,7 +219,36 @@ class MyMenu implements SidebarInterface
                     ],
                 ],
             ],
-       
+            [
+                'type' => 'menu',
+                'name' => 'NRENS',
+                'icon' => 'far fa-address-book',
+                'is_active' => request()->routeis('info*') ? 'active' : '',
+             
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\User::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\User::class),
+                    ],
+                ],
+                'children' => [
+                    [
+                        'type' => 'submenu',
+                        'name' => 'NREN details',
+                        'link' => route('nreninfo'),
+                    ],
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Assign NREN',
+                        'link' => route('assignnren'),
+                    ],
+                   
+                ]
+            ],
             // [
             //     'type' => 'link',
             //     'name' => 'Font Awesome',

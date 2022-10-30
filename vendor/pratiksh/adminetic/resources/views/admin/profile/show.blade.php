@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-6">
-                <h3>My Profile</h3>
+                <h3>User Profile</h3>
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"> <i data-feather="home"></i></a>
                     </li>
-                    <li class="breadcrumb-item active">My Profile</li>
+                    <li class="breadcrumb-item active">User Profile</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="col-lg-4 col-md-12 col-sm-12">
         <div class="card shadow-lg custom-card p-2 my-2">
             <div class="card-header"><img class="img-fluid" src="{{ getLogoBanner() }}" alt="Logo Banner"></div>
-            <div class="card-profile"><img class="rounded-circle" src="{{ getProfilePlaceholder() }}"
+            <div class="card-profile"><img class="rounded-circle" src="<?php echo getUserPlaceholder("".$profile->user_id.""); ?>"
                     alt="{{ $user->name ?? 'N/A' }}"></div>
             <ul class="card-social">
                 @isset($profile->facebook)

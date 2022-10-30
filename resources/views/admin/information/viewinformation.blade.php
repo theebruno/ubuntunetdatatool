@@ -34,8 +34,8 @@
                               <th >Description</th>
                               <th >Status</th>
                               <th >Year</th>
-                              <th>Start date</th>
-                              <th>End date</th>
+                              <th>Start Date</th>
+                              <th>End Date</th>
                               <th>Action</th>
                             </tr>
                         </thead>

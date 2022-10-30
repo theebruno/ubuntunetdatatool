@@ -60,23 +60,33 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $nren= DB::table('nren')->where('userid',$user->id)->get();
-        foreach($nren as $nren){
-           
-            $user->nren=$nren->nren;
-            $user->networkname=$nren->networkname;
-            $user->addresss=$nren->address;
-            $user->website=$nren->website;
-            $user->generalemail=$nren->generalemail;
-            $user->tel=$nren->tel;
-            $user->fax=$nren->fax;
-            $user->yearofcreation=$nren->yearofcreation;
-            $user->relationshipwithgovernment=$nren->relationshipwithgovernment;
-            $user->legalentitytype=$nren->legalentitytype;
-            $user->governance=$nren->governance;
-            $user->countryy=$nren->country;
+        
+        $nrenusers= DB::table('nrenuser')->where('userid',$user->id)->get();
+        foreach($nrenusers as $nrenuser){
+
+            $nren= DB::table('nren')->where('id',$nrenuser->nrenid)->get();
+            foreach($nren as $nren){
+               
+                $user->nren=$nren->nren;
+                $user->networkname=$nren->networkname;
+                $user->addresss=$nren->address;
+                $user->website=$nren->website;
+                $user->generalemail=$nren->generalemail;
+                $user->tel=$nren->tel;
+                $user->fax=$nren->fax;
+                $user->yearofcreation=$nren->yearofcreation;
+                $user->relationshipwithgovernment=$nren->relationshipwithgovernment;
+                $user->legalentitytype=$nren->legalentitytype;
+                $user->governance=$nren->governance;
+                $user->countryy=$nren->country;
+    
+            }
+
+
+
 
         }
+
     
         return view('adminetic::admin.profile.show', $this->userRepositoryInterface->userShow($user));
     }

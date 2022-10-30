@@ -35,8 +35,8 @@
                               <th >Survey status</th>
                               <th >Year</th>
                               <th >Answered</th>
-                              <th>Start date</th>
-                              <th>End date</th>
+                              <th>Start Date</th>
+                              <th>End Date</th>
                               <th>Action</th>
                             </tr>
                         </thead>

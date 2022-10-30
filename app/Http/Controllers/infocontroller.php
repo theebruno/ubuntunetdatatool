@@ -28,10 +28,43 @@ class infocontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function reassignnren(Request $request)
+    {
+        //
+
+        if($request->input('nrenid')=='0'){
+            
+            return back()->with('fail', "Please choose an NREN!");
+        
+
+        }
+        $nrencount= DB::table('nrenuser')->where('userid',$request->input('userid'))->count();
+
+        if($nrencount>0){
+           //updating nrenuser
+         
+       
+           $update = DB::table('nrenuser')->where('userid',$request->input('userid'))->update(['userid'=>$request->input('userid'),'nrenid'=>$request->input('nrenid'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
+        
+        }
+        else
+        {
+            // adding nrenuser
+
+             
+
+            $data=array('userid'=>$request->input('userid'),'nrenid'=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+            DB::table('nrenuser')->insert($data);
+
+        }
+        return back()->with('success', "NREN has been assigned!");
+        
+    }
+
     public function nren(Request $request)
     {
         //
-        $nrencount= DB::table('nren')->where('userid',$request->input('userid'))->count();
+        $nrencount= DB::table('nren')->where('id',$request->input('nrenid'))->count();
 
         if($nrencount>0){
            //updating nren
@@ -52,8 +85,8 @@ class infocontroller extends Controller
                 $r[]="not answered";
             }
 
-           $update = DB::table('nren')->where('userid',$request->input('userid'))->update(['userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
-
+           $update = DB::table('nren')->where('id',$request->input('nrenid'))->update(['userid'=>'1','nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
+           return back()->with('success', "NREN has been updated!");
         }
         else
         {
@@ -77,11 +110,13 @@ class infocontroller extends Controller
                 $r[]="not answered";
             }
 
-            $data=array('userid'=>$request->input('userid'),'nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+            $data=array('userid'=>'1','nren'=>$request->input('nren'),'networkname'=>$request->input('networkname'),"country"=>$request->input('country'),"website"=>$request->input('website'),"address"=>$request->input('address'),"generalemail"=>$request->input('generalemail'),"tel"=>$request->input('tel'),"fax"=>$request->input('fax'),"yearofcreation"=>$request->input('yearofcreation'),"relationshipwithgovernment"=>json_encode($r),"legalentitytype"=>json_encode($l),"governance"=>$request->input('governance'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
             DB::table('nren')->insert($data);
 
+            return back()->with('success', "NREN has been created!");
+
         }
-        return back()->with('success', "NREN has been updated!");
+      
         
     }
 
@@ -250,10 +285,30 @@ class infocontroller extends Controller
         return view('admin.information.replies',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses]);
         
     }
-    
+    public function nrenreports(Request  $request)
+    {
+        //
+      
+        
+    }
+
+
     public function reports(Request  $request)
     {
         //
+        $users = DB::table('users')->get();
+$nrens = DB::table('nren')->get();
+if($request->input("nren")){
+    $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
+        
+    $surveys = DB::select('select * from surveys');
+    return view('admin.information.nrenreports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'users'=>$users,'nrens'=>$nrens]);
+
+}
+
+
+
+
         $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
         $c0 = DB::table('surveystatus')->count();
         $c1 = DB::table('users')->count()-1;
@@ -285,7 +340,7 @@ class infocontroller extends Controller
         // $c0= DB::select('select * from users')->count();
         // $c1 = DB::select('select * from surveys')->count() * $c0;
         $surveys = DB::select('select * from surveys');
-        return view('admin.information.reports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'ans'=>$c0,'not'=>$c2]);
+        return view('admin.information.reports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'ans'=>$c0,'not'=>$c2,'users'=>$users,'nrens'=>$nrens]);
         
     }
     public function viewreports(Request  $request)
@@ -322,8 +377,9 @@ class infocontroller extends Controller
         $surveys = DB::table('surveys')->where('id',$id)->get();
         $users = DB::table('users')->get();
         $nrens = DB::table('nren')->get();
+        $nrenusers = DB::table('nrenuser')->get();
         // var_dump($surveys);
-        return view('admin.information.infodetails',['surveys'=>$surveys,'users'=>$users,'surveystatuses'=>$surveystatuses,'nrens'=>$nrens]);
+        return view('admin.information.infodetails',['surveys'=>$surveys,'users'=>$users,'surveystatuses'=>$surveystatuses,'nrens'=>$nrens,'nrenusers'=>$nrenusers]);
         
     }
     public function view($survey,$user,$year,$name)
@@ -399,6 +455,17 @@ class infocontroller extends Controller
 
         return redirect('infoview')->with('fail', "Survey has been deleted!");
     }
+
+      public function destroynren(Request  $request)
+    {
+        //
+        $deleted = DB::table('nren')->where('id',$request->input('id'))->delete();
+        $deletedusers = DB::table('nrenuser')->where('nrenid',$request->input('id'))->delete();
+
+
+        return redirect('nreninfo')->with('fail', "NREN has been deleted!");
+    }
+
     public function status(Request  $request)
     {
         //
@@ -406,5 +473,49 @@ class infocontroller extends Controller
 
 
         return redirect('infoview')->with('success', "Status has been updated!");
+    }
+    public function nreninfo()
+    {
+        //
+        // echo();
+        $nrens = DB::table('nren')->get();
+        $users = DB::table('users')->get();
+        // var_dump($surveys);
+        return view('admin.information.nreninfo',['nrens'=>$nrens,'users'=>$users]);
+        
+    }
+        public function assignnren()
+    {
+        //
+        // echo();
+        $nrens = DB::table('nren')->get();
+        $users = DB::table('users')->get();
+        $nrenusers = DB::table('nrenuser')->get();
+        // var_dump($surveys);
+        return view('admin.information.assignnren',['nrens'=>$nrens,'users'=>$users,'nrenusers'=>$nrenusers]);
+        
+    }
+    public function nrenedit($id)
+    {
+        //
+        // echo();
+        $countries = ['Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia and Herzegowina', 'Botswana', 'Bouvet Island', 'Brazil', 'British Indian Ocean Territory', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'China', 'Christmas Island', 'Cocos (Keeling) Islands', 'Colombia', 'Comoros', 'Congo', 'Congo, the Democratic Republic of the', 'Cook Islands', 'Costa Rica', "Cote d'Ivoire", 'Croatia (Hrvatska)', 'Cuba', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Falkland Islands (Malvinas)', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'France Metropolitan', 'French Guiana', 'French Polynesia', 'French Southern Territories', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe', 'Guam', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Heard and Mc Donald Islands', 'Holy See (Vatican City State)', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran (Islamic Republic of)', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', "Korea, Democratic People's Republic of", 'Korea, Republic of', 'Kuwait', 'Kyrgyzstan', "Lao, People's Democratic Republic", 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libyan Arab Jamahiriya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macau', 'Macedonia, The Former Yugoslav Republic of', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Martinique', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Micronesia, Federated States of', 'Moldova, Republic of', 'Monaco', 'Mongolia', 'Montserrat', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'Netherlands Antilles', 'New Caledonia', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue', 'Norfolk Island', 'Northern Mariana Islands', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Pitcairn', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russian Federation', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia (Slovak Republic)', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa', 'South Georgia and the South Sandwich Islands', 'Spain', 'Sri Lanka', 'St. Helena', 'St. Pierre and Miquelon', 'Sudan', 'Suriname', 'Svalbard and Jan Mayen Islands', 'Swaziland', 'Sweden', 'Switzerland', 'Syrian Arab Republic', 'Taiwan, Province of China', 'Tajikistan', 'Tanzania, United Republic of', 'Thailand', 'Togo', 'Tokelau', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'United States Minor Outlying Islands', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Vietnam', 'Virgin Islands (British)', 'Virgin Islands (U.S.)', 'Wallis and Futuna Islands', 'Western Sahara', 'Yemen', 'Yugoslavia', 'Zambia', 'Zimbabwe'];
+        $profiles = DB::table('nren')->where('id',$id)->get();
+        $users = DB::table('users')->get();
+     
+        // var_dump($surveys);
+        return view('admin.information.nrenedit',['profiles'=>$profiles,'users'=>$users, 'countries'=>$countries]);
+        
+    } 
+     public function nrenadd()
+    {
+        //
+        // echo();
+        $countries = ['Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia and Herzegowina', 'Botswana', 'Bouvet Island', 'Brazil', 'British Indian Ocean Territory', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'China', 'Christmas Island', 'Cocos (Keeling) Islands', 'Colombia', 'Comoros', 'Congo', 'Congo, the Democratic Republic of the', 'Cook Islands', 'Costa Rica', "Cote d'Ivoire", 'Croatia (Hrvatska)', 'Cuba', 'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Falkland Islands (Malvinas)', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'France Metropolitan', 'French Guiana', 'French Polynesia', 'French Southern Territories', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe', 'Guam', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Heard and Mc Donald Islands', 'Holy See (Vatican City State)', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran (Islamic Republic of)', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', "Korea, Democratic People's Republic of", 'Korea, Republic of', 'Kuwait', 'Kyrgyzstan', "Lao, People's Democratic Republic", 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libyan Arab Jamahiriya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macau', 'Macedonia, The Former Yugoslav Republic of', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Martinique', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Micronesia, Federated States of', 'Moldova, Republic of', 'Monaco', 'Mongolia', 'Montserrat', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'Netherlands Antilles', 'New Caledonia', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue', 'Norfolk Island', 'Northern Mariana Islands', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Pitcairn', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russian Federation', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia (Slovak Republic)', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa', 'South Georgia and the South Sandwich Islands', 'Spain', 'Sri Lanka', 'St. Helena', 'St. Pierre and Miquelon', 'Sudan', 'Suriname', 'Svalbard and Jan Mayen Islands', 'Swaziland', 'Sweden', 'Switzerland', 'Syrian Arab Republic', 'Taiwan, Province of China', 'Tajikistan', 'Tanzania, United Republic of', 'Thailand', 'Togo', 'Tokelau', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'United States Minor Outlying Islands', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Vietnam', 'Virgin Islands (British)', 'Virgin Islands (U.S.)', 'Wallis and Futuna Islands', 'Western Sahara', 'Yemen', 'Yugoslavia', 'Zambia', 'Zimbabwe'];
+      
+     
+        // var_dump($surveys);
+        return view('admin.information.nrenadd',['countries'=>$countries]);
+        
     }
 }

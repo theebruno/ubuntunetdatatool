@@ -25,28 +25,28 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
+                  <div class="col-sm-3 pull-left">
+                  <div class="input-group">
+
+<form class="input-group" method="get" post="/viewreport">
+<select class="form-control" name="nren">
+
+
+@foreach($nrens as $nren)
+
+<option value="{{$nren->id}}">{{$nren->nren}}</option>
+@endforeach
+</select>
+<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load NREN</button>
+</form>
+</div>
+</div>
+
+
+
                   <div class="col-sm-3 pull-right">
                   <div class="input-group">
 
-                  <!-- Country: Kenya
-NREN: KENET
-Network Name:Kenya Education Network
-Website URL: https://www.kenet.or.ke/
-Address: 30244 – 00100 Nairobi,
-Kenya
-Gen. e-mail: info@kenet.or.ke
-Tel: +254 732150500 or
-+254 703044000
-Fax: N/A
-year of create
-legal entity
-year of goverrnance
-
-
-
-change users to nren
-sorting nren
-remove some fields -->
 <form class="input-group" method="get" post="/viewreport">
 <select class="form-control" name="load">
 <option value="all" >All</option>
@@ -56,7 +56,7 @@ remove some fields -->
 <option value="{{$survey->id}}">{{$survey->year}}</option>
 @endforeach
 </select>
-<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Report</button>
+<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Survey</button>
 </form>
 </div>
 </div>
@@ -71,14 +71,14 @@ remove some fields -->
   <canvas id="myChart"></canvas>
 </div> -->
 <div class="row">
-    <div class="col-md-6">
+    <div>
     <canvas id="myCharttwo"></canvas>
 
 </div>     
-<div class="col-md-5">     
+<!-- <div class="col-md-5">     
 <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
 </div>
-</div>
+</div> -->
 
 
                   </div>
@@ -131,7 +131,7 @@ remove some fields -->
     config
   );
 </script>
-<script>
+<!-- <script>
 var xValues = ['Answered', 'Not answered'];
 var yValues = [ {{$ans}}, {{$not}}];
 var barColors = ['rgb(50,205,50)', 'rgb(255, 99, 132)'];
@@ -153,7 +153,7 @@ new Chart("myChart", {
     responsive: true
   }
 });
-</script>
+</script> -->
 
  
 @endsection

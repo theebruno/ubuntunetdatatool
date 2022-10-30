@@ -1,53 +1,40 @@
 @extends('adminetic::admin.layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5> Edit My Account</h5>
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h3>Edit NREN</h3>
                 </div>
-                <div class="card-body">
-                    <ul class="nav nav-tabs" id="icon-tab" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" id="icon-home-tab" data-bs-toggle="tab"
-                                href="#icon-home" role="tab" aria-controls="icon-home" aria-selected="true"
-                                data-bs-original-title="" title=""><i class="icofont icofont-ui-home"></i>Account</a></li>
-                        <li class="nav-item"><a class="nav-link" id="profile-icon-tab" data-bs-toggle="tab"
-                                href="#profile-icon" role="tab" aria-controls="profile-icon" aria-selected="false"
-                                data-bs-original-title="" title=""><i class="icofont icofont-man-in-glasses"></i>Profile</a>
+                <div class="col-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"> <i data-feather="home"></i></a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" id="profile-icon-tab" data-bs-toggle="tab"
-                                href="#nren" role="tab" aria-controls="profile-icon" aria-selected="false"
-                                data-bs-original-title="" title=""><i class="fa fa-list-alt"></i>NREN</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="icon-tabContent">
-                        <div class="tab-pane fade show active" id="icon-home" role="tabpanel"
-                            aria-labelledby="icon-home-tab">
-                            @livewire('admin.profile.edit-account', ['user' => $profile->user], key($profile->user->id))
-                        </div>
-                        <div class="tab-pane fade" id="profile-icon" role="tabpanel" aria-labelledby="profile-icon-tab">
-                            @livewire('admin.profile.edit-profile', ['profile' => $profile], key($profile->id))
-                        </div>
-                        <div class="tab-pane fade" id="nren" role="tabpanel" aria-labelledby="profile-icon-tab">
-                 
-<form method="post" action="/nren">
-  @if(!$profile->existed)
-<div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i class="icon-help-alt"></i>
-                      <p><b>ERROR!</b> You have not yet been assigned to an NREN.</p>
-                      <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
-                    </div>
-  @endif
-    @csrf
-    <br>
-    <input type="hidden" name="nrenid" value="{{$profile->nrenid}}"/>
-
-<div class="row">
+                        <li class="breadcrumb-item"><Source:media>NREN</Source:media></li>
+                        <li class="breadcrumb-item active">Edit </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+    <form method="post" action="/nren">
+        @csrf
+        @foreach ($profiles as $profile)
+        <input type="hidden" name="nrenid" value="{{$profile->id}}"/>
+    <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form theme-form">
+                  
+                    <div class="row">
                           <div class="mb-3">
                         <label class="form-label" for="country">Country</label>
                         <select class="form-control select2" wire:model.defer="country" name="country" id="country" style="width:100%">
-                        <option value="{{ $profile->countryy }}">
-                                {{ $profile->countryy}}</option>
+                        <option value="{{ $profile->country }}">
+                                {{ $profile->country}}</option>
                             @if (isset($countries))
                             @foreach ($countries as $country_name)
                             <option value="{{ $country_name }}">
@@ -59,35 +46,35 @@
                     </div>
                     <div class="mb-3">
                             <label> NREN</label>
-                            <input class="form-control" type="text" required="" value="{{$profile->nren}}" name="nren" placeholder=" eg.KENET" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->nren ?? '' }}" name="nren" placeholder=" eg.KENET" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> NETWORK NAME</label>
-                            <input class="form-control" type="text" required="" value="{{$profile->networkname}}"  name="networkname" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->networkname ?? '' }}"  name="networkname" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Website URL</label>
-                            <input class="form-control" type="text" required="" value="{{$profile->website}}" name="website" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->website ?? '' }}" name="website" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Address</label>
-                            <input class="form-control" type="text" required="" value="{{$profile->addresss}}"  name="address" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" value="{{$profile->address ?? '' }}"  name="address" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Gen. email</label>
-                            <input class="form-control" type="email" required="" value="{{$profile->generalemail}}"  name="generalemail" placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="email" required="" value="{{$profile->generalemail ?? '' }}"  name="generalemail" placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Tel</label>
-                            <input class="form-control" type="text" required="" name="tel"value="{{$profile->tel}}"   placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" name="tel"value="{{$profile->tel ?? '' }}"   placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Fax</label>
-                            <input class="form-control" type="text" required="" name="fax" value="{{$profile->fax}}"  placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="text" required="" name="fax" value="{{$profile->fax ?? '' }}"  placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <div class="mb-3">
                             <label> Year of creation</label>
-                            <input class="form-control" type="year" required="" name="yearofcreation" value="{{$profile->yearofcreation}}"  placeholder="" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" type="year" required="" name="yearofcreation" value="{{$profile->yearofcreation ?? '' }}"  placeholder="" data-bs-original-title="" title="" name="title">
                           </div>
                           <br>
                           <div class="row">
@@ -163,7 +150,7 @@
                         <div class="">
                           <div class="mb-3">
                             <label> Governance</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea4" name="governance" required="" rows="3" name ="details">{{$profile->governance}}</textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="governance" required="" rows="3" name ="details">{{$profile->governance ?? '' }}</textarea>
                           </div>
                         </div>
                       </div>
@@ -234,20 +221,26 @@
                       </div>
                     </div>
                 </div>   
-                @if($profile->existed)
-                    <button type="submit" class="btn btn-primary pull-right">Edit NREN</button>                   
-
-               @endif
-</form>
-                        </div>
-                    </div>
+                   
+                @endforeach
+                      </div>
                     
+               
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-end"><button class="btn btn-success me-3" href="#" data-bs-original-title="" type="submit">Edit</button><a class="btn btn-danger" href="#" data-bs-original-title="" title="">Cancel</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
+    </form>
+        
     </div>
+    <!-- Container-fluid Ends-->
 @endsection
 
 @section('custom_js')
-    @include('adminetic::admin.layouts.modules.profile.scripts')
+    @include('admin.layouts.modules.dashboard.scripts')
 @endsection
