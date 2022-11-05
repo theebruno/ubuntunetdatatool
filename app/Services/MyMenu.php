@@ -36,11 +36,23 @@ class MyMenu implements SidebarInterface
                 'type' => 'link',
                 'name' => ' Answer Survey',
                 'icon' => 'fa fa-pen',
+                  'conditions' => [
+                    [
+                        'type' => 'and',
+                        'condition' => auth()->user()->hasRole('user'),
+                    ],
+                ],
                 'link' => route('answers'),
             ],
             [
                 'type' => 'link',
                 'name' => ' My responses',
+                  'conditions' => [
+                    [
+                        'type' => 'and',
+                        'condition' => auth()->user()->hasRole('user'),
+                    ],
+                ],
                 'icon' => 'fa fa-book',
                 'link' => route('replies'),
             ],

@@ -67,37 +67,37 @@
 
                     <div>
   <canvas id="myChart"></canvas>
-</div>
+</div><br>
 <div>
   <canvas id="myCharttwo"></canvas>
-</div>
+</div><br>
 <div>
   <canvas id="myChartthree"></canvas>
-</div>
+</div><br>
 <div>
   <canvas id="myChartfour"></canvas>
 </div>
-
+<br>
 <div>
   <canvas id="myChartfive"></canvas>
-</div>
+</div><br>
 
 <div>
   <canvas id="myChartsix"></canvas>
-</div>
+</div><br>
 
 <div>
   <canvas id="myChartseven"></canvas>
 </div>
-
+<br>
 <div>
   <canvas id="myCharteight"></canvas>
 </div>
-
+<br>
 <div>
   <canvas id="myChartnine"></canvas>
 </div>
-
+<br>
 
                   </div>
                 </div>
@@ -119,56 +119,95 @@ var canvas = document.getElementById('myChart');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==93)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==96)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==97)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==98)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==99)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==100)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -188,7 +227,7 @@ new Chart(canvas, {
     plugins: {
       title: {
         display: true,
-        text: 'Institutes of higher education/ universities'
+        text: 'Colleges and universities'
       }
     },
     scales: {
@@ -261,56 +300,95 @@ var canvas = document.getElementById('myCharttwo');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==101)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==102)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==103)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==104)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==105)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==106)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -330,7 +408,7 @@ new Chart(canvas, {
     plugins: {
       title: {
         display: true,
-        text: 'Research institutes'
+        text: 'Research Institutes'
       }
     },
     scales: {
@@ -397,62 +475,102 @@ new Chart(canvas, {
 });
 
 </script>
+
 <script>
 
 var canvas = document.getElementById('myChartthree');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==107)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==108)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==109)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==110)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==111)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==112)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -472,7 +590,7 @@ new Chart(canvas, {
     plugins: {
       title: {
         display: true,
-        text: 'Vocational education and training centers'
+        text: 'Technical and Vocational Education and Training Centres'
       }
     },
     scales: {
@@ -545,56 +663,95 @@ var canvas = document.getElementById('myChartfour');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==113)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==114)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==115)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==116)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==117)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==118)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -614,7 +771,7 @@ new Chart(canvas, {
     plugins: {
       title: {
         display: true,
-        text: 'Secondary school'
+        text: 'Secondary Schools'
       }
     },
     scales: {
@@ -687,56 +844,95 @@ var canvas = document.getElementById('myChartfive');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==119)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==120)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==121)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==122)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==123)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==124)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -756,7 +952,7 @@ new Chart(canvas, {
     plugins: {
       title: {
         display: true,
-        text: 'Primary school'
+        text: 'Primary Schools'
       }
     },
     scales: {
@@ -829,56 +1025,95 @@ var canvas = document.getElementById('myChartsix');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==125)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==126)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==127)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==128)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==129)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==130)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -971,56 +1206,95 @@ var canvas = document.getElementById('myChartseven');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==131)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==132)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==133)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==134)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==135)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==136)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -1113,56 +1387,95 @@ var canvas = document.getElementById('myCharteight');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==137)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==138)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==139)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==140)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==141)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==142)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
@@ -1255,56 +1568,95 @@ var canvas = document.getElementById('myChartnine');
 new Chart(canvas, {
     type: 'line',
     data: {
-        labels: ['2021', '2022', '2023', '2024', '2025'],
+        labels: [
+@foreach($surveys as $survey)
+'{{$survey->year}}',
+@endforeach ],
         datasets: [{
-            label: 'Number of organizations connected to the NREN backbone',
+            label: 'Estimated number in the country',
             yAxisID: 'A',
-            data: [10, 96, 84, 76, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==143)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'red',
             borderColor:'red',
             tension: 0.4
         }, 
         {
-            label: 'Average bandwidth (in Mbit/s)',
+            label: 'Estimate total students and staff',
             yAxisID: 'B',
-            data: [5, 43, 80, 67, 69],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==144)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'blue',
             borderColor:'blue',
             tension: 0.4
         },
         {
-            label: 'Number of organizations member of the NREN',
+            label: 'Number of institutions that are members',
             yAxisID: 'C',
-            data: [10, 20, 30, 40, 50],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==145)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'green',
             borderColor:'green',
             tension: 0.4
         },
         {
-            label: 'Number of end-users connected to the NREN backbone',
+            label: 'Number of institutions connected',
             yAxisID: 'D',
-            data: [39, 50, 10, 80, 2],
+           data: [
+@foreach($answers as $answer)
+@if($answer->questionid==146)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'purple',
             borderColor:'purple',
             tension: 0.4
         },
         {
-            label: 'Estimated number of organizations in the country',
+            label: 'Average bandwidth (in Mbps) per institution',
             yAxisID: 'E',
-            data: [90, 40, 80, 23, 6],
+          data: [
+@foreach($answers as $answer)
+@if($answer->questionid==147)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'yellow',
             borderColor:'yellow',
             tension: 0.4
         },
         {
-            label: 'Estimated number of users in the country',
+            label: 'Number of students and staff connected',
             yAxisID: 'F',
-            data: [10, 30, 90, 5, 69],
+            data: [
+@foreach($answers as $answer)
+@if($answer->questionid==148)
+'{{$answer->name}}',
+@endif
+@endforeach 
+            ],
             fill: false,
             backgroundColor:'pink',
             borderColor:'pink',
