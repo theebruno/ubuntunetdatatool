@@ -137,7 +137,7 @@ class infocontroller extends Controller
     }
     public function respond(Request $request)
     {
-       // the userid means the nrenid
+       
         if($request->input('save')){
             $deleted = DB::table('saved')->where('userid',Auth::id())->delete();
         //inserting answers
@@ -147,23 +147,16 @@ class infocontroller extends Controller
 
 
            
-            if($template->id==40){
-// if ($request->hasFile($template->id)) {
-//     /
-//                     return "yes";
-// }
-//  else{
-//     return "No";
+            if($template->id==95){
 
-//  }
-                if($request->hasFile($template->id)){
+                if($request->input($template->id)){
                 $destinationPath = 'info';
-               
-                $myimage = $request->file($template->id)->getClientOriginalName();
+                
+                $myimage = $request->file->getClientOriginalName();
                 if( $myimage){
-                $request->file($template->id)->move(public_path($destinationPath), $myimage);
+                $request->file->move(public_path($destinationPath), $myimage);
 
-                $data=array('name'=>$myimage,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                $data=array('name'=>$myimage,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
                 DB::table('saved')->insert($data);}
                 }
 
@@ -172,55 +165,14 @@ class infocontroller extends Controller
 
             else{
                 if($request->input($template->id)){
-// these are the fields that have check boxes being encoded then saved
-                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
-                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
-                    $template->id==85 || $template->id==91 ){
-
-                  $name=json_encode($request->input($template->id));
-                    
-
-                }
-//
-                else{
                     $name=$request->input($template->id);
-                }
-
-
-
-                }
-
-
-                else{
-
-
-//              
-                if($template->type=='number'){
-                  
-                  $name=0;
-                    
 
                 }
                 else{
-
-
-                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
-                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
-                    $template->id==85 || $template->id==91 ){
-                  $value=["none","empty"];
-                  $name=json_encode($value);
-                    
+                    $name="not answered";
 
                 }
-                else{
-                    $name="N/A";
-
-                }
-                  
-                }
-
-                }
-                $data=array('name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                $data=array('name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
                 DB::table('saved')->insert($data);
     
             }
@@ -236,7 +188,7 @@ class infocontroller extends Controller
    
     
 
-        $statuscount= DB::table('surveystatus')->where('userid',$request->input('nrenid'))->where('surveyid',$request->input('surveyid'))->count();
+        $statuscount= DB::table('surveystatus')->where('userid',Auth::id())->where('surveyid',$request->input('surveyid'))->count();
         if($statuscount>0){
 
             return redirect('answers')->with('fail', "Response exists!");
@@ -245,33 +197,23 @@ class infocontroller extends Controller
         else{
 
             //updating status
-            $data=array('surveyid'=>$request->input('surveyid'),"status"=>'answered',"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+            $data=array('surveyid'=>$request->input('surveyid'),"status"=>'answered',"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
             DB::table('surveystatus')->insert($data);
 
         //inserting answers
         $templates = DB::table('template')->get();
-          foreach($templates as $template){
+        foreach($templates as $template){
 
+            if($template->id==95){
 
-
-           
-            if($template->id==40){
-// if ($request->hasFile($template->id)) {
-//     /
-//                     return "yes";
-// }
-//  else{
-//     return "No";
-
-//  }
-                if($request->hasFile($template->id)){
+                if($request->input($template->id)){
                 $destinationPath = 'info';
-               
-                $myimage = $request->file($template->id)->getClientOriginalName();
+                
+                $myimage = $request->file->getClientOriginalName();
                 if( $myimage){
-                $request->file($template->id)->move(public_path($destinationPath), $myimage);
+                $request->file->move(public_path($destinationPath), $myimage);
 
-                $data=array('name'=>$myimage,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                $data=array('name'=>$myimage,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
                 DB::table('answers')->insert($data);}
                 }
 
@@ -280,63 +222,18 @@ class infocontroller extends Controller
 
             else{
                 if($request->input($template->id)){
-// these are the fields that have check boxes being encoded then saved
-                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
-                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
-                    $template->id==85 || $template->id==91 ){
-
-                  $name=json_encode($request->input($template->id));
-                    
-
-                }
-//
-                else{
                     $name=$request->input($template->id);
-                }
-
-
-
-                }
-
-
-                else{
-
-
-//              
-                if($template->type=='number'){
-                  
-                  $name=0;
-                    
 
                 }
                 else{
-
-
-                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
-                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
-                    $template->id==85 || $template->id==91 ){
-                  $value=["none","empty"];
-                  $name=json_encode($value);
-                    
+                    $name="not answered";
 
                 }
-                else{
-                    $name="N/A";
-
-                }
-                  
-                }
-
-                }
-                $data=array('name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                $data=array('name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
                 DB::table('answers')->insert($data);
     
             }
-             
-
-
-
-
+         
         }
 
             return redirect('answers')->with('success', "Response had beeen recorded!");
@@ -383,17 +280,7 @@ class infocontroller extends Controller
     public function replies()
     {
         //
-        $nrenid="";
-
-        $nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
-        foreach ($nrenids as $nrenid) {
-            
-        $nrenid=$nrenid->nrenid;
-        }
-
-
-        $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->get();
-       
+        $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->get();
         $surveys = DB::select('select * from surveys');
         return view('admin.information.replies',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses]);
         
@@ -407,51 +294,41 @@ class infocontroller extends Controller
 
 
     public function reports(Request  $request)
-{
-        //getting nrenid instead of userid
-        $nrenid="";
-
-        $nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
-        foreach ($nrenids as $nrenid) {
-            
-        $nrenid=$nrenid->nrenid;
-        }
-
+    {
+        //
         $users = DB::table('users')->get();
 $nrens = DB::table('nren')->get();
 if($request->input("nren")){
-
-    $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
-       $answers = DB::table('answers')->where('userid',$request->input("nren"))->get();
-
+    $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
+        
     $surveys = DB::select('select * from surveys');
-    return view('admin.information.nrenreports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'users'=>$users,'nrens'=>$nrens,'answers'=>$answers]);
+    return view('admin.information.nrenreports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'users'=>$users,'nrens'=>$nrens]);
 
 }
 
 
 
 
-        $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
+        $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
         $c0 = DB::table('surveystatus')->count();
-        $c1 = DB::table('nren')->count();
+        $c1 = DB::table('users')->count()-1;
         $c2 = DB::table('surveys')->count() * $c1 ;
         $c2= $c2-$c0;
         
         if($request->input("load")){
             if($request->input("load")=="all"){
-                $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
+                $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
                 $c0 = DB::table('surveystatus')->count();
-                $c1 = DB::table('nren')->count();
+                $c1 = DB::table('users')->count()-1;
                 $c2 = DB::table('surveys')->count() * $c1 ;
                 $c2= $c2-$c0;
 
 
             }
             else{
-                $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
+                $surveystatuses = DB::table('surveystatus')->where('userid',Auth::id())->count();
                 $c0 = DB::table('surveystatus')->where('surveyid',$request->input("load"))->count();
-                $c1 = DB::table('nren')->count();
+                $c1 = DB::table('users')->count()-1;
                 $c2 = DB::table('surveys')->where('id',$request->input("load"))->count() * $c1 ;
                 $c2= $c2-$c0;
 
@@ -496,7 +373,6 @@ if($request->input("nren")){
     {
         //
         // echo();
-
         $surveystatuses = DB::table('surveystatus')->get();
         $surveys = DB::table('surveys')->where('id',$id)->get();
         $users = DB::table('users')->get();
@@ -508,24 +384,11 @@ if($request->input("nren")){
     }
     public function view($survey,$user,$year,$name)
     {
-        //userid is nrenid
-        $nrenid="";
-
-        $nrenids=DB::table('nrenuser')->where('userid',$user)->get();
-        foreach ($nrenids as $nrenid) {
-            
-        $nrenid=$nrenid->nrenid;
-        }
-   $nrens = DB::table('nren')->get();
-    
-
-
-
         $title="By ".$name." for  Year: ".$year;
-    $answers = DB::table('answers')->where('surveyid',$survey)->where('userid',$nrenid)->get();
+        $answers = DB::table('answers')->where('surveyid',$survey)->where('userid',$user)->get();
         $templates = DB::table('template')->get();
         $surveys = DB::table('surveys')->where('id',$survey)->get();
-        return view('admin.information.viewanswers',['surveys'=>$surveys,'answers'=>$answers,'templates'=>$templates,'title'=>$title,'nrens'=>$nrens,'nrenusers'=>$nrenids]);
+        return view('admin.information.viewanswers',['surveys'=>$surveys,'answers'=>$answers,'templates'=>$templates,'title'=>$title]);
         
     }
     public function addanswers($id,Request  $request)
@@ -533,40 +396,29 @@ if($request->input("nren")){
         //
         
         // echo();
-        $nrenid="";
-
-        $nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
-        foreach ($nrenids as $nrenid) {
-            
-        $nrenid=$nrenid->nrenid;
-        }
-
         $surveys = DB::table('surveys')->get();
-        $nrens = DB::table('nren')->get();
-        $nrenusers = DB::table('nrenuser')->get();
         $surveyss = DB::table('surveys')->get();
         $templates = DB::table('template')->get();
-        $answers = DB::table('saved')->where('surveyid',$id)->where('userid',$nrenid)->get();
+        $answers = DB::table('answers')->where('surveyid',$id)->where('userid',Auth::id())->get();
         // var_dump($surveys);
-    
         if($request->input('load')){
             if($request->input('load')=="saved"){
         
-                $answers = DB::table('saved')->where('userid',$nrenid)->get();
-                return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,'nrens'=>$nrens,'nrenusers'=>$nrenusers]);
+                $answers = DB::table('saved')->where('userid',Auth::id())->get();
+                return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,]);
             }
             else{
 
 
-                $answers = DB::table('answers')->where('surveyid',$request->input('load'))->where('userid',$nrenid)->get();
-                return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,'nrens'=>$nrens,'nrenusers'=>$nrenusers]);
+                $answers = DB::table('answers')->where('surveyid',$request->input('load'))->where('userid',Auth::id())->get();
+                return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id]);
             }
 
         }
         
         
         
-        return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,'nrens'=>$nrens,'nrenusers'=>$nrenusers]);
+        return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id]);
         
     }
     /**
@@ -579,15 +431,7 @@ if($request->input("nren")){
     public function dashboard()
     {
         //
-        $nrenid="";
-
-        $nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
-        foreach ($nrenids as $nrenid) {
-            
-        $nrenid=$nrenid->nrenid;
-        }
-
-        $replies = DB::table('surveystatus')->where('userid',$nrenid)->count();
+        $replies = DB::table('surveystatus')->where('userid',Auth::id())->count();
         $repliesall = DB::table('surveystatus')->count();
         $users = DB::table('users')->count();
         $surveys = DB::table('surveys')->count();

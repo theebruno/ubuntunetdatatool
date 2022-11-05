@@ -61,25 +61,10 @@
                             </td>
                             <td tabindex="0" class="sorting_1">{{$user->name}}</td>
                             <td>
-                                 
-                                    @foreach($nrenusers as $nrenuser) 
-                        @if($user->id==$nrenuser->userid)
-                          
-                                @foreach($surveystatuses as $status)  
-                                @if($status->userid==$nrenuser->nrenid &&  $status->status=="answered")
-
-                                 <span class="badge rounded-pill badge-primary">YES</span>
-                               
+                                @foreach($surveystatuses as $status)   
+                                @if($user->id==$status->userid && $status->status=="answered")
+                                <span class="badge rounded-pill badge-primary">YES</span>
                                 @endif
-                                 
-                            @endforeach
-                        @endif       
-                   
-
-
-                                
-
-
                             
                                
                                @endforeach

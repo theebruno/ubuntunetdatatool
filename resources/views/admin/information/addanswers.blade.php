@@ -52,12 +52,12 @@ remove some fields -->
 <form class="input-group" method="get" action="/addanswers/{{$id}}">
 
 <select class="form-control" name="load">
-<!-- <option value="saved" >Saved data</option> -->
+<option value="saved" >Saved data</option>
 @foreach($surveys as $survey)
 <option value="{{$survey->id}}">{{$survey->year}}</option>
 @endforeach
 </select>
-<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Year</button>
+<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Data</button>
 </form>
 </div>
 </div>
@@ -65,46 +65,24 @@ remove some fields -->
                     <h5></h5>
                    
                     <div class="card-body">
-    <form class="form-wizard" id="regForm" action="/respond" method="POST" enctype="multipart/form-data" >
+                    <form class="form-wizard" id="regForm" action="/respond" method="POST" enctype="multipart/form-data" >
                       
-         
+                  
                     <br>
-<?php if(responseReady(Auth::id())=='no'){
-  echo '<div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i class="icon-help-alt"></i>
-                      <p><b>ERROR!</b> You have not yet been assigned to an NREN.</p>
-                      <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
-                    </div>';
-
-}?>
-@csrf
-
-@foreach($nrenusers as $nrenuser)
-@if($nrenuser->userid==Auth::id())
-@foreach($nrens as $nren)
-
-@if($nren->id==$nrenuser->nrenid)
-<input type="hidden" name="nrenid" value="{{$nrenuser->nrenid}}">
-@endif
-
-@endforeach
-@endif
-
-@endforeach
-
-
+                      @csrf
                       @foreach($surveys as $survey)
                       <input type="hidden" name="surveyid" value="{{$survey->id}}">
                       @endforeach
-<!-- step one -->
-
-<div class="tab" style="display: block;">
-<h6 class="text-center">GENERAL INFORMATION</h6>
+                      <!-- step 1 -->
+                      <div class="tab" style="display: block;">
                       @foreach($templates as $template)
                      
 
                   
                       @if($template->step==1)
        
+
+
                       @if($template->type=="text")
                         <div class="mb-3">
                           <label for="name">{{$template->name}}</label>
@@ -120,6 +98,194 @@ remove some fields -->
 " name="{{$template->id}}" data-bs-original-title="" title="">
                         </div>
                       @endif
+                
+                      @endif
+                   
+                      @endforeach
+                      </div>
+                      <!--  -->
+                      <!-- step 2 -->
+                      <div class="tab">
+                      @foreach($templates as $template)
+                      @if($template->step==2)
+                      @if($template->type=="text")
+                      @if($template->options=="group")
+                     
+                      <div class="row">
+                    
+                      @if($template->id==14)
+                      <label><b>Staff (number and roles)</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+                  
+                     @endif
+                     @if($template->id==15)
+                    
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif" >
+                            </div>
+                          </div>
+                  
+                     @endif
+                  
+                     @if($template->id==16)
+                    
+                  
+                    <div class="mb-3 m-form__group">
+                         
+                          <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif" >
+                          </div>
+                        </div>
+                
+                   @endif
+                
+                   @if($template->id==17)
+                    
+                  
+                    <div class="mb-3 m-form__group">
+                         
+                          <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                          </div>
+                        </div>
+                
+                   @endif
+                
+                  
+                     
+                 
+                   </div>
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder="" value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif" name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==1)
+
+                      @if($template->id==18)
+                      <label><b>Scope of NREN intervention</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                            @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+                            </div>
+                          </div>
+                  
+                     @endif
+                     @if($template->id==19)
+                      
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                            @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+                            </div>
+                          </div>
+                  
+                     @endif
+                     @if($template->id==20)
+                 
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                            @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+                            </div>
+                          </div>
+                  
+                     @endif
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
+                      @endif
+
 
                       @if($template->type=="textarea")
                       <div class="row">
@@ -138,1418 +304,1541 @@ remove some fields -->
                         </div>
                       </div>
                       @endif
-                
+                      @if($template->type=="date")
+                        <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="date" placeholder="" value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" value="yes" data-bs-original-title="" title="">
+                        </div>
                       @endif
-                   
+
+                      @endif
                       @endforeach
                       </div>
-<!--  -->
+           
 
-<!-- step 2 -->
-<div class="tab">
-<h6 class="text-center">ORGANISATION AND GUIDANCE</h6>
 
-        @foreach($templates as $template)
-                               
-        @if($template->step==2)
-       
-        @if($template->type=="text")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
 
-@if($answers)
+
+                      <div class="tab">
+                      @foreach($templates as $template)
+                      @if($template->step==3)
+                      @if($template->type=="text")
+                      @if($template->surveyid==2)
+                     
+                      <div class="row">
+                    
+                      @if($template->id==25)
+                      <label><b>Tell us about your 2022 Budget in US dollars</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
 @endif
 @endforeach
+@endif" >
+                            </div>
+                          </div>
+                  
+                     @endif
+                     @if($template->id==26)
+                    
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
 @endif
+@endforeach
+@endif" >
+                            </div>
+                          </div>
+                  
+                     @endif
+                  
+                 
+                
+                  
+                     
+                 
+                   </div>
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==1)
 
-" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
                       @endif
 
-@if($template->type=="textarea")
-       <div class="row">
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
 @endif
 @endforeach
-@endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
-
-@if($template->type=="checkbox")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-
-@foreach(json_decode($template->options) as $k => $v)
-<label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
-   @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                          @foreach(json_decode($answer->name) as $k) 
-                          @if($k==$v)
-                          checked=""
-                          @endif
-                          @endforeach 
-                          @endif
-                          @endforeach
-                          @endif
-
- name="{{$template->id}}[]" value="{{$v}}" type="checkbox" data-bs-original-title="" title="">{{$v}}
-</label>
-@endforeach 
-
-</div>
-@endif
-@if($template->type=="radio")
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
-                      </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
-                          </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-
-
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
+@endif</textarea>
                           </div>
                         </div>
                       </div>
-                 
-                     
-                    </div>
+                      @endif
+                   
 
-@endif
+                      @endif
+                      @endforeach
+                      </div>
+           
 
-@endif
 
-@endforeach
-</div>                     
-          
-<!--  -->
-<!-- step three -->
+
+<!-- step four -->
 
 <div class="tab">
-<h6 class="text-center">HUMAN RESOURCES</h6>
-
-        @foreach($templates as $template)
-                               
-        @if($template->step==3)
-       
-@if($template->type=="text")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
+                      @foreach($templates as $template)
+                      @if($template->step==4)
+                      @if($template->type=="text")
+                      @if($template->surveyid==3)
+                     
+                      <div class="row">
+                    
+                      @if($template->id==30)
+                      <label><b>Institutes of higher education/ universities</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
 @endif
 @endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-@if($template->type=="number")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-@if($template->type=="textarea")
-       <div class="row">
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
-
-@if($template->type=="checkbox")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-
-@foreach(json_decode($template->options) as $k => $v)
-<label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
-   @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                          @foreach(json_decode($answer->name) as $k) 
-                          @if($k==$v)
-                          checked=""
-                          @endif
-                          @endforeach 
-                          @endif
-                          @endforeach
-                          @endif
-
- name="{{$template->id}}[]" value="{{$v}}" type="checkbox" data-bs-original-title="" title="">{{$v}}
-</label>
-@endforeach 
-
-</div>
-@endif
-@if($template->type=="radio")
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
-                      </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
+@endif">
+                            </div>
                           </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
+                  
+                     @endif
+                     @if($template->id==31)
+                    
+                  
+                     <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+                  
+                     @endif
+                  
+                     @if($template->id==32)
+                    
+                     <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                   @if($template->id==33)
+                    
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==34)
+                    
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==35)
+                    
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                  
+                     
+                 
+                   </div>
 
 
 
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
+
+                   
+                   <div class="row">
+                    
+                    @if($template->id==36)
+                    <label><b>Research institutes</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==37)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                   @if($template->id==38)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                 @if($template->id==39)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==40)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==41)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                
+                   
+               
+                 </div>
+                 @if($template->id==42)
+                    <label><b>Vocational education and training centers</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==43)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                   @if($template->id==44)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+              
+                 @endif
+              
+                 @if($template->id==45)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==46)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==47)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+
+                 @if($template->id==60)
+                    <label><b>Libraries, museums, national archives</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==61)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+                
+                   @endif
+                
+                   @if($template->id==62)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                 @if($template->id==63)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==64)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==65)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+
+                 @if($template->id==72)
+                    <label><b>Government departments (national, regional, local)</b></label>
+                
+               
+                    <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+                   @endif
+                   @if($template->id==73)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                
+                   @endif
+                
+                   @if($template->id==74)
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+             
+                 @endif
+              
+                 @if($template->id==75)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+              
+                 @endif
+                 @if($template->id==76)
+                  
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+             
+              
+                 @endif
+                 @if($template->id==77)
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+  
+              
+                 @endif
+                 @if($template->id==66)
+                    <label><b>Hospitals (other than teaching/ university hospitals)</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==67)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+        
+                   @endif
+                
+                   @if($template->id==68)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                 @if($template->id==69)
+                  
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+             
+              
+                 @endif
+                 @if($template->id==70)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==71)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+              
+                 @endif
+                 @if($template->id==48)
+                    <label><b>Secondary school</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==49)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                   @if($template->id==50)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                 @if($template->id==51)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==52)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+                 @endif
+                 @if($template->id==53)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+
+                 @if($template->id==54)
+                    <label><b>Primary school</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==55)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div> 
+                
+                
+                   @endif
+                
+                   @if($template->id==56)
+                  
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+              
+                 @endif
+              
+                 @if($template->id==57)
+                  
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+        
+              
+                 @endif
+                 @if($template->id==58)
+                  
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+            
+              
+                 @endif
+                 @if($template->id==59)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+              
+                 @endif
+                 @if($template->id==78)
+                    <label><b>For-profit organizations</b></label>
+                
+                    <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                   @if($template->id==79)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                
+                   @if($template->id==80)
+                  
+                
+                   <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+              
+                 @if($template->id==81)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==82)
+                  
+                
+                 <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+              
+                 @endif
+                 @if($template->id==83)
+                  
+                 <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}"value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                            </div>
+                          </div>
+              
+                 @endif
+
+
+                 
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==4)
+
+                   
+                  
+                     @if($template->id==20)
+                 
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+                            </div>
+                          </div>
+                  
+                     @endif
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
+                      @endif
+
+
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" >@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif</textarea>
                           </div>
                         </div>
                       </div>
-                 
+                      @endif
                      
-                    </div>
+                      @endif
+                      @endforeach
+                      </div>
+           <!--  -->
 
-@endif
-
-@endif
-
-@endforeach
-</div> 
-
-<!--  -->
-<!-- step four-->
+                      
+<!-- step five -->
 
 <div class="tab">
-<h6 class="text-center">NETWORK</h6>
-
-        @foreach($templates as $template)
-                               
-        @if($template->step==4)
-
-     
-       
-@if($template->type=="text")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
+                      @foreach($templates as $template)
+                      @if($template->step==5)
+                      @if($template->type=="text")
+                      @if($template->surveyid==5)
+                     
+                      <div class="row">
+                    
+                      @if($template->id==92)
+                      <label><b>National network infrastructure</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
 @endif
 @endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-@if($template->type=="number")
-<div class="mb-3" >
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+@endif">
+                            </div>
+                          </div>
+                  
+                     @endif
+                     @if($template->id==93)
+                    
+                     <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
+{{$answer->name}}
 @endif
 @endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
+@endif">
+                           </div>
+                         </div>
+                  
+                     @endif
+                     @if($template->id==94)
+                    
+                     <div class="mb-3 m-form__group">
+                           
+                           <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                             <input class="form-control" type="text" name="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
 @endif
+@endforeach
+@endif">
+                           </div>
+                         </div>
+                
+                   @endif
+                 
+                
+                  
+                     
+                 
+                   </div>
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                        
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==5)
+
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
+                      @endif
 
 
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" >@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif</textarea>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
+                 
                       @if($template->type=="file")
+                        <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="file" placeholder=""   name="file">
+                        </div>
+                      @endif
+
+                      @endif
+                      @endforeach
+                      </div>
+           
+<!--  -->
+
+
+<!-- step six -->
+<div class="tab">
+                      @foreach($templates as $template)
+                      @if($template->step==6)
+                      @if($template->type=="text")
+                      @if($template->surveyid==5)
+                     
+                      <div class="row">
+                   
+                     @if($template->id==94)
+                    
+                  
+                    <div class="mb-3 m-form__group">
+                         
+                          <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                            <input class="form-control" type="text" name="{{$template->id}}" value="1" >
+                          </div>
+                        </div>
+                
+                   @endif
+                 
+                
+                  
+                     
+                 
+                   </div>
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==1)
+
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
+                      @endif
+
+
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}">@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif</textarea>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
+                  
+
+                      @endif
+                      @endforeach
+                      </div>
+           
+                  
+
+<!--  -->
+
+<!-- step seven -->
+<div class="tab">
+                      @foreach($templates as $template)
+                      @if($template->step==7)
+                      @if($template->type=="text")
+                      @if($template->surveyid==5)
+                     
+                      <div class="row">
+                    
+                      @if($template->id==92)
+                      <label><b>National network infrastructure</b></label>
+                  
+                      <div class="mb-3 m-form__group">
+                           
+                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
+                              <input class="form-control" type="text" name="{{$template->id}}" value="1"  >
+                            </div>
+                          </div>
+                  
+                     @endif
+                   
+                 
+                
+                  
+                     
+                 
+                   </div>
+                      @else
+                      <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif"  name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      @endif
+                      @if($template->type=="single")
+                      @if($template->surveyid==1)
+
+                      @else
+                      
+                      <div class="mb-3">
+                      <label for="name">{{$template->name}}</label>
+                      <select class="form-select digits" id="exampleFormControlSelect9" name="{{$template->id}}">
+                      @if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<option value="{{$answer->name}}">{{$answer->name}}</option>
+@endif
+@endforeach
+@endif
+                      @foreach(json_decode($template->options) as $k => $v)
+                              <option value="{{$v}}">{{$v}}</option>
+                      @endforeach  
+                            </select>
+</div>
+                      @endif
+                      @endif
+
+
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif</textarea>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
+                      @if($template->type=="url")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <input class="form-control" type="text" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+{{$answer->name}}
+@endif
+@endforeach
+@endif">
+                          </div>
+                        </div>
+                      </div>
+                      @endif
+                      @if($template->type=="date")
+                        <div class="mb-3">
+                          <label for="name">{{$template->name}}</label>
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="1" name="{{$template->id}}" data-bs-original-title="" title="">
+                        </div>
+                      @endif
+                      <!-- @if($template->type=="file")
                         <div class="mb-3">
                           <label for="name">{{$template->name}}</label>
                           <input class="form-control invalid invalid invalid invalid invalid" id="name" type="file" placeholder=""   name="{{$template->id}}" data-bs-original-title="" title="">
                         </div>
+                      @endif -->
+
                       @endif
-
-
-@if($template->type=="textarea")
-       <div class="row" >
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
-
-@if($template->type=="checkbox")
-<div class="mb-3 opt" >
-<label for="name">{{$template->name}}</label>
-
-@foreach(json_decode($template->options) as $k => $v)
-<label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
-   @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                          @foreach(json_decode($answer->name) as $k) 
-                          @if($k==$v)
-                          checked=""
-                          @endif
-                          @endforeach 
-                          @endif
-                          @endforeach
-                          @endif
-
- name="{{$template->id}}[]" value="{{$v}}" type="checkbox" data-bs-original-title="" title="">{{$v}}
-</label>
-@endforeach 
-
-</div>
-@endif
-@if($template->type=="radio" && $template->surveyid=="optional")
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
+                      @endforeach
                       </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
-                          </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-
-
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
-                          </div>
-                        </div>
-                      </div>
-                 
-                     
-                    </div>
-
-@endif
-@if($template->id==27 && $template->type=="radio" )
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
-                      </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" onclick="myFunction()" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
-                          </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" onclick="myFunctiontwo()"id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-
-
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
-                          </div>
-                        </div>
-                      </div>
-                 
-                     
-                    </div>
-
-@endif
-
-@endif
-
-@endforeach
-</div> 
+           
 
 <!--  -->
-<!-- step five -->
-
+<!-- step 8 -->
 <div class="tab">
-<h6 class="text-center">SERVICES</h6>
+                      @foreach($templates as $template)
+                      @if($template->step==8)
+            
 
-        @foreach($templates as $template)
-                               
-        @if($template->step==5)
-       
-@if($template->type=="text" && $template->id!=53)
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>{{$template->name}}</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
 @endif
 @endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-@if($template->id==51 && $template->type=="number")
-                      <label>eduroam</label>
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-@endif
-@if($template->id==52 && $template->type=="number")
-                     
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-@endif
-
-@if($template->id==53 && $template->type=="text")
-                      <label>ID Federation:</label>
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                            <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-@endif
-
-
-
-@if($template->id==54 && $template->type=="number")
-                   
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-@endif
-@if($template->id==55 && $template->type=="number")
-                     
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-@endif
-
-
-
-
-@if($template->type=="textarea")
-       <div class="row">
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
-
-@if($template->type=="checkbox")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-
-@foreach(json_decode($template->options) as $k => $v)
-<label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
-   @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                          @foreach(json_decode($answer->name) as $k) 
-                          @if($k==$v)
-                          checked=""
-                          @endif
-                          @endforeach 
-                          @endif
-                          @endforeach
-                          @endif
-
- name="{{$template->id}}[]" value="{{$v}}" type="checkbox" data-bs-original-title="" title="">{{$v}}
-</label>
-@endforeach 
-
-</div>
-@endif
-@if($template->type=="radio")
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
-                      </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
-                          </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-
-
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
+@endif</textarea>
                           </div>
                         </div>
                       </div>
-                 
-                     
-                    </div>
-
-@endif
-
-@endif
-
-@endforeach
-</div> 
-
-<!--  -->
-<!-- step six -->
-
-<div class="tab">
-<h6 class="text-center">BUSINESS ENVIRONMENT AND PLANNING</h6>
-
-        @foreach($templates as $template)
-                               
-        @if($template->step==6)
-       
-@if($template->type=="text" && $template->id!=80)
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-@if($template->type=="number" && $template->id!=89 && $template->id!==90)
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-  </div>
-@endif
-
-
-@if($template->type=="textarea" && $template->id!=81 && $template->id!=82)
-       <div class="row">
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
-
-
-  @if($template->id==80)
-                      <label>1. Is national telecom market:</label>
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                             <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
-
-@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-
-" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-                     @endif
-                       @if($template->id==81)
-                 
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-                            </div>
-                          </div>
-                  
-                     @endif
-                       @if($template->id==82)
+                      @endif
                       
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-{{$answer->name}}
-@endif
-@endforeach
-@endif
-</textarea>
-                            </div>
-                          </div>
-                  
-                     @endif
-@if($template->id==85)
-                      <label>3. Provide brief information on your business model:</label>
-                  
-                    
-                     @endif
 
-  @if($template->id==89)
-                      <label>4. For the current year, what is your:</label>
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                         <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-                     @endif
-                       @if($template->id==90)
-                 
-                  
-                      <div class="mb-3 m-form__group">
-                           
-                            <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                  <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
-@foreach($answers as $answer)
-@if($template->id==$answer->questionid)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" name="{{$template->id}}" data-bs-original-title="" title="">
-                            </div>
-                          </div>
-                  
-                     @endif
-
-
-
-@if($template->type=="checkbox")
-<div class="mb-3">
-<label for="name">{{$template->name}}</label>
-
-@foreach(json_decode($template->options) as $k => $v)
-<label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
-   @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                          @foreach(json_decode($answer->name) as $k) 
-                          @if($k==$v)
-                          checked=""
-                          @endif
-                          @endforeach 
-                          @endif
-                          @endforeach
-                          @endif
-
- name="{{$template->id}}[]" value="{{$v}}" type="checkbox" data-bs-original-title="" title="">{{$v}}
-</label>
-@endforeach 
-
-</div>
-@endif
-@if($template->type=="radio")
-<div class="row">
-<div class="col-sm-12">
-                        <label>{{$template->name}}</label>
+                      @endif
+                      @endforeach
                       </div>
-                      <div class="col">
-                        <div class="mb-3 m-t-15 custom-radio-ml">
-                          <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
-
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="Yes")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-                            data-bs-original-title="" title="">
-                            <label class="form-check-label" for="radio{{$template->id}}">Yes</label>
-                          </div>
-                         
-                          <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
-  @if($answers)
-   @foreach($answers as $answer)
-   @if($template->id==$answer->questionid)
-                        
-                          @if($answer->name=="No")
-                          checked=""
-                          @endif
-                       
-                          @endif
-                          @endforeach
-                          @endif
-
-
-
-                             data-bs-original-title="" title="">
-                            <label class="form-check-label" for="rad{{$template->id}}">No</label>
-                          </div>
-                        </div>
-                      </div>
-                 
-                     
-                    </div>
-
-@endif
-
-@endif
-
-@endforeach
-</div> 
-
 <!--  -->
-<!-- step 2 -->
-<div class="tab">
-<h6 class="text-center">IMPACT</h6>
-
-  
-
-<!-- table -->
-<div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead class="bg-primary">
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Estimated number in the country</th>
-                              <th scope="col">Estimate total students and staff</th>
-                              <th scope="col">Number of institutions that are members</th>
-                                <th scope="col">Number of institutions connected</th>
-                              <th scope="col">Average bandwidth (in Mbps) per institution</th>
-                              <th scope="col">Number of students and staff connected</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">Colleges and universities</th>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="93" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==93)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="96" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==96)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="97" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==97)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="98" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==98)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="99" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==99)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="100" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==100)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Research Institutes</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="101" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==101)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="102" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==102)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="103" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==103)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="104" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==104)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="105" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==105)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="106" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==106)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                             <tr>
-                              <th scope="row">Technical and Vocational Education and Training Centres</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="107" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==107)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="108" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==108)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="109" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==109)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="110" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==110)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="111" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==111)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="112" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==112)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                           
-<tr>
-                              <th scope="row">Secondary Schools</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="113" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==113)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="114" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==114)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="115" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==115)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="116" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==116)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="117" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==117)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="118" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==106)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                            <tr>
-                              <th scope="row">Primary school</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="119" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==119)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="120" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==120)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="121" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==121)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="122" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==122)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="123" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==123)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="124" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==124)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                            <tr>
-                              <th scope="row">Libraries, museums, national archives</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="125" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==125)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="126" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==126)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="127" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==127)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="128" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==128)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="129" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==129)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="130" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==130)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                            <tr>
-                              <th scope="row">Hospitals (other than teaching/ university hospitals)</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="131" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==131)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="132" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==132)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="133" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==133)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="134" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==134)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="135" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==135)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="136" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==136)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                            <tr>
-                              <th scope="row">Government departments (national, regional, local)</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="137" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==137)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="138" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==138)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="139" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==139)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="140" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==140)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="141" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==141)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="142" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==142)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-                            <tr>
-                              <th scope="row">For-profit organizations</th>
-                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="143" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==143)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="144" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==144)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="145" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==145)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="146" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==146)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="147" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==147)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                              <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="148" data-bs-original-title="" value="@if($answers)
-@foreach($answers as $answer)
-@if($answer->questionid==148)
-<?php echo $answer->name;?>
-@endif
-@endforeach
-@endif" ></td>
-                  
-                             
-                            </tr>
-
-                          </tbody>
-                        </table>
-                      </div>
-
-
-
-
-</div>
-
-
-
                       <div>
-                        <?php if(responseReady(Auth::id())=='yes'){
-  echo ' <div class="text-end btn-mb">
-                       <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)" style="display: none;" data-bs-original-title="" title="">Previous</button>
+                        <div class="text-end btn-mb">
+                        <button class="btn btn-warning" id="" type="submit"  value="save" name ="save" data-bs-original-title="" title="">Save</button>
+                          <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)" style="display: none;" data-bs-original-title="" title="">Previous</button>
                           <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)" data-bs-original-title="" title="">Next</button>
-                            <button class="btn btn-warning" id="" type="submit"  value="save" name ="save" data-bs-original-title="" title="">Save</button>
-                        </div>';
-
-}?>
-                   
+                        </div>
                       </div>
                       <!-- Circles which indicates the steps of the form:-->
                       <div class="text-center"><span class="step active"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span></div>
@@ -1619,22 +1908,6 @@ function fixStepIndicator(n) {
     x[i].className = x[i].className.replace(" active", "");
   }
   x[n].className += " active";
-}
-function myFunction() {
-    var x = document.getElementsByClassName("opt");
-  x.style.display = "block";
-    
-  
-}
-function myFunctiontwo() {
-var x = document.getElementsById("myDIV");
-  x.style.display = "block";
-    var y = document.getElementsById("myDIVone");
-  y.style.display = "block";
-    var z = document.getElementsById("myDIVtwo");
-  z.style.display = "block";
-    var a = document.getElementsById("myDIVthree");
-  a.style.display = "block";
 }
     </script>
 @endsection

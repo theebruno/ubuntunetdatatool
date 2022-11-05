@@ -112,26 +112,6 @@ if (! function_exists('getNren')) {
     }
 }
 
-if (! function_exists('responseReady')) {
-    function responseReady($p)
-
-    {
-    
-        
-        $n= DB::table('nrenuser')->where('userid',$p)->count();
-      
-        if($n>0){
-        return "yes";
-        
-        }else{
-        return "no";
-        }
-        // $profile = $p ?? Auth::user()->profile ?? Auth::user()->profile()->create();
-
-        // return isset($profile->profile_pic) ? (Illuminate\Support\Str::contains($profile->profile_pic, ['https://', 'http://']) ? $profile->profile_pic : asset('storage/'.$profile->profile_pic)) : asset('adminetic/static/profile.jpg');
-    }
-}
-
 
 
 if (! function_exists('title')) {
