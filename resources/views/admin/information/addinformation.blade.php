@@ -30,7 +30,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label> Title</label>
-                            <input class="form-control" type="text" placeholder=" name *" data-bs-original-title="" title="" name="title">
+                            <input class="form-control" required type="text" placeholder=" name *" data-bs-original-title="" title="" name="title">
                           </div>
                         </div>
                       </div>
@@ -43,19 +43,19 @@
                       <div class="col-sm-4">
                           <div class="mb-3">
                             <label>Year</label>
-                            <input class="datepicker-here form-control" type="number" data-language="en" data-bs-original-title="" title="" name="year">
+                            <input class="datepicker-here form-control" required  type="number" data-language="en" data-bs-original-title="" title="" name="year">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="mb-3">
                             <label>Starting date</label>
-                            <input class="datepicker-here form-control" type="date" data-language="en" data-bs-original-title="" title="" name="start">
+                            <input class="datepicker-here form-control" required  type="date" data-language="en" data-bs-original-title="" title="" name="start">
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="mb-3">
                             <label>Ending date</label>
-                            <input class="datepicker-here form-control" type="date" data-language="en" data-bs-original-title="" title="" name="end">
+                            <input class="datepicker-here form-control" required  type="date" data-language="en" data-bs-original-title="" title="" name="end">
                           </div>
                         </div>
                       </div>
@@ -64,7 +64,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label>Enter some Details</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="details"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" required  rows="3" name ="details"></textarea>
                           </div>
                         </div>
                       </div>
