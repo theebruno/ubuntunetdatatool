@@ -55,6 +55,7 @@ remove some fields -->
 <!-- <option value="saved" >Saved data</option> -->
 @foreach($surveys as $survey)
 <option value="{{$survey->id}}">{{$survey->year}}</option>
+  <?php $ss=$survey->status;?>
 @endforeach
 </select>
 <button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Year</button>
@@ -72,6 +73,13 @@ remove some fields -->
 <?php if(responseReady(Auth::id())=='no'){
   echo '<div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i class="icon-help-alt"></i>
                       <p><b>ERROR!</b> You have not yet been assigned to an NREN.</p>
+                      <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                    </div>';
+
+}?>
+<?php if($ss=='ended'){
+  echo '<div class="alert alert-warning inverse alert-dismissible fade show" role="alert"><i class="icon-help-alt"></i>
+                      <p><b>Warning!</b> Survey has been disabled.</p>
                       <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
                     </div>';
 
@@ -94,6 +102,7 @@ remove some fields -->
 
                       @foreach($surveys as $survey)
                       <input type="hidden" name="surveyid" value="{{$survey->id}}">
+                      <?php $ss=$survey->status;?>
                       @endforeach
 <!-- step one -->
 
@@ -1541,7 +1550,9 @@ remove some fields -->
 
 
                       <div>
-                        <?php if(responseReady(Auth::id())=='yes'){
+                      
+                        <?php if(responseReady(Auth::id())=='yes' && $ss=='running'){
+                        
   echo ' <div class="text-end btn-mb">
                        <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)" style="display: none;" data-bs-original-title="" title="">Previous</button>
                           <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)" data-bs-original-title="" title="">Next</button>
