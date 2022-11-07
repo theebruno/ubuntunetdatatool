@@ -1525,7 +1525,15 @@
         const element = document.getElementById('content');
         var opt = {
   margin:       0,
-  filename:     '<?php echo $name;?>.pdf',
+  filename:     '<?php 
+
+if(isset($name)){
+echo $name;
+}
+else{
+echo "noresponse"; 
+}
+  ?>.pdf',
   image:        { type: 'jpeg', quality: 1 },
   html2canvas:  { scale: 2 },
   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
