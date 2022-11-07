@@ -1444,7 +1444,7 @@
 @endif
 @endforeach
 @endif</td>
-                              <td><@if($answers)
+                              <td>@if($answers)
 @foreach($answers as $answer)
 @if($answer->questionid==145)
 <?php echo $answer->name;?>
