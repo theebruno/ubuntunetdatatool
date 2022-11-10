@@ -29,16 +29,28 @@
                
                   </div>
                   <div class="card-body" id="content" >
-                       @foreach ($surveys as $survey)
+                      @foreach ($surveys as $survey)
                     <h4 class="mb-3 text-center"><u>{{$survey->year}} by 
+                                        @if($forall=='no')
                       @foreach($nrenusers as $nrenuser)
                       @foreach($nrens as $nren)
+
                       @if($nrenuser->nrenid==$nren->id)
                       {{$nren->nren}}
                       <?php $name=$survey->year."for".$nren->nren;?>
                       @endif
                       @endforeach
                       @endforeach
+                      @endif
+
+                       @if($forall=='yes')
+                      @foreach($nrenusers as $nrenuser)
+                   
+                      {{$nrenuser->nren}}
+                      <?php $name=$survey->year."for".$nrenuser->nren;?>
+                    
+                      @endforeach
+                      @endif
                     </u>
                     </h4>
                   <!-- step one -->
@@ -403,8 +415,22 @@
 
                       @if($template->type=="file")
                         <div class="mb-3">
-                          <label for="name">{{$template->name}}</label>
-                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="file" placeholder=""   name="{{$template->id}}" data-bs-original-title="" title="">
+                          <label for="name">Network Topology Map</label>
+                         <!--  <input class="form-control invalid invalid invalid invalid invalid" id="name" type="file" placeholder=""   name="{{$template->id}}" data-bs-original-title="" title=""> -->
+                         <a  target="_blank" href="/info/@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<?php echo $answer->name;?>
+@endif
+@endforeach
+@endif">
+@if($answers)
+@foreach($answers as $answer)
+@if($template->id==$answer->questionid)
+<?php echo $answer->name;?>
+@endif
+@endforeach
+@endif</a>
                         </div>
                       @endif
 
@@ -1232,7 +1258,7 @@
 @endif</td>
                               <td>@if($answers)
 @foreach($answers as $answer)
-@if($answer->questionid==106)
+@if($answer->questionid==118)
 <?php echo $answer->name;?>
 @endif
 @endforeach
@@ -1521,6 +1547,7 @@
 
     <script type="text/javascript">
       function onClick() {
+        alert("PDF to be downloaded shortly");
     // Choose the element that our invoice is rendered in.
         const element = document.getElementById('content');
         var opt = {
@@ -1548,43 +1575,5 @@ element.addEventListener("click", onClick);
 
 
     </script>
-    <script>
-    $('#basic-1').DataTable(
-
-        {
-        dom: 'Bfrtip',
-        "bPaginate": false,
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2]
-                },  messageTop: '{{$title}}'
-            },
-            {
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2]
-                },
-                messageTop: '{{$title}}'
-            },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2]
-                },
-                messageTop: '{{$title}}'
-            },
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: [ 0, 1,2]
-                },
-                messageTop: '{{$title}}',
-            },
-            
-        ]
-    } 
-     );
-    </script>
+  
 @endsection

@@ -30,6 +30,7 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
+                             <th>ID</th>
                               <th>Title</th>
                               <th >Description</th>
                               <th >Survey status</th>
@@ -43,7 +44,8 @@
                         <tbody>
     @foreach ($surveys as $survey)
                         <tr role="row" class="odd">
-                            <td tabindex="0" class="sorting_1">{{$survey->title}}</td>
+                             <td>{{$survey->id}}</td>
+                            <td>{{$survey->title}}</td>
                             <td>{{$survey->details}}</td>
                             <td>
 @if($survey->status=="running")

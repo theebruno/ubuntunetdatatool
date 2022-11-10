@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2022 at 11:48 PM
+-- Generation Time: Nov 10, 2022 at 05:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -47,65 +47,8 @@ CREATE TABLE `activity_log` (
 --
 
 INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_type`, `subject_id`, `causer_type`, `causer_id`, `properties`, `batch_uuid`, `event`, `created_at`, `updated_at`) VALUES
-(1, 'default', 'created', 'Pratiksh\\Adminetic\\Models\\Admin\\Permission', 1, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(2, 'default', 'created', 'Pratiksh\\Adminetic\\Models\\Admin\\Permission', 2, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(3, 'default', 'created', 'Pratiksh\\Adminetic\\Models\\Admin\\Permission', 3, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(4, 'default', 'created', 'Pratiksh\\Adminetic\\Models\\Admin\\Permission', 4, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(5, 'default', 'created', 'Pratiksh\\Adminetic\\Models\\Admin\\Permission', 5, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(6, 'default', 'created', 'App\\Models\\User', 1, NULL, NULL, '[]', NULL, 'created', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
-(7, 'default', 'deleted', 'Pratiksh\\Adminetic\\Models\\Admin\\Role', 3, 'App\\Models\\User', 1, '[]', NULL, 'deleted', '2022-10-03 10:47:57', '2022-10-03 10:47:57'),
-(8, 'default', 'deleted', 'Pratiksh\\Adminetic\\Models\\Admin\\Role', 4, 'App\\Models\\User', 1, '[]', NULL, 'deleted', '2022-10-03 10:48:01', '2022-10-03 10:48:01'),
-(9, 'default', 'deleted', 'Pratiksh\\Adminetic\\Models\\Admin\\Role', 6, 'App\\Models\\User', 1, '[]', NULL, 'deleted', '2022-10-03 10:48:07', '2022-10-03 10:48:07'),
-(10, 'default', 'created', 'App\\Models\\User', 2, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-03 11:04:38', '2022-10-03 11:04:38'),
-(11, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-03 11:20:19', '2022-10-03 11:20:19'),
-(47, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-03 16:33:57', '2022-10-03 16:33:57'),
-(48, 'default', 'created', 'App\\Models\\User', 15, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 06:08:40', '2022-10-04 06:08:40'),
-(49, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-04 06:09:13', '2022-10-04 06:09:13'),
-(50, 'default', 'created', 'App\\Models\\User', 16, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:48:31', '2022-10-04 10:48:31'),
-(51, 'default', 'created', 'App\\Models\\User', 17, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:49:54', '2022-10-04 10:49:54'),
-(52, 'default', 'created', 'App\\Models\\User', 18, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:51:43', '2022-10-04 10:51:43'),
-(53, 'default', 'created', 'App\\Models\\User', 19, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:53:38', '2022-10-04 10:53:38'),
-(54, 'default', 'created', 'App\\Models\\User', 20, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:54:43', '2022-10-04 10:54:43'),
-(55, 'default', 'created', 'App\\Models\\User', 21, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 10:57:57', '2022-10-04 10:57:57'),
-(56, 'default', 'created', 'App\\Models\\User', 22, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:16:50', '2022-10-04 11:16:50'),
-(57, 'default', 'created', 'App\\Models\\User', 23, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:18:08', '2022-10-04 11:18:08'),
-(58, 'default', 'created', 'App\\Models\\User', 24, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:19:03', '2022-10-04 11:19:03'),
-(59, 'default', 'created', 'App\\Models\\User', 25, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:22:18', '2022-10-04 11:22:18'),
-(60, 'default', 'created', 'App\\Models\\User', 26, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:32:57', '2022-10-04 11:32:57'),
-(61, 'default', 'created', 'App\\Models\\User', 27, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:35:19', '2022-10-04 11:35:19'),
-(62, 'default', 'created', 'App\\Models\\User', 28, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:36:31', '2022-10-04 11:36:31'),
-(63, 'default', 'created', 'App\\Models\\User', 29, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:39:44', '2022-10-04 11:39:44'),
-(64, 'default', 'created', 'App\\Models\\User', 30, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:42:55', '2022-10-04 11:42:55'),
-(65, 'default', 'created', 'App\\Models\\User', 31, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-04 11:46:22', '2022-10-04 11:46:22'),
-(66, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-04 11:47:44', '2022-10-04 11:47:44'),
-(67, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-04 12:52:45', '2022-10-04 12:52:45'),
-(68, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-04 12:57:37', '2022-10-04 12:57:37'),
-(69, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 08:31:57', '2022-10-05 08:31:57'),
-(70, 'default', 'updated', 'App\\Models\\User', 29, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 09:39:22', '2022-10-05 09:39:22'),
-(71, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 09:39:36', '2022-10-05 09:39:36'),
-(72, 'default', 'updated', 'App\\Models\\User', 27, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 12:46:09', '2022-10-05 12:46:09'),
-(73, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 12:46:15', '2022-10-05 12:46:15'),
-(74, 'default', 'updated', 'App\\Models\\User', 31, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 22:53:13', '2022-10-05 22:53:13'),
-(75, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 23:19:04', '2022-10-05 23:19:04'),
-(76, 'default', 'deleted', 'App\\Models\\User', 15, 'App\\Models\\User', 1, '[]', NULL, 'deleted', '2022-10-05 23:28:01', '2022-10-05 23:28:01'),
-(77, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-05 23:36:05', '2022-10-05 23:36:05'),
-(78, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-06 11:09:23', '2022-10-06 11:09:23'),
-(79, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-06 11:49:08', '2022-10-06 11:49:08'),
-(80, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-06 12:19:02', '2022-10-06 12:19:02'),
-(81, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-06 14:26:33', '2022-10-06 14:26:33'),
-(82, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-29 03:41:23', '2022-10-29 03:41:23'),
-(83, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-30 09:06:00', '2022-10-30 09:06:00'),
-(84, 'default', 'created', 'App\\Models\\User', 32, 'App\\Models\\User', 1, '[]', NULL, 'created', '2022-10-30 09:07:16', '2022-10-30 09:07:16'),
-(85, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-30 09:07:23', '2022-10-30 09:07:23'),
-(86, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-30 10:02:47', '2022-10-30 10:02:47'),
-(87, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-30 10:04:07', '2022-10-30 10:04:07'),
-(88, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-30 10:45:45', '2022-10-30 10:45:45'),
-(89, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-31 05:59:04', '2022-10-31 05:59:04'),
-(90, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-10-31 05:59:58', '2022-10-31 05:59:58'),
-(91, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-05 06:16:58', '2022-11-05 06:16:58'),
-(92, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-05 06:46:55', '2022-11-05 06:46:55'),
-(93, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-05 07:25:45', '2022-11-05 07:25:45'),
-(94, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-05 12:57:31', '2022-11-05 12:57:31');
+(110, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-10 10:52:48', '2022-11-10 10:52:48'),
+(111, 'default', 'updated', 'App\\Models\\User', 1, 'App\\Models\\User', 1, '[]', NULL, 'updated', '2022-11-10 11:01:10', '2022-11-10 11:01:10');
 
 -- --------------------------------------------------------
 
@@ -122,135 +65,6 @@ CREATE TABLE `answers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `answers`
---
-
-INSERT INTO `answers` (`id`, `name`, `questionid`, `surveyid`, `userid`, `created_at`, `updated_at`) VALUES
-(3816, 'N/A', '1', '22', '19', '2022-11-05 12:10:27', NULL),
-(3817, 'N/A', '2', '22', '19', '2022-11-05 12:10:27', NULL),
-(3818, 'N/A', '3', '22', '19', '2022-11-05 12:10:27', NULL),
-(3819, 'N/A', '4', '22', '19', '2022-11-05 12:10:27', NULL),
-(3820, '[\"Not-for-profit membership organisation\",\"Not-for-profit company or trust\"]', '10', '22', '19', '2022-11-05 12:10:27', NULL),
-(3821, 'N/A', '11', '22', '19', '2022-11-05 12:10:27', NULL),
-(3822, '[\"Board\"]', '12', '22', '19', '2022-11-05 12:10:27', NULL),
-(3823, 'N/A', '14', '22', '19', '2022-11-05 12:10:27', NULL),
-(3824, 'N/A', '15', '22', '19', '2022-11-05 12:10:27', NULL),
-(3825, 'Yes', '16', '22', '19', '2022-11-05 12:10:27', NULL),
-(3826, 'Yes', '17', '22', '19', '2022-11-05 12:10:27', NULL),
-(3827, 'Yes', '18', '22', '19', '2022-11-05 12:10:27', NULL),
-(3828, 'No', '19', '22', '19', '2022-11-05 12:10:27', NULL),
-(3829, '[\"Strategic Plan\",\"Business Plan\"]', '20', '22', '19', '2022-11-05 12:10:27', NULL),
-(3830, '0', '21', '22', '19', '2022-11-05 12:10:27', NULL),
-(3831, '0', '22', '22', '19', '2022-11-05 12:10:27', NULL),
-(3832, '0', '23', '22', '19', '2022-11-05 12:10:27', NULL),
-(3833, '0', '24', '22', '19', '2022-11-05 12:10:27', NULL),
-(3834, 'N/A', '25', '22', '19', '2022-11-05 12:10:27', NULL),
-(3835, 'N/A', '26', '22', '19', '2022-11-05 12:10:27', NULL),
-(3836, 'N/A', '27', '22', '19', '2022-11-05 12:10:27', NULL),
-(3837, '[\"none\",\"empty\"]', '28', '22', '19', '2022-11-05 12:10:27', NULL),
-(3838, 'N/A', '29', '22', '19', '2022-11-05 12:10:27', NULL),
-(3839, '[\"none\",\"empty\"]', '31', '22', '19', '2022-11-05 12:10:27', NULL),
-(3840, 'N/A', '32', '22', '19', '2022-11-05 12:10:27', NULL),
-(3841, 'N/A', '33', '22', '19', '2022-11-05 12:10:27', NULL),
-(3842, 'N/A', '34', '22', '19', '2022-11-05 12:10:27', NULL),
-(3843, 'N/A', '35', '22', '19', '2022-11-05 12:10:27', NULL),
-(3844, '0', '36', '22', '19', '2022-11-05 12:10:27', NULL),
-(3845, '0', '37', '22', '19', '2022-11-05 12:10:27', NULL),
-(3846, '0', '38', '22', '19', '2022-11-05 12:10:27', NULL),
-(3847, '[\"none\",\"empty\"]', '39', '22', '19', '2022-11-05 12:10:27', NULL),
-(3848, 'N/A', '41', '22', '19', '2022-11-05 12:10:27', NULL),
-(3849, '0', '42', '22', '19', '2022-11-05 12:10:27', NULL),
-(3850, '0', '43', '22', '19', '2022-11-05 12:10:27', NULL),
-(3851, '[\"none\",\"empty\"]', '50', '22', '19', '2022-11-05 12:10:27', NULL),
-(3852, '0', '51', '22', '19', '2022-11-05 12:10:27', NULL),
-(3853, '0', '52', '22', '19', '2022-11-05 12:10:27', NULL),
-(3854, 'N/A', '53', '22', '19', '2022-11-05 12:10:27', NULL),
-(3855, '0', '54', '22', '19', '2022-11-05 12:10:27', NULL),
-(3856, '0', '55', '22', '19', '2022-11-05 12:10:27', NULL),
-(3857, '[\"none\",\"empty\"]', '56', '22', '19', '2022-11-05 12:10:27', NULL),
-(3858, 'N/A', '57', '22', '19', '2022-11-05 12:10:27', NULL),
-(3859, '[\"none\",\"empty\"]', '58', '22', '19', '2022-11-05 12:10:27', NULL),
-(3860, 'N/A', '59', '22', '19', '2022-11-05 12:10:27', NULL),
-(3861, 'N/A', '60', '22', '19', '2022-11-05 12:10:27', NULL),
-(3862, '[\"none\",\"empty\"]', '61', '22', '19', '2022-11-05 12:10:27', NULL),
-(3863, 'N/A', '62', '22', '19', '2022-11-05 12:10:27', NULL),
-(3864, '[\"none\",\"empty\"]', '63', '22', '19', '2022-11-05 12:10:27', NULL),
-(3865, 'N/A', '64', '22', '19', '2022-11-05 12:10:27', NULL),
-(3866, '[\"none\",\"empty\"]', '65', '22', '19', '2022-11-05 12:10:27', NULL),
-(3867, 'N/A', '66', '22', '19', '2022-11-05 12:10:27', NULL),
-(3868, '[\"none\",\"empty\"]', '67', '22', '19', '2022-11-05 12:10:27', NULL),
-(3869, 'N/A', '68', '22', '19', '2022-11-05 12:10:27', NULL),
-(3870, 'N/A', '69', '22', '19', '2022-11-05 12:10:27', NULL),
-(3871, 'N/A', '70', '22', '19', '2022-11-05 12:10:27', NULL),
-(3872, 'N/A', '80', '22', '19', '2022-11-05 12:10:27', NULL),
-(3873, 'N/A', '81', '22', '19', '2022-11-05 12:10:27', NULL),
-(3874, 'N/A', '82', '22', '19', '2022-11-05 12:10:27', NULL),
-(3875, '[\"none\",\"empty\"]', '83', '22', '19', '2022-11-05 12:10:27', NULL),
-(3876, 'N/A', '84', '22', '19', '2022-11-05 12:10:27', NULL),
-(3877, '[\"none\",\"empty\"]', '85', '22', '19', '2022-11-05 12:10:27', NULL),
-(3878, 'N/A', '86', '22', '19', '2022-11-05 12:10:27', NULL),
-(3879, 'N/A', '87', '22', '19', '2022-11-05 12:10:27', NULL),
-(3880, 'N/A', '88', '22', '19', '2022-11-05 12:10:27', NULL),
-(3881, '0', '89', '22', '19', '2022-11-05 12:10:27', NULL),
-(3882, '0', '90', '22', '19', '2022-11-05 12:10:27', NULL),
-(3883, '[\"none\",\"empty\"]', '91', '22', '19', '2022-11-05 12:10:27', NULL),
-(3884, 'N/A', '92', '22', '19', '2022-11-05 12:10:27', NULL),
-(3885, '0', '93', '22', '19', '2022-11-05 12:10:27', NULL),
-(3886, '0', '96', '22', '19', '2022-11-05 12:10:27', NULL),
-(3887, '0', '97', '22', '19', '2022-11-05 12:10:27', NULL),
-(3888, '0', '98', '22', '19', '2022-11-05 12:10:28', NULL),
-(3889, '0', '99', '22', '19', '2022-11-05 12:10:28', NULL),
-(3890, '0', '100', '22', '19', '2022-11-05 12:10:28', NULL),
-(3891, '0', '101', '22', '19', '2022-11-05 12:10:28', NULL),
-(3892, '0', '102', '22', '19', '2022-11-05 12:10:28', NULL),
-(3893, '0', '103', '22', '19', '2022-11-05 12:10:28', NULL),
-(3894, '0', '104', '22', '19', '2022-11-05 12:10:28', NULL),
-(3895, '0', '105', '22', '19', '2022-11-05 12:10:28', NULL),
-(3896, '0', '106', '22', '19', '2022-11-05 12:10:28', NULL),
-(3897, '0', '107', '22', '19', '2022-11-05 12:10:28', NULL),
-(3898, '0', '108', '22', '19', '2022-11-05 12:10:28', NULL),
-(3899, '0', '109', '22', '19', '2022-11-05 12:10:28', NULL),
-(3900, '0', '110', '22', '19', '2022-11-05 12:10:28', NULL),
-(3901, '0', '111', '22', '19', '2022-11-05 12:10:28', NULL),
-(3902, '0', '112', '22', '19', '2022-11-05 12:10:28', NULL),
-(3903, '0', '113', '22', '19', '2022-11-05 12:10:28', NULL),
-(3904, '0', '114', '22', '19', '2022-11-05 12:10:28', NULL),
-(3905, '0', '115', '22', '19', '2022-11-05 12:10:28', NULL),
-(3906, '0', '116', '22', '19', '2022-11-05 12:10:28', NULL),
-(3907, '0', '117', '22', '19', '2022-11-05 12:10:28', NULL),
-(3908, '0', '118', '22', '19', '2022-11-05 12:10:28', NULL),
-(3909, '0', '119', '22', '19', '2022-11-05 12:10:28', NULL),
-(3910, '0', '120', '22', '19', '2022-11-05 12:10:28', NULL),
-(3911, '0', '121', '22', '19', '2022-11-05 12:10:28', NULL),
-(3912, '0', '122', '22', '19', '2022-11-05 12:10:28', NULL),
-(3913, '0', '123', '22', '19', '2022-11-05 12:10:28', NULL),
-(3914, '0', '124', '22', '19', '2022-11-05 12:10:28', NULL),
-(3915, '0', '125', '22', '19', '2022-11-05 12:10:28', NULL),
-(3916, '0', '126', '22', '19', '2022-11-05 12:10:28', NULL),
-(3917, '0', '127', '22', '19', '2022-11-05 12:10:28', NULL),
-(3918, '0', '128', '22', '19', '2022-11-05 12:10:28', NULL),
-(3919, '0', '129', '22', '19', '2022-11-05 12:10:28', NULL),
-(3920, '0', '130', '22', '19', '2022-11-05 12:10:28', NULL),
-(3921, '0', '131', '22', '19', '2022-11-05 12:10:28', NULL),
-(3922, '0', '132', '22', '19', '2022-11-05 12:10:28', NULL),
-(3923, '0', '133', '22', '19', '2022-11-05 12:10:28', NULL),
-(3924, '0', '134', '22', '19', '2022-11-05 12:10:28', NULL),
-(3925, '0', '135', '22', '19', '2022-11-05 12:10:28', NULL),
-(3926, '0', '136', '22', '19', '2022-11-05 12:10:28', NULL),
-(3927, '0', '137', '22', '19', '2022-11-05 12:10:28', NULL),
-(3928, '0', '138', '22', '19', '2022-11-05 12:10:28', NULL),
-(3929, '0', '139', '22', '19', '2022-11-05 12:10:28', NULL),
-(3930, '0', '140', '22', '19', '2022-11-05 12:10:28', NULL),
-(3931, '0', '141', '22', '19', '2022-11-05 12:10:28', NULL),
-(3932, '0', '142', '22', '19', '2022-11-05 12:10:28', NULL),
-(3933, '0', '143', '22', '19', '2022-11-05 12:10:28', NULL),
-(3934, '0', '144', '22', '19', '2022-11-05 12:10:28', NULL),
-(3935, '0', '145', '22', '19', '2022-11-05 12:10:28', NULL),
-(3936, '0', '146', '22', '19', '2022-11-05 12:10:28', NULL),
-(3937, '0', '147', '22', '19', '2022-11-05 12:10:28', NULL),
-(3938, '0', '148', '22', '19', '2022-11-05 12:10:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -339,11 +153,19 @@ CREATE TABLE `nren` (
 --
 
 INSERT INTO `nren` (`id`, `userid`, `nren`, `networkname`, `country`, `website`, `address`, `generalemail`, `tel`, `fax`, `yearofcreation`, `relationshipwithgovernment`, `legalentitytype`, `governance`, `created_at`, `updated_at`) VALUES
-(4, '1', 'ADMIN NET', 'ADMin Network', 'Albania', 'yy', 'adress', 'u@t.ciom', '000', '0899494', '88', '[\"none\",\"Endorsed by Ministry of Education\"]', '[\"not-for profit membership organisation\",\"not-for-profit trust\",\"limited liability company\"]', 'hh', '2022-10-01 12:09:58', '2022-11-05 07:52:37'),
 (15, '26', 'SomaliREN', 'N/A', 'Somalia', 'www.somaliren.org', 'N/A', 'EMPTY@GMAIL.COM', 'N/A', 'N/A', '2008', '[\"others\"]', '[\"not-for profit membership organisation\"]', 'Council of Members, Board of Directors and Sectratriat', '2022-10-06 12:03:57', '2022-10-06 12:07:39'),
-(16, '28', 'TENET', 'N/A', 'South Africa', 'https://www.tenet.ac.za', 'N/A', 'empty@empty.com', 'N/A', 'N/A', '2000', '[\"others\"]', '[\"not-for profit membership organisation\"]', '26 public universities and six statutory research entities are Members.', '2022-10-06 12:31:44', NULL),
-(17, '1', 'Alnet', 'hh', 'Algeria', 'hjhj', 'hh', 'brunodonatelo@gmail.com', '8888', '88', '56', '[\"not answered\"]', '[\"not answered\"]', 'hh', '2022-10-30 06:26:45', '2022-10-30 06:32:28'),
-(19, '1', 'fastnet', 'Kenya Network', 'Uganda', 'ket.ug', 'Kàmpalà. City', 'brunodonatelo@gmail.com', '9988', 'ii', '2000', '[\"Endorsed by Ministry of Education\"]', '[\"not-for profit membership organisation\"]', 'jj', '2022-10-30 13:04:39', NULL);
+(19, '1', 'fastnet', 'Kenya Network', 'Uganda', 'ket.ug', 'Kàmpalà. City', 'brunodonatelo@gmail.com', '9988', 'ii', '2000', '[\"Endorsed by Ministry of Education\"]', '[\"not-for profit membership organisation\"]', 'jj', '2022-10-30 13:04:39', NULL),
+(20, '1', 'RENU', 'THE RESEARCH & EDUCATION NETWORK FOR UGANDA  (RENU)', 'Uganda', 'www.renu.ac.ug', 'N/A', 'email@email.com', 'N/A', 'N/A', '2006', '[\"not answered\"]', '[\"others\"]', 'N/A', '2022-11-09 19:27:29', '2022-11-09 19:29:20'),
+(21, '1', 'MAREN', 'Malawi Research and Education Network (MAREN)', 'Malawi', 'N/A', 'N/A', 'email@email.com', 'N/A', 'N/A', '2007', '[\"not answered\"]', '[\"limited liability company\"]', 'N/A', '2022-11-09 19:32:59', NULL),
+(22, '1', 'KENET', 'KENET', 'Kenya', 'https://www.kenet.or.ke', 'N/A', 'email@email.com', 'N/A', 'N/A', '2000', '[\"not answered\"]', '[\"not-for-profit trust\"]', 'N/A', '2022-11-09 19:35:49', NULL),
+(23, '1', 'ZAMREN', 'Zambia Research and Education Network (ZAMREN)', 'Zambia', 'www.zamren.zm', 'N/A', 'email@email.com', 'N/A', 'N/A', 'N/A', '[\"not answered\"]', '[\"not answered\"]', 'N/A', '2022-11-09 19:39:33', NULL),
+(24, '1', 'TERNET', 'TANZANIA EDUCATION AND RESEARCH NETWORK', 'Tanzania', 'www.ternet.or.tz', 'N/A', 'email@email.com', 'N/A', 'N/A', '2008', '[\"not answered\"]', '[\"not answered\"]', 'Annual General , Trustee Board, Executive committee, secretariat.', '2022-11-09 19:51:54', '2022-11-10 14:18:06'),
+(25, '1', 'SudREN', 'Sudanese Research and Education Network  (SudREN)', 'Sudan', 'http://sudren.edu.sd/index.php', 'N/A', 'email@email.com', 'N/A', 'N/A', '2004', '[\"not answered\"]', '[\"not answered\"]', 'There is an ongoing process to restablish a governance model for SudREN.', '2022-11-09 19:53:57', NULL),
+(26, '1', 'MoRENet', 'N/A', 'Mozambique', 'https://morenet.ac.mz/', 'N/A', 'email@email.com', 'N/A', 'N/A', '2005', '[\"not answered\"]', '[\"not-for-profit trust\"]', 'N/A', '2022-11-09 19:56:24', NULL),
+(27, '1', 'i RENALA', 'N/A', 'Madagascar', 'https://www.irenala.edu.mg', 'N/A', 'email@email.com', 'N/A', 'N/A', '07th June 2012', '[\"not answered\"]', '[\"not-for profit membership organisation\"]', 'General Assembly / Board / Operational Unit', '2022-11-09 20:02:51', NULL),
+(28, '1', 'BERNET', 'N/A', 'Burundi', 'gnjejimana@gmail.com', 'N/A', 'email@email.com', 'N/A', 'N/A', '2014', '[\"not answered\"]', '[\"not answered\"]', 'General Assembly, Executive Committee, a part time personnel such as a CEO and an engineer.', '2022-11-09 20:08:43', NULL),
+(29, '1', 'EthERNet', 'Ethiopian Education and Research Network (EthERNet)', 'Ethiopia', 'https://ethernet.edu.et/', 'N/A', 'email@email.com', 'N/A', 'N/A', '2017', '[\"not answered\"]', '[\"government entity\"]', 'governed by the government', '2022-11-09 20:13:49', NULL),
+(30, '1', 'TENET', 'Tertiary Education and Research Network of South Africa (TENET).', 'South Africa', 'https://www.tenet.ac.za', 'N/A', 'email@email.com', 'N/A', 'N/A', '2000', '[\"not answered\"]', '[\"not answered\"]', 'Member entities acting in General Meeting appoint the Board of Directors.', '2022-11-09 20:19:32', '2022-11-09 20:56:31');
 
 -- --------------------------------------------------------
 
@@ -364,12 +186,18 @@ CREATE TABLE `nrenuser` (
 --
 
 INSERT INTO `nrenuser` (`id`, `userid`, `nrenid`, `created_at`, `updated_at`) VALUES
-(1, '26', '16', '2022-10-30 08:50:13', '2022-10-30 09:05:50'),
-(2, '27', '4', '2022-10-30 08:56:12', NULL),
-(3, '1', '15', '2022-10-30 08:56:42', '2022-10-30 12:05:44'),
-(5, '25', '16', '2022-10-30 09:06:12', NULL),
-(11, '28', '16', '2022-10-30 14:40:21', NULL),
-(12, '32', '19', '2022-10-31 08:59:47', NULL);
+(1, '26', '15', '2022-10-30 08:50:13', '2022-11-09 20:40:33'),
+(12, '32', '19', '2022-10-31 08:59:47', NULL),
+(13, '16', '21', '2022-11-09 20:21:09', NULL),
+(14, '21', '27', '2022-11-09 20:23:18', '2022-11-09 20:31:11'),
+(15, '17', '28', '2022-11-09 20:24:22', NULL),
+(16, '24', '20', '2022-11-09 20:26:05', NULL),
+(17, '22', '22', '2022-11-09 20:27:13', NULL),
+(18, '29', '24', '2022-11-09 20:32:27', '2022-11-10 14:17:45'),
+(19, '27', '25', '2022-11-09 20:35:33', NULL),
+(20, '23', '26', '2022-11-09 20:36:54', NULL),
+(21, '20', '29', '2022-11-09 20:39:55', NULL),
+(22, '28', '30', '2022-11-10 14:17:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -514,7 +342,7 @@ INSERT INTO `profiles` (`id`, `user_id`, `username`, `profile_pic`, `status`, `g
 (18, 26, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:32:57', '2022-10-04 11:32:57'),
 (19, 27, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:35:19', '2022-10-04 11:35:19'),
 (20, 28, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:36:31', '2022-10-04 11:36:31'),
-(21, 29, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:39:44', '2022-10-04 11:39:44'),
+(21, 29, NULL, NULL, 1, NULL, NULL, NULL, 'South Africa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:39:44', '2022-11-10 10:44:22'),
 (22, 30, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:42:55', '2022-10-04 11:42:55'),
 (23, 31, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-04 11:46:22', '2022-10-04 11:46:22'),
 (24, 32, NULL, 'admin/user/wTdJ263jM0qvIWLRRIB4BeoWgaRVchzhhYVXT6qn.jpg', 1, NULL, NULL, NULL, 'Nepal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-30 09:07:16', '2022-10-30 10:46:42');
@@ -625,135 +453,6 @@ CREATE TABLE `saved` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `saved`
---
-
-INSERT INTO `saved` (`id`, `name`, `questionid`, `surveyid`, `userid`, `created_at`, `updated_at`) VALUES
-(3146, 'N/A', '1', '22', '19', '2022-11-05 12:08:07', NULL),
-(3147, 'N/A', '2', '22', '19', '2022-11-05 12:08:07', NULL),
-(3148, 'N/A', '3', '22', '19', '2022-11-05 12:08:07', NULL),
-(3149, 'N/A', '4', '22', '19', '2022-11-05 12:08:07', NULL),
-(3150, '[\"Not-for-profit membership organisation\",\"Not-for-profit company or trust\"]', '10', '22', '19', '2022-11-05 12:08:07', NULL),
-(3151, 'N/A', '11', '22', '19', '2022-11-05 12:08:07', NULL),
-(3152, '[\"Board\",\"General Assembly\"]', '12', '22', '19', '2022-11-05 12:08:07', NULL),
-(3153, 'N/A', '14', '22', '19', '2022-11-05 12:08:07', NULL),
-(3154, 'N/A', '15', '22', '19', '2022-11-05 12:08:07', NULL),
-(3155, 'Yes', '16', '22', '19', '2022-11-05 12:08:07', NULL),
-(3156, 'No', '17', '22', '19', '2022-11-05 12:08:07', NULL),
-(3157, 'Yes', '18', '22', '19', '2022-11-05 12:08:07', NULL),
-(3158, 'No', '19', '22', '19', '2022-11-05 12:08:07', NULL),
-(3159, '[\"Strategic Plan\",\"Business Plan\"]', '20', '22', '19', '2022-11-05 12:08:07', NULL),
-(3160, '0', '21', '22', '19', '2022-11-05 12:08:07', NULL),
-(3161, '0', '22', '22', '19', '2022-11-05 12:08:07', NULL),
-(3162, '0', '23', '22', '19', '2022-11-05 12:08:07', NULL),
-(3163, '0', '24', '22', '19', '2022-11-05 12:08:07', NULL),
-(3164, 'N/A', '25', '22', '19', '2022-11-05 12:08:07', NULL),
-(3165, 'N/A', '26', '22', '19', '2022-11-05 12:08:07', NULL),
-(3166, 'N/A', '27', '22', '19', '2022-11-05 12:08:07', NULL),
-(3167, '[\"none\",\"empty\"]', '28', '22', '19', '2022-11-05 12:08:07', NULL),
-(3168, 'N/A', '29', '22', '19', '2022-11-05 12:08:07', NULL),
-(3169, '[\"none\",\"empty\"]', '31', '22', '19', '2022-11-05 12:08:07', NULL),
-(3170, 'N/A', '32', '22', '19', '2022-11-05 12:08:07', NULL),
-(3171, 'N/A', '33', '22', '19', '2022-11-05 12:08:07', NULL),
-(3172, 'N/A', '34', '22', '19', '2022-11-05 12:08:07', NULL),
-(3173, 'N/A', '35', '22', '19', '2022-11-05 12:08:07', NULL),
-(3174, '0', '36', '22', '19', '2022-11-05 12:08:07', NULL),
-(3175, '0', '37', '22', '19', '2022-11-05 12:08:07', NULL),
-(3176, '0', '38', '22', '19', '2022-11-05 12:08:07', NULL),
-(3177, '[\"none\",\"empty\"]', '39', '22', '19', '2022-11-05 12:08:07', NULL),
-(3178, 'N/A', '41', '22', '19', '2022-11-05 12:08:07', NULL),
-(3179, '0', '42', '22', '19', '2022-11-05 12:08:07', NULL),
-(3180, '0', '43', '22', '19', '2022-11-05 12:08:07', NULL),
-(3181, '[\"none\",\"empty\"]', '50', '22', '19', '2022-11-05 12:08:07', NULL),
-(3182, '0', '51', '22', '19', '2022-11-05 12:08:07', NULL),
-(3183, '0', '52', '22', '19', '2022-11-05 12:08:07', NULL),
-(3184, 'N/A', '53', '22', '19', '2022-11-05 12:08:07', NULL),
-(3185, '0', '54', '22', '19', '2022-11-05 12:08:07', NULL),
-(3186, '0', '55', '22', '19', '2022-11-05 12:08:07', NULL),
-(3187, '[\"none\",\"empty\"]', '56', '22', '19', '2022-11-05 12:08:07', NULL),
-(3188, 'N/A', '57', '22', '19', '2022-11-05 12:08:07', NULL),
-(3189, '[\"none\",\"empty\"]', '58', '22', '19', '2022-11-05 12:08:07', NULL),
-(3190, 'N/A', '59', '22', '19', '2022-11-05 12:08:07', NULL),
-(3191, 'N/A', '60', '22', '19', '2022-11-05 12:08:07', NULL),
-(3192, '[\"none\",\"empty\"]', '61', '22', '19', '2022-11-05 12:08:07', NULL),
-(3193, 'N/A', '62', '22', '19', '2022-11-05 12:08:07', NULL),
-(3194, '[\"none\",\"empty\"]', '63', '22', '19', '2022-11-05 12:08:07', NULL),
-(3195, 'N/A', '64', '22', '19', '2022-11-05 12:08:07', NULL),
-(3196, '[\"none\",\"empty\"]', '65', '22', '19', '2022-11-05 12:08:07', NULL),
-(3197, 'N/A', '66', '22', '19', '2022-11-05 12:08:07', NULL),
-(3198, '[\"none\",\"empty\"]', '67', '22', '19', '2022-11-05 12:08:07', NULL),
-(3199, 'N/A', '68', '22', '19', '2022-11-05 12:08:07', NULL),
-(3200, 'N/A', '69', '22', '19', '2022-11-05 12:08:07', NULL),
-(3201, 'N/A', '70', '22', '19', '2022-11-05 12:08:07', NULL),
-(3202, 'N/A', '80', '22', '19', '2022-11-05 12:08:07', NULL),
-(3203, 'N/A', '81', '22', '19', '2022-11-05 12:08:07', NULL),
-(3204, 'N/A', '82', '22', '19', '2022-11-05 12:08:07', NULL),
-(3205, '[\"none\",\"empty\"]', '83', '22', '19', '2022-11-05 12:08:07', NULL),
-(3206, 'N/A', '84', '22', '19', '2022-11-05 12:08:07', NULL),
-(3207, '[\"none\",\"empty\"]', '85', '22', '19', '2022-11-05 12:08:07', NULL),
-(3208, 'N/A', '86', '22', '19', '2022-11-05 12:08:07', NULL),
-(3209, 'N/A', '87', '22', '19', '2022-11-05 12:08:07', NULL),
-(3210, 'N/A', '88', '22', '19', '2022-11-05 12:08:07', NULL),
-(3211, '0', '89', '22', '19', '2022-11-05 12:08:07', NULL),
-(3212, '0', '90', '22', '19', '2022-11-05 12:08:07', NULL),
-(3213, '[\"none\",\"empty\"]', '91', '22', '19', '2022-11-05 12:08:07', NULL),
-(3214, 'N/A', '92', '22', '19', '2022-11-05 12:08:07', NULL),
-(3215, '0', '93', '22', '19', '2022-11-05 12:08:07', NULL),
-(3216, '0', '96', '22', '19', '2022-11-05 12:08:07', NULL),
-(3217, '0', '97', '22', '19', '2022-11-05 12:08:07', NULL),
-(3218, '0', '98', '22', '19', '2022-11-05 12:08:07', NULL),
-(3219, '0', '99', '22', '19', '2022-11-05 12:08:07', NULL),
-(3220, '0', '100', '22', '19', '2022-11-05 12:08:07', NULL),
-(3221, '0', '101', '22', '19', '2022-11-05 12:08:07', NULL),
-(3222, '0', '102', '22', '19', '2022-11-05 12:08:07', NULL),
-(3223, '0', '103', '22', '19', '2022-11-05 12:08:08', NULL),
-(3224, '0', '104', '22', '19', '2022-11-05 12:08:08', NULL),
-(3225, '0', '105', '22', '19', '2022-11-05 12:08:08', NULL),
-(3226, '0', '106', '22', '19', '2022-11-05 12:08:08', NULL),
-(3227, '0', '107', '22', '19', '2022-11-05 12:08:08', NULL),
-(3228, '0', '108', '22', '19', '2022-11-05 12:08:08', NULL),
-(3229, '0', '109', '22', '19', '2022-11-05 12:08:08', NULL),
-(3230, '0', '110', '22', '19', '2022-11-05 12:08:08', NULL),
-(3231, '0', '111', '22', '19', '2022-11-05 12:08:08', NULL),
-(3232, '0', '112', '22', '19', '2022-11-05 12:08:08', NULL),
-(3233, '0', '113', '22', '19', '2022-11-05 12:08:08', NULL),
-(3234, '0', '114', '22', '19', '2022-11-05 12:08:08', NULL),
-(3235, '0', '115', '22', '19', '2022-11-05 12:08:08', NULL),
-(3236, '0', '116', '22', '19', '2022-11-05 12:08:08', NULL),
-(3237, '0', '117', '22', '19', '2022-11-05 12:08:08', NULL),
-(3238, '0', '118', '22', '19', '2022-11-05 12:08:08', NULL),
-(3239, '0', '119', '22', '19', '2022-11-05 12:08:08', NULL),
-(3240, '0', '120', '22', '19', '2022-11-05 12:08:08', NULL),
-(3241, '0', '121', '22', '19', '2022-11-05 12:08:08', NULL),
-(3242, '0', '122', '22', '19', '2022-11-05 12:08:08', NULL),
-(3243, '0', '123', '22', '19', '2022-11-05 12:08:08', NULL),
-(3244, '0', '124', '22', '19', '2022-11-05 12:08:08', NULL),
-(3245, '0', '125', '22', '19', '2022-11-05 12:08:08', NULL),
-(3246, '0', '126', '22', '19', '2022-11-05 12:08:08', NULL),
-(3247, '0', '127', '22', '19', '2022-11-05 12:08:08', NULL),
-(3248, '0', '128', '22', '19', '2022-11-05 12:08:08', NULL),
-(3249, '0', '129', '22', '19', '2022-11-05 12:08:08', NULL),
-(3250, '0', '130', '22', '19', '2022-11-05 12:08:08', NULL),
-(3251, '0', '131', '22', '19', '2022-11-05 12:08:08', NULL),
-(3252, '0', '132', '22', '19', '2022-11-05 12:08:08', NULL),
-(3253, '0', '133', '22', '19', '2022-11-05 12:08:08', NULL),
-(3254, '0', '134', '22', '19', '2022-11-05 12:08:08', NULL),
-(3255, '0', '135', '22', '19', '2022-11-05 12:08:08', NULL),
-(3256, '0', '136', '22', '19', '2022-11-05 12:08:08', NULL),
-(3257, '0', '137', '22', '19', '2022-11-05 12:08:08', NULL),
-(3258, '0', '138', '22', '19', '2022-11-05 12:08:08', NULL),
-(3259, '0', '139', '22', '19', '2022-11-05 12:08:08', NULL),
-(3260, '0', '140', '22', '19', '2022-11-05 12:08:08', NULL),
-(3261, '0', '141', '22', '19', '2022-11-05 12:08:08', NULL),
-(3262, '0', '142', '22', '19', '2022-11-05 12:08:08', NULL),
-(3263, '0', '143', '22', '19', '2022-11-05 12:08:08', NULL),
-(3264, '0', '144', '22', '19', '2022-11-05 12:08:08', NULL),
-(3265, '0', '145', '22', '19', '2022-11-05 12:08:08', NULL),
-(3266, '0', '146', '22', '19', '2022-11-05 12:08:08', NULL),
-(3267, '0', '147', '22', '19', '2022-11-05 12:08:08', NULL),
-(3268, '0', '148', '22', '19', '2022-11-05 12:08:08', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -800,9 +499,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`id`, `userid`, `title`, `details`, `year`, `start`, `end`, `created_at`, `updated_at`, `step`, `status`) VALUES
-(20, '1', 'Online Country Fiche Survey 2021', 'Online Country Fiche Survey 2021', '2021', '2022-10-04', '2022-10-31', '2022-10-04 12:57:08', NULL, 0, 'running'),
-(21, '1', '2022 test', 'test', '2022', '2022-11-05', '2022-11-30', '2022-11-05 09:16:50', NULL, 0, 'running'),
-(22, '1', 'test three', 'jjdd', '2023', '2022-11-05', '2022-11-04', '2022-11-05 09:40:21', NULL, 0, 'running');
+(22, '1', 'Online Fiche Survey For 2022', 'Welcome to the data collection form for 2022', '2022', '2022-11-07', '2022-11-30', '2022-11-10 13:51:46', '2022-11-10 14:19:19', 0, 'running');
 
 -- --------------------------------------------------------
 
@@ -818,13 +515,6 @@ CREATE TABLE `surveystatus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `surveystatus`
---
-
-INSERT INTO `surveystatus` (`id`, `surveyid`, `userid`, `status`, `created_at`, `updated_at`) VALUES
-(40, '22', '19', 'answered', '2022-11-05 12:10:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -874,16 +564,16 @@ INSERT INTO `template` (`id`, `name`, `options`, `type`, `surveyid`, `userid`, `
 (29, 'Other(please specify)', '', 'text', 'optional', '', NULL, NULL, 4),
 (31, '2b. You acquired the links in your network (Check all that apply)', '{\"first\":\"Through a tender process\",\"second\":\"Provide by a government entity\",\"third\":\"Other (please specify)\"}', 'checkbox', 'optional', '', NULL, NULL, 4),
 (32, 'Other(please specify)', '', 'text', 'optional', '', NULL, NULL, 4),
-(33, 'How often do you review/upgrade your network?', '', 'text', 'optional', '', NULL, NULL, 4),
-(34, 'When was the last major upgrade done?', '', 'text', 'optional', '', NULL, NULL, 4),
-(35, 'When is the next planned upgrade?', '', 'text', 'optional', '', NULL, NULL, 4),
-(36, 'What is the average capacity of your network backbone (Gbps)?', '', 'number', 'optional', '', NULL, NULL, 4),
-(37, 'What is your average price per Mbps/month for connectivity offered to members (in US$)?', '', 'number', 'optional', '', NULL, NULL, 4),
-(38, 'How many Points of Presence (PoPs)?', '', 'number', 'optional', '', NULL, NULL, 4),
-(39, 'Your network (check all that apply)', '{\"first\":\"Extends to institutions\",\"second\":\"Requires institutions to link to nearest PoP\"}', 'checkbox', 'optional', '', NULL, NULL, 4),
-(40, 'Please attached network topology map?', '', 'file', 'optional', '', NULL, NULL, 4),
-(41, 'Does you connects directly to both the UbuntuNet Network POP and commercial connectivity providers?', '', 'radio', 'optional', '', NULL, NULL, 4),
-(42, 'If yes, please indicate percentage capacity for UbuntuNet Network in %', '', 'number', 'optional', '', NULL, NULL, 4),
+(33, '2c. How often do you review/upgrade your network?', '', 'text', 'optional', '', NULL, NULL, 4),
+(34, '2d. When was the last major upgrade done?', '', 'text', 'optional', '', NULL, NULL, 4),
+(35, '2e. When is the next planned upgrade?', '', 'text', 'optional', '', NULL, NULL, 4),
+(36, '2f. What is the average capacity of your network backbone (Gbps)?', '', 'number', 'optional', '', NULL, NULL, 4),
+(37, '2g. What is your average price per Mbps/month for connectivity offered to members (in US$)?', '', 'number', 'optional', '', NULL, NULL, 4),
+(38, '2h. How many Points of Presence (PoPs)?', '', 'number', 'optional', '', NULL, NULL, 4),
+(39, '2i. Your network (check all that apply)', '{\"first\":\"Extends to institutions\",\"second\":\"Requires institutions to link to nearest PoP\"}', 'checkbox', 'optional', '', NULL, NULL, 4),
+(40, '2j. Please attached network topology map?', '', 'file', 'optional', '', NULL, NULL, 4),
+(41, '2k.Does you connects directly to both the UbuntuNet Network POP and commercial connectivity providers?', '', 'radio', 'optional', '', NULL, NULL, 4),
+(42, '2l. If yes, please indicate percentage capacity for UbuntuNet Network in %', '', 'number', 'optional', '', NULL, NULL, 4),
 (43, 'If yes, please indicate percentage capacity for Commercial providers in %', '', 'number', 'optional', '', NULL, NULL, 4),
 (50, '1. Which of the following services do you offer (check all that apply):', '{\"first\":\"DNS services (e.g. domain name translations and pointer records)\",\"second\":\"Network Operations Centre (NOC) services (e.g. traffic analysis and monitoring tools)\",\"third\":\"Cybersecurity services\",\"fourth\":\"eduGAIN\"}', 'checkbox', '', '', NULL, NULL, 5),
 (51, ' No. of participant institutions:', '', 'number', '', '', NULL, NULL, 5),
@@ -996,7 +686,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin User', 'admin@admin.com', NULL, '$2y$10$QXnDszrH/9TAmw7wwKB1QeTZUxkKqOFh9P6R8qvxgJiSvMUXNgO/y', 'ETlBopE4eNwAH9hl2LD0l7Nx6GvoU55v1E6WLyXI9XitmXcihCwG20Pf1spM', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
+(1, 'Admin User', 'admin@admin.com', NULL, '$2y$10$QXnDszrH/9TAmw7wwKB1QeTZUxkKqOFh9P6R8qvxgJiSvMUXNgO/y', 'viSfqXcmTQ1VJdjYMDiDmZlkJS3ajaeM5qxbwTiGmRBtuwZrxlJbYwyrzzUC', '2022-10-03 08:28:21', '2022-10-03 08:28:21'),
 (2, 'Alex', 'alex.mwotil@ubuntunet.net', NULL, '$2y$10$maZpxGON69aJBi2wSo4uRuND5zs3qZaM043FJSr4MHLIVCYLVLHFa', NULL, '2022-10-03 11:04:38', '2022-10-03 11:04:38'),
 (16, 'Solomon Dindi', 's.dindi@maren.ac.mw', NULL, '$2y$10$sSdibmq.u3JKB.p0ebKgBuyCf7wJ9hXPdlTy6P1Bqip3Zk7O02njK', NULL, '2022-10-04 10:48:31', '2022-10-04 10:48:31'),
 (17, 'Gregoire Njejimana', 'gregoire.njejimana@gmail.com', NULL, '$2y$10$PckpjGNz1oVoGmsbLF.UNucCN.eU1uTOp43gN/xYr2ZBxNAzE8h2i', NULL, '2022-10-04 10:49:54', '2022-10-04 10:49:54'),
@@ -1162,13 +852,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3939;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1186,13 +876,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `nren`
 --
 ALTER TABLE `nren`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `nrenuser`
 --
 ALTER TABLE `nrenuser`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1246,7 +936,7 @@ ALTER TABLE `role_user`
 -- AUTO_INCREMENT for table `saved`
 --
 ALTER TABLE `saved`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3269;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4500;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -1264,7 +954,7 @@ ALTER TABLE `surveys`
 -- AUTO_INCREMENT for table `surveystatus`
 --
 ALTER TABLE `surveystatus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `template`

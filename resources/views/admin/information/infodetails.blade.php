@@ -33,37 +33,30 @@
                           <tr role="row">
                           <th>ID</th>    
                               <th>NREN</th>
-                              <th>User</th>
                               <th>Answered</th>
                               <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-    @foreach ($users as $user)
+    @foreach ($nrens as $nren)
                         <tr role="row" class="odd">
                         <td>
-                            {{$user->id}}
+                            {{$nren->id}}
 </td>
                         <td>
-                    @foreach($nrenusers as $nrenuser) 
-                        @if($user->id==$nrenuser->userid)
-                            @foreach($nrens as $nren) 
-
-                                @if($nren->id==$nrenuser->nrenid)
+                    
+                            
 
                                  {{$nren->nren}}
                                
-                                @endif
-                
-                            @endforeach
-                        @endif       
-                    @endforeach     
+                               
+                           
                             </td>
-                            <td tabindex="0" class="sorting_1">{{$user->name}}</td>
+                          
                             <td>
                                  
-                                    @foreach($nrenusers as $nrenuser) 
-                        @if($user->id==$nrenuser->userid)
+                        @foreach($nrenusers as $nrenuser) 
+                        @if($nren->id==$nrenuser->nrenid)
                           
                                 @foreach($surveystatuses as $status)  
                                 @if($status->userid==$nrenuser->nrenid &&  $status->status=="answered")
@@ -72,17 +65,9 @@
                                
                                 @endif
                                  
-                            @endforeach
+                        @endforeach
                         @endif       
-                   
-
-
-                                
-
-
-                            
-                               
-                               @endforeach
+                        @endforeach
                               
                             </td>
                             
@@ -93,7 +78,7 @@
         <div class="form-group text-center">
          
 
-                                    <a href="/view/{{$survey->id}}/{{$user->id}}/{{$survey->year}}/{{$user->name}}"class="btn btn-success btn-air-danger btn-sm p-2" 
+                                    <a href="/view/{{$survey->id}}/{{$nren->id}}/{{$survey->year}}/{{$nren->nren}}"class="btn btn-success btn-air-danger btn-sm p-2" 
                 data-original-title="open survey" data-bs-target="#delete-{{$survey->id}}" title="open reply"><i
                     class="fa fa-eye"></i></a>
                     <!-- </form> -->

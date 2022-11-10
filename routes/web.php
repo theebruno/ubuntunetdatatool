@@ -43,5 +43,6 @@ Route::get('/nrenedit/{id}', [infocontroller::class, 'nrenedit'])->name('nrenedi
 Route::get('/nrenadd', [infocontroller::class, 'nrenadd'])->name('nrenadd');
 Route::get('/reassignnren', [infocontroller::class, 'reassignnren'])->name('reassignnren');
 Route::post('/destroynren', [infocontroller::class, 'destroynren'])->name('destroynren');
-
+Route::get('/exportnren/{values}', [infocontroller::class, 'exportnren'])->name('exportnren');
+Route::get('/exportall/{values}', [infocontroller::class, 'exportall'])->name('exportall');
 

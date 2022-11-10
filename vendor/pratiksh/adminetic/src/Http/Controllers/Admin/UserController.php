@@ -60,6 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+       
         
         $nrenusers= DB::table('nrenuser')->where('userid',$user->id)->get();
         foreach($nrenusers as $nrenuser){

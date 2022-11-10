@@ -166,36 +166,33 @@
                                 </tr>
                                 <tr>
                                     <td>Network Name:</td>
-                                    <td>{{ $user->networkname ?? '' }}</td>
+                                    <td>{{ $user->networkname ??  '' }}{{ $profile->networkname ??  '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Country:</td>
-                                    <td>{{ $user->countryy ?? '' }}</td>
+                                    <td>{{ $user->countryy ?? '' }}{{ $profile->countryy ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Address:</td>
-                                    <td>{{ $user->addresss ?? '' }}</td>
+                                    <td>{{ $user->addresss ?? '' }}{{ $profile->addresss ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tel:</td>
-                                    <td>{{ $user->tel ?? '' }}</td>
+                                    <td>{{ $user->tel ?? '' }}{{ $profile->tel ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Fax:</td>
-                                    <td>{{ $user->fax ?? '' }}</td>
+                                    <td>{{ $user->fax ?? '' }}{{ $profile->fax ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>General Email:</td>
-                                    <td>{{ $user->generalemail ?? '' }}</td>
+                                    <td>{{ $user->generalemail ?? '' }}{{ $profile->generalemail ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Year of creation:</td>
-                                    <td>{{ $user->yearofcreation ?? '' }}</td>
+                                    <td>{{ $user->yearofcreation ?? '' }}{{ $profile->yearofcreation ?? '' }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Fax:</td>
-                                    <td>{{ $user->fax ?? '' }}</td>
-                                </tr>
+                              
                                 <tr>
                                     <td>Legal entity type:</td>
                                     <td>
@@ -204,17 +201,27 @@
                                         {{$k }},
                                         @endforeach
                                         @endif
+                                        @if($profile->legalentitytype)
+                                        @foreach(json_decode($profile->legalentitytype) as $k)
+                                        {{$k }},
+                                        @endforeach
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Governance:</td>
-                                    <td>{{ $user->governance ?? '' }}</td>
+                                    <td>{{ $user->governance ?? '' }}{{ $profile->governance ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Relationship with government:</td>
                                     <td>
                                         @if($user->relationshipwithgovernment)
                                         @foreach(json_decode($user->relationshipwithgovernment) as $k)
+                                        {{$k }},
+                                        @endforeach
+                                        @endif
+                                        @if($profile->relationshipwithgovernment)
+                                        @foreach(json_decode($profile->relationshipwithgovernment) as $k)
                                         {{$k }},
                                         @endforeach
                                         @endif

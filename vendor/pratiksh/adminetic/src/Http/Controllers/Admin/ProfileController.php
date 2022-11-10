@@ -27,8 +27,36 @@ class ProfileController extends Controller
     public function show(Profile $profile)
     {
     
+           // return $profile->id;
 
+        $nrenusers= DB::table('nrenuser')->where('userid',$profile->user_id)->get();
+     
       
+        foreach($nrenusers as $nrenuser){
+
+        $nren= DB::table('nren')->where('id',$nrenuser->nrenid)->get();
+        foreach($nren as $nren){
+           
+            $profile->nren=$nren->nren;
+            $profile->networkname=$nren->networkname;
+            $profile->addresss=$nren->address;
+            $profile->website=$nren->website;
+            $profile->generalemail=$nren->generalemail;
+            $profile->tel=$nren->tel;
+            $profile->fax=$nren->fax;
+            $profile->yearofcreation=$nren->yearofcreation;
+            $profile->relationshipwithgovernment=$nren->relationshipwithgovernment;
+            $profile->legalentitytype=$nren->legalentitytype;
+            $profile->governance=$nren->governance;
+            $profile->countryy=$nren->country;
+            $profile->nrenid=$nrenuser->nrenid;
+            $profile->existed="yes";
+            
+
+        }
+   
+    }
+ 
        
 
         return $this->checkAuthorization($profile) ? view('adminetic::admin.profile.show', $this->profileRepositoryInterface->showProfile($profile)) : abort(403);

@@ -22,6 +22,11 @@
     <div class="container-fluid">
     <div class="col-sm-12">
                 <div class="card">
+                      <div class="card-header">
+                  <div class=" pull-right">
+                     <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export</button>
+                  </div>
+              </div>
                   <!-- <div class="card-header"> -->
                     <!-- <h5 class="mb-3">Configuration Option</h5><span>The Responsive extension for DataTables can be applied to a DataTable in one of two ways; with a specific class name on the table, or using the DataTables initialisation options. This method shows the latter, with the responsive option being set to the boolean value true.</span>
                   </div> -->
@@ -30,6 +35,8 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
+                             <th></th>
+                               <th>ID</th>
                               <th>Title</th>
                               <th >Description</th>
                               <th >Status</th>
@@ -42,7 +49,9 @@
                         <tbody>
     @foreach ($surveys as $survey)
                         <tr role="row" class="odd">
-                            <td tabindex="0" class="sorting_1">{{$survey->title}}</td>
+                               <td><input type="checkbox" name="export" class="export" value="{{$survey->id}}"></td>
+                                  <td>{{$survey->id}}</td>
+                            <td>{{$survey->title}}</td>
                             <td>{{$survey->details}}</td>
                             <td>
 @if($survey->status=="running")
@@ -176,37 +185,22 @@
     @include('admin.layouts.modules.dashboard.scripts')
     <script>
     $('#basic-1').DataTable(
-
-        {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4 ,5]
-                },  messageTop: 'Survey lists'
-            },
-            {
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4 ,5]
-                },  messageTop: 'Survey lists'
-            },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4 ,5]
-                },  messageTop: 'Survey lists'
-            },
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4 ,5]
-                },  messageTop: 'Survey lists'
-            },
-            
-        ]
-    } 
+ 
      );
     </script>
+       <script>
+function myFunction() {
+ var checkedValue=""; 
+var inputElements = document.getElementsByClassName('export');
+for(var i=0; inputElements[i]; ++i){
+      if(inputElements[i].checked){
+           checkedValue += inputElements[i].value+',';
+          
+         
+      }
+}
+ window.location.href = '/exportall/'+checkedValue;
+}
+
+</script>
 @endsection

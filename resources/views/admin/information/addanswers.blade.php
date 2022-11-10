@@ -50,20 +50,35 @@ remove some fields -->
 
 
 <form class="input-group" method="get" action="/addanswers/{{$id}}">
-
-<select class="form-control" name="load">
-<!-- <option value="saved" >Saved data</option> -->
 @foreach($surveys as $survey)
-<option value="{{$survey->id}}">{{$survey->year}}</option>
+
   <?php $ss=$survey->status;?>
 @endforeach
+<select class="form-control" name="load" required="">
+  <option value="saved">Select Year</option>
+<!-- <option value="saved" >Saved data</option> -->
+@foreach($allsurveys as $allsurvey)
+@foreach($surveys as $survey)
+
+@if($survey->year!=$allsurvey->year)
+ <option value="{{$allsurvey->id}}">{{$allsurvey->year}}</option>
+@endif
+
+@endforeach
+
+@endforeach
 </select>
-<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load Year</button>
+<button class="btn btn-primary"  type="submit" data-bs-original-title="" title="">Load previous data</button>
 </form>
 </div>
 </div>
                     
-                    <h5></h5>
+                    <h5>
+                     @foreach($surveys as $survey)
+
+  <?php echo $survey->year;?>
+@endforeach 
+                    </h5>
                    
                     <div class="card-body">
     <form class="form-wizard" id="regForm" action="/respond" method="POST" enctype="multipart/form-data" >
@@ -426,7 +441,7 @@ remove some fields -->
 
 <div class="tab">
 <h6 class="text-center">NETWORK</h6>
-
+<div id="onyes"></div>
         @foreach($templates as $template)
                                
         @if($template->step==4)
@@ -1294,7 +1309,7 @@ remove some fields -->
 @endif" ></td>
                               <td><input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""name="118" data-bs-original-title="" value="@if($answers)
 @foreach($answers as $answer)
-@if($answer->questionid==106)
+@if($answer->questionid==118)
 <?php echo $answer->name;?>
 @endif
 @endforeach
@@ -1563,7 +1578,7 @@ remove some fields -->
                    
                       </div>
                       <!-- Circles which indicates the steps of the form:-->
-                      <div class="text-center"><span class="step active"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span></div>
+                      <div class="text-center"><span class="step active"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span></div>
                       <!-- Circles which indicates the steps of the form:-->
                       <!-- Container-fluid Ends-->
                     </form>
@@ -1631,21 +1646,21 @@ function fixStepIndicator(n) {
   }
   x[n].className += " active";
 }
-function myFunction() {
-    var x = document.getElementsByClassName("opt");
-  x.style.display = "block";
+// function myFunction() {
+//     var x = '<b>Test</b>';
+//  $('#onyes').html(x);
     
   
-}
-function myFunctiontwo() {
-var x = document.getElementsById("myDIV");
-  x.style.display = "block";
-    var y = document.getElementsById("myDIVone");
-  y.style.display = "block";
-    var z = document.getElementsById("myDIVtwo");
-  z.style.display = "block";
-    var a = document.getElementsById("myDIVthree");
-  a.style.display = "block";
-}
+// }
+// function myFunctiontwo() {
+// var x = document.getElementsById("myDIV");
+//   x.style.display = "block";
+//     var y = document.getElementsById("myDIVone");
+//   y.style.display = "block";
+//     var z = document.getElementsById("myDIVtwo");
+//   z.style.display = "block";
+//     var a = document.getElementsById("myDIVthree");
+//   a.style.display = "block";
+// }
     </script>
 @endsection

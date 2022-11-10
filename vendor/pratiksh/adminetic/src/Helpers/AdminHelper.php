@@ -1,5 +1,4 @@
 <?php
-use DB;
 if (! function_exists('getClassesList')) {
     function getClassesList($dir)
     {
