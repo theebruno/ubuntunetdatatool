@@ -162,7 +162,7 @@
                             <tbody>
                                 <tr>
                                 <td>NREN:</td>
-                                    <td>{{ $user->nren ?? '' }}</td>
+                                    <td>{{ $user->nren ?? '' }}{{ $profile->nren ??  '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Network Name:</td>

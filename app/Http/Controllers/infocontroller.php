@@ -132,6 +132,16 @@ class infocontroller extends Controller
     public function store(Request $request)
     {
         //
+        if($request->input('edit')){
+
+           
+
+            $update = DB::table('surveys')->where('id',$request->input('edit'))->update(['status'=>"running",'title'=>$request->input('title'),'step'=>0,"details"=>$request->input('details'),"year"=>$request->input('year'),"start"=>$request->input('start'),"end"=>$request->input('end'),"userid"=>Auth::id(),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
+   
+    return back()->with('success', "Survey has been edited!");
+
+
+        }
       
         $data=array('status'=>"running",'title'=>$request->input('title'),'step'=>0,"details"=>$request->input('details'),"year"=>$request->input('year'),"start"=>$request->input('start'),"end"=>$request->input('end'),"userid"=>Auth::id(),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
         DB::table('surveys')->insert($data);
@@ -768,6 +778,24 @@ $nrens = DB::table('nren')->get();
 
 
      // return view('admin.information.exportall',['surveys'=>$surveys,'answers'=>$answers,'templates'=>$templates,'name'=>'Surveys','nrens'=>$nrens]);
+        
+    }
+     public function infoedit($id)
+    {
+        //
+        // echo();
+
+    
+        $surveys = DB::table('surveys')->where('id',$id)->get();
+        foreach ($surveys as $survey) {
+            $title=$survey->title;
+            $year=$survey->year;
+            $start=$survey->start;
+            $end=$survey->end;
+            $details=$survey->details;
+        }
+        // var_dump($surveys);
+        return view('admin.information.infoedit',['year'=>$year,'title'=>$title,'start'=>$start,'end'=>$end,'details'=>$details,'id'=>$id]);
         
     }
 }

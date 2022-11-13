@@ -1575,5 +1575,12 @@ element.addEventListener("click", onClick);
 
 
     </script>
+    <script type="text/javascript">
+   $(function() {
+    $('textarea').each(function() {
+        $(this).height($(this).prop('scrollHeight'));
+    });
+});
+    </script>
   
 @endsection

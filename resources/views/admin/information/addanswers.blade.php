@@ -449,7 +449,7 @@ remove some fields -->
      
        
 @if($template->type=="text")
-<div class="mb-3">
+<div class="mb-3" id="myDIV{{$template->id}}" style="display: none;">
 <label for="name">{{$template->name}}</label>
 <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
 
@@ -466,7 +466,7 @@ remove some fields -->
 @endif
 
 @if($template->type=="number")
-<div class="mb-3" >
+<div class="mb-3"  id="myDIV{{$template->id}}" style="display: none;" >
 <label for="name">{{$template->name}}</label>
 <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
@@ -480,7 +480,7 @@ remove some fields -->
 
 
                       @if($template->type=="file")
-                        <div class="mb-3">
+                        <div class="mb-3"  id="myDIV{{$template->id}}" style="display: none;">
                           <label for="name">{{$template->name}}</label>
                           <input class="form-control invalid invalid invalid invalid invalid" id="name" type="file" placeholder=""   name="{{$template->id}}" data-bs-original-title="" title="">
                         </div>
@@ -488,7 +488,7 @@ remove some fields -->
 
 
 @if($template->type=="textarea")
-       <div class="row" >
+       <div class="row"  id="myDIV{{$template->id}}" style="display: none;">
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
@@ -506,7 +506,7 @@ remove some fields -->
 @endif
 
 @if($template->type=="checkbox")
-<div class="mb-3 opt" >
+<div class="mb-3 opt"  id="myDIV{{$template->id}}" style="display: none;">
 <label for="name">{{$template->name}}</label>
 
 @foreach(json_decode($template->options) as $k => $v)
@@ -531,7 +531,7 @@ remove some fields -->
 </div>
 @endif
 @if($template->type=="radio" && $template->surveyid=="optional")
-<div class="row">
+<div class="row"  id="myDIV{{$template->id}}" style="display: none;">
 <div class="col-sm-12">
                         <label>{{$template->name}}</label>
                       </div>
@@ -1646,21 +1646,94 @@ function fixStepIndicator(n) {
   }
   x[n].className += " active";
 }
-// function myFunction() {
-//     var x = '<b>Test</b>';
-//  $('#onyes').html(x);
+function myFunction() {
+var a = document.getElementById("myDIV28");
+  a.style.display = "block";
+  var b = document.getElementById("myDIV29");
+  b.style.display = "block";
+
+  var x = document.getElementById("myDIV31");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV32");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV33");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV34");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV35");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV36");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV37");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV38");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV39");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV40");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV41");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV42");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV43");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV44");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV45");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV46");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV47");
+  x.style.display = "block";
+  var x = document.getElementById("myDIV48");
+  x.style.display = "block";
     
   
-// }
-// function myFunctiontwo() {
-// var x = document.getElementsById("myDIV");
-//   x.style.display = "block";
-//     var y = document.getElementsById("myDIVone");
-//   y.style.display = "block";
-//     var z = document.getElementsById("myDIVtwo");
-//   z.style.display = "block";
-//     var a = document.getElementsById("myDIVthree");
-//   a.style.display = "block";
-// }
+}
+function myFunctiontwo() {
+var x = document.getElementById("myDIV28");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV29");
+  x.style.display = "none";
+ 
+  var x = document.getElementById("myDIV31");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV32");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV33");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV34");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV35");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV36");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV37");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV38");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV39");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV40");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV41");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV42");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV43");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV44");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV45");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV46");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV47");
+  x.style.display = "none";
+  var x = document.getElementById("myDIV48");
+  x.style.display = "none";
+ 
+}
     </script>
 @endsection

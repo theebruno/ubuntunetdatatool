@@ -62,15 +62,15 @@
                       <div class="row">
                         <div class="col">
                           <div class="mb-3">
-                            <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+                            <label><u>{{$template->name}}:</u></label>
+<span class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid && $answer->surveyid==$survey->id)
 {{$answer->name}}
 @endif
 @endforeach
 @endif
-</textarea>
+</span>
                           </div>
                         </div>
                       </div>
@@ -109,23 +109,24 @@
   </div>
                       @endif
 
-@if($template->type=="textarea")
-       <div class="row">
-       <div class="col">
-       <div class="mb-3">
-      <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+
+                      @if($template->type=="textarea")
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label><u>{{$template->name}}:</u></label>
+<span class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid && $answer->surveyid==$survey->id)
 {{$answer->name}}
 @endif
 @endforeach
 @endif
-</textarea>
-</div>
-</div>
-</div>
-@endif
+</span>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
 
 @if($template->type=="checkbox")
 <div class="mb-3">

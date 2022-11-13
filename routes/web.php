@@ -22,6 +22,7 @@ Route::get('/infoview', [infocontroller::class, 'show'])->name('infoview');
 Route::post('/addinfo', [infocontroller::class, 'store'])->name('addinfo');
 Route::post('/destroyinfo', [infocontroller::class, 'destroy'])->name('destroyinfo');
 Route::get('/infodetails/{id}', [infocontroller::class, 'details'])->name('infodetails');
+Route::get('/infoedit/{id}', [infocontroller::class, 'infoedit'])->name('infoedit');
 Route::post('/addquestion', [infocontroller::class, 'addquestion'])->name('addquestion');
 Route::get('/answers', [infocontroller::class, 'answers'])->name('answers');
 Route::get('/addanswers/{id}', [infocontroller::class, 'addanswers'])->name('addanswers');

@@ -86,6 +86,9 @@
                                     <a  class="btn btn-success btn-air-info btn-sm p-2" href="/infodetails/{{$survey->id}}"
                 data-toggle="tooltip" placement="top" title="delete"  name="id" value="{{$survey->id}}"><i class="fa fa-eye"></i></a>
 
+                  <a  class="btn btn-primary btn-air-primary btn-sm p-2" href="/infoedit/{{$survey->id}}"
+                data-toggle="tooltip" placement="top" title="edit"  name="id" value="{{$survey->id}}"><i class="fa fa-pen"></i></a>
+
                                     <button class="btn btn-danger btn-air-danger btn-sm p-2" type="button" data-bs-toggle="modal"
                 data-original-title="Delete" data-bs-target="#delete-{{$survey->id}}" title="delete"><i
                     class="fa fa-trash"></i></button>
@@ -95,6 +98,31 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="delete-{{$survey->id}}" tabindex="-1" role="dialog"
+        aria-labelledby="delete-2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                                <div class="modal-header bg-danger">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Item !</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/destroyinfo" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$survey->id}}"> <div class="modal-body">
+                        Are you sure you want to delete this item.
+                        <br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="close btn grey btn-danger btn-air-danger" type="button" data-bs-dismiss="modal"
+                            aria-label="Close">Close </button>
+
+                        <button type="submit" class="btn btn-danger btn-air-danger">Yes Delete It !</button>
+                    </div>
+                </form>
+           </div>
+        </div>
+    </div>
+       <div class="modal fade" id="delete-{{$survey->id}}" tabindex="-1" role="dialog"
         aria-labelledby="delete-2" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
