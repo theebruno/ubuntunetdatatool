@@ -150,7 +150,7 @@ if (! function_exists('loader_enabled')) {
 if (! function_exists('favicon')) {
     function favicon()
     {
-        return setting('favicon') ? (asset('storage/'.setting('favicon'))) : asset('adminetic/static/favicon.png');
+        return setting('favicon') ? (asset('storage/'.setting('favicon'))) : asset('adminetic/static/pic.ico');
     }
 }
 
