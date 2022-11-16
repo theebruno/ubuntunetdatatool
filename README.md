@@ -18,10 +18,9 @@ learn more about laravel here:
 https://laravel.com/docs/8.x
 
 #### database structure
-
+https://raw.githubusercontent.com/theebruno/ubuntunetdatatool/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/database.png
 #### folder structure
-
-
+https://raw.githubusercontent.com/theebruno/ubuntunetdatatool/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/folders.png
 ## Installation
 
 Clone this repository
