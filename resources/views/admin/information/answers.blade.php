@@ -30,10 +30,10 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
-                             <th>ID</th>
+                             <th  style="display:none;">ID</th>
                               <th>Title</th>
                               <th >Description</th>
-                              <th >Survey status</th>
+                         
                               <th >Year</th>
                               <th >Answered</th>
                               <th>Start Date</th>
@@ -43,19 +43,12 @@
                         </thead>
                         <tbody>
     @foreach ($surveys as $survey)
+    @if($survey->status=="running")
                         <tr role="row" class="odd">
-                             <td>{{$survey->id}}</td>
+                             <td  style="display:none;">{{$survey->id}}</td>
                             <td>{{$survey->title}}</td>
                             <td>{{$survey->details}}</td>
-                            <td>
-@if($survey->status=="running")
-<span class="badge rounded-pill badge-success">{{$survey->status}}</span>
-@endif
-@if($survey->status=="ended")
-<span class="badge rounded-pill badge-danger">{{$survey->status}}</span>
-@endif
-
-                            </td>
+                        
                             <td>{{$survey->year}}</td>
                             <td>
                                 @foreach($surveystatuses as $status)   
@@ -88,6 +81,7 @@
 </div>                    </td>
                             
                           </tr>
+                          @endif
     @endforeach                 
                         </tbody>
                        

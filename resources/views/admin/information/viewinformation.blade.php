@@ -23,9 +23,14 @@
     <div class="col-sm-12">
                 <div class="card">
                       <div class="card-header">
-                  <div class=" pull-right">
-                     <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export</button>
+                              <div class=" pull-right">
+                     <button class="btn btn-info pull-right"id="dem" onclick="myFunction()">Export CSV</button><br>
+                           <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export PDF</button>
                   </div>
+
+         
+               
+                  
               </div>
                   <!-- <div class="card-header"> -->
                     <!-- <h5 class="mb-3">Configuration Option</h5><span>The Responsive extension for DataTables can be applied to a DataTable in one of two ways; with a specific class name on the table, or using the DataTables initialisation options. This method shows the latter, with the responsive option being set to the boolean value true.</span>
@@ -36,7 +41,7 @@
                         <thead>
                           <tr role="row">
                              <th></th>
-                               <th>ID</th>
+                               <th  style="display:none;">ID</th>
                               <th>Title</th>
                               <th >Description</th>
                               <th >Status</th>
@@ -50,7 +55,7 @@
     @foreach ($surveys as $survey)
                         <tr role="row" class="odd">
                                <td><input type="checkbox" name="export" class="export" value="{{$survey->id}}"></td>
-                                  <td>{{$survey->id}}</td>
+                                  <td  style="display:none;">{{$survey->id}}</td>
                             <td>{{$survey->title}}</td>
                             <td>{{$survey->details}}</td>
                             <td>
@@ -212,9 +217,20 @@
 @section('custom_js')
     @include('admin.layouts.modules.dashboard.scripts')
     <script>
-    $('#basic-1').DataTable(
- 
-     );
+    $('#basic-1').DataTable({
+        columnDefs: [
+            {
+                target: 2,
+                visible: false,
+                searchable: false,
+            },
+            {
+                target: 3,
+                visible: false,
+            },
+        ],
+    });
+
     </script>
        <script>
 function myFunction() {

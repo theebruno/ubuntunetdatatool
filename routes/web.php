@@ -46,4 +46,5 @@ Route::get('/reassignnren', [infocontroller::class, 'reassignnren'])->name('reas
 Route::post('/destroynren', [infocontroller::class, 'destroynren'])->name('destroynren');
 Route::get('/exportnren/{values}', [infocontroller::class, 'exportnren'])->name('exportnren');
 Route::get('/exportall/{values}', [infocontroller::class, 'exportall'])->name('exportall');
+Route::get('/singlereport', [infocontroller::class, 'singlereport'])->name('singlereport');
 

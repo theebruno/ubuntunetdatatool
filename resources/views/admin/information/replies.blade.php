@@ -23,8 +23,11 @@
     <div class="col-sm-12">
                 <div class="card">
                 <div class="card-header">
+                       <div class=" pull-right">
+                     <button class="btn btn-info pull-right"id="dem" onclick="myFunction()">Export CSV</button>
+                  </div>
                   <div class=" pull-right">
-                     <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export</button>
+                     <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export PDF</button>
                   </div>
               </div>
                   <!-- <div class="card-header"> -->
@@ -36,13 +39,13 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
-                               <th>ID</th>
-                               <th>ID</th>
+                               <th></th>
+                               <th style="display:none;">ID</th>
                               <th>Title</th>
                               <th >Description</th>
                               <th >Status</th>
                               <th >Year</th>
-                              <th >Answered</th>
+                      
                               <th>Start Date</th>
                               <th>End Date</th>
                               <th>Action</th>
@@ -50,9 +53,11 @@
                         </thead>
                         <tbody>
     @foreach ($surveys as $survey)
+        @foreach($surveystatuses as $status)   
+                                @if($status->surveyid==$survey->id && $status->status=="answered")
                         <tr role="row" class="odd">
                                  <td><input type="checkbox" name="export" class="export" value="{{$survey->id}}"></td>
-                               <td>{{$survey->id}}</td>
+                               <td style="display:none;">{{$survey->id}}</td>
                             <td>{{$survey->title}}</td>
                             <td>{{$survey->details}}</td>
                             <td>
@@ -65,16 +70,7 @@
 
                             </td>
                             <td>{{$survey->year}}</td>
-                            <td>
-                                @foreach($surveystatuses as $status)   
-                                @if($status->surveyid==$survey->id && $status->status=="answered")
-                                <span class="badge rounded-pill badge-primary">YES</span>
-                                @endif
-                            
-                               
-                               @endforeach
-                              
-                            </td>
+                     
                             </td>
                             <td>{{$survey->start}}</td>
                             <td>{{$survey->end}}</td>
@@ -97,6 +93,10 @@
 </div>                    </td>
                             
                           </tr>
+                             @endif
+                            
+                               
+                               @endforeach
     @endforeach                 
                         </tbody>
                        

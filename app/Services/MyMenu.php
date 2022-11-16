@@ -56,6 +56,18 @@ class MyMenu implements SidebarInterface
                 'icon' => 'fa fa-book',
                 'link' => route('replies'),
             ],
+               [
+                'type' => 'link',
+                'name' => ' Reports',
+                 'icon' => 'fa fa-tv',
+                  'conditions' => [
+                    [
+                        'type' => 'and',
+                        'condition' => auth()->user()->hasRole('user'),
+                    ],
+                ],
+                'link' => route('singlereport'),
+            ],
             [
                 'type' => 'menu',
                 'name' => 'Surveys',

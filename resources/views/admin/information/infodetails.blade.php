@@ -31,7 +31,7 @@
                       <table class="display" id="basic-1">
                         <thead>
                           <tr role="row">
-                          <th>ID</th>    
+                          <th  style="display:none;">ID</th>    
                               <th>NREN</th>
                               <th>Answered</th>
                               <th>Action</th>
@@ -40,7 +40,7 @@
                         <tbody>
     @foreach ($nrens as $nren)
                         <tr role="row" class="odd">
-                        <td>
+                        <td  style="display:none;">
                             {{$nren->id}}
 </td>
                         <td>
@@ -112,36 +112,7 @@
     <script>
     $('#basic-1').DataTable(
 
-        {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2,3]
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2,3]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1,2,3]
-                }
-            },
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: [ 0, 1,2,3]
-                }
-            },
-            
-        ]
-    } 
+       
      );
     </script>
 @endsection

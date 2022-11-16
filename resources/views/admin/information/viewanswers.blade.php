@@ -24,7 +24,7 @@
                 <div class="card" >
                   <div class="card-header">
                     <div class="pull-right">
-                    <button id="clickbind" type="button" class="btn btn-success "><i class="fa fa-print"></i></button>
+                    <button id="clickbind" type="button" class="btn btn-success "><i class="far fa-file-pdf"></i> EXPORT PDF</button>
                   </div>
                
                   </div>
