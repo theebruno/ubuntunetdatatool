@@ -23,10 +23,13 @@
     <div class="col-sm-12">
                 <div class="card">
                       <div class="card-header">
-                              <div class=" pull-right">
-                     <button class="btn btn-info pull-right"id="dem" onclick="myFunction()">Export CSV</button><br>
-                           <button class="btn btn-info pull-right"id="demo" onclick="myFunction()">Export PDF</button>
-                  </div>
+                            <div class="col-xl-6 col-sm-12">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                     
+                          <button class="btn btn-primary btn-lg" type="button">Export CSV</button>
+                          <button class="btn btn-primary btn-lg" onclick="myFunction()">Export PDF</button>
+                        </div>
+                      </div>
 
          
                

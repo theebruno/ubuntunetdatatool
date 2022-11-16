@@ -18,6 +18,7 @@ learn more about laravel here:
 https://laravel.com/docs/8.x
 
 #### database structure
+https://github.com/theebruno/ubuntunetdatatool/blob/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/database.png
 #### folder structure
 
 

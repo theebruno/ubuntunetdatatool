@@ -800,7 +800,7 @@ $nrens = DB::table('nren')->get();
     }
 
 
-    public function reports(Request  $request)
+    public function singlereport(Request  $request)
 {
         //getting nrenid instead of userid
         $nrenid="";
@@ -813,52 +813,16 @@ $nrens = DB::table('nren')->get();
 
         $users = DB::table('users')->get();
 $nrens = DB::table('nren')->get();
-if($request->input("nren")){
+
 
     $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
-       $answers = DB::table('answers')->where('userid',$request->input("nren"))->get();
+       $answers = DB::table('answers')->where('userid',$nrenid)->get();
 
     $surveys = DB::select('select * from surveys');
-    return view('admin.information.nrenreports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'users'=>$users,'nrens'=>$nrens,'answers'=>$answers]);
-
-}
+    return view('admin.information.singlereport',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'users'=>$users,'nrens'=>$nrens,'answers'=>$answers]);
 
 
 
-
-        $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
-        $c0 = DB::table('surveystatus')->count();
-        $c1 = DB::table('nren')->count();
-        $c2 = DB::table('surveys')->count() * $c1 ;
-        $c2= $c2-$c0;
-        
-        if($request->input("load")){
-            if($request->input("load")=="all"){
-                $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
-                $c0 = DB::table('surveystatus')->count();
-                $c1 = DB::table('nren')->count();
-                $c2 = DB::table('surveys')->count() * $c1 ;
-                $c2= $c2-$c0;
-
-
-            }
-            else{
-                $surveystatuses = DB::table('surveystatus')->where('userid',$nrenid)->count();
-                $c0 = DB::table('surveystatus')->where('surveyid',$request->input("load"))->count();
-                $c1 = DB::table('nren')->count();
-                $c2 = DB::table('surveys')->where('id',$request->input("load"))->count() * $c1 ;
-                $c2= $c2-$c0;
-
-            }
-            
-        }
-
-    
-        // $c0= DB::select('select * from users')->count();
-        // $c1 = DB::select('select * from surveys')->count() * $c0;
-        $surveys = DB::select('select * from surveys');
-        return view('admin.information.reports',['surveys'=>$surveys,'surveystatuses'=>$surveystatuses,'ans'=>$c0,'not'=>$c2,'users'=>$users,'nrens'=>$nrens]);
-        
     }
     
 }
