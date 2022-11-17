@@ -55,19 +55,17 @@
                           
                             <td>
                                  
-                        @foreach($nrenusers as $nrenuser) 
-                        @if($nren->id==$nrenuser->nrenid)
+                      
                           
                                 @foreach($surveystatuses as $status)  
-                                @if($status->userid==$nrenuser->nrenid &&  $status->status=="answered")
+                                @if($status->userid==$nren->id &&  $status->status=="answered")
 
                                  <span class="badge rounded-pill badge-primary">YES</span>
                                
                                 @endif
                                  
                         @endforeach
-                        @endif       
-                        @endforeach
+                       
                               
                             </td>
                             
