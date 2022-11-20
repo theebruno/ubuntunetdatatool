@@ -108,3 +108,6 @@ To check the mapping of all routes and functions refer to web.php
 The infocontroller contains all logic and methods.
 it is well commented for easy understanding.
 ![info controller Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/62a6877e076f243a0bb2931a11476ccf79ce7208/public/screenshots/info.png)
+
+#### For more information use the manual here:
+ [MIT](https://choosealicense.com/licenses/mit/)
