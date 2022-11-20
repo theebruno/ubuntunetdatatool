@@ -35,18 +35,23 @@ the users of the system will include:
   -Administrator
 
 #### Users
+
  The users are in this case the NRENs wic are supposed to fill in the surveys and submit there reponses
-  what can a user do
+ what can a user do
+
    -Answer survey
    -View responses
    -Edit there profile
-   -Edit there NREN information
+   -Edit there NREN iormation
    -View tere NREN reports
+
  NOTE: A user can only do this if they have been assigned to an NREN.
 
 #### Administrators 
+
 The admin controls all features of the system.
- what can admin do:
+what can admin do:
+
  -Create and view surveys
  -Edit and delete surveys
  -Disable surveys
@@ -67,7 +72,9 @@ The admin controls all features of the system.
 - All admin features should also be working.
 
 ## DESIGN
+
 The app has been made with;
+
 -Laravel
 -MYSQL database
 
