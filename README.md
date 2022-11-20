@@ -96,3 +96,15 @@ To check the mapping of all routes and functions refer to web.php
 ![mapping Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/175401c734045de20be46cbcbba4fd7d1fa8c900/public/screenshots/mapping.png)
 
 ## the overall process
+- Admin creates an NREN.
+- Admin creates a user.
+- Admin assigns user to an NREN.
+- Admin creates a survey(they can also diable,enable,edit or even delete one)
+- Users now login view and choose a survey to respond to.
+- Users submit answers or save the response and answer later.
+- Users and admins can view responses and reports.
+
+
+The infocontroller contains all logic and methods.
+it is well commented for easy understanding.
+![info controller Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/175401c734045de20be46cbcbba4fd7d1fa8c900/public/screenshots/mapping.png)
