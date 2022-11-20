@@ -90,7 +90,7 @@ A database is usually a fundamental component of the information system, especia
 #### folder structure
 ![folder Screenshot](https://raw.githubusercontent.com/theebruno/ubuntunetdatatool/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/folders.png)
 #### main pages of interaction
-![pages Screenshot](https://raw.githubusercontent.com/theebruno/ubuntunetdatatool/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/folders.png)
+![pages Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/175401c734045de20be46cbcbba4fd7d1fa8c900/public/screenshots/mainpages.png)
 
 To check the mapping of all routes and functions refer to web.php
-![mapping Screenshot](https://raw.githubusercontent.com/theebruno/ubuntunetdatatool/b0ac2bcd0329388bb9f3f50ed4652c27d82f25a3/public/screenshots/folders.png)
+![mapping Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/175401c734045de20be46cbcbba4fd7d1fa8c900/public/screenshots/mapping.png)
