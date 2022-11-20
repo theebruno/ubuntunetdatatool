@@ -31,10 +31,11 @@ just run
 
 ## Users of the app
 the users of the system will include:
+
 -Users
 -Administrator
 
-#### Users
+## Users
 
 The users are in this case the NRENs wic are supposed to fill in the surveys and submit there reponses
 What can a user do
@@ -47,18 +48,18 @@ What can a user do
 
 NOTE: A user can only do this if they have been assigned to an NREN.
 
-#### Administrators 
+## Administrators 
 
 The admin controls all features of the system.
 what can admin do:
 
-*Create and view surveys
-*Edit and delete surveys
-*Disable surveys
-*Create and Assign NRENs to users.
-*view various reports connected to NRENs
-*Create users and assign rol
-*Edit their profile.
+-Create and view surveys
+-Edit and delete surveys
+-Disable surveys
+-Create and Assign NRENs to users.
+-view various reports connected to NRENs
+-Create users and assign rol
+-Edit their profile.
 
 
 ## Functional requirements of the system
