@@ -45,7 +45,6 @@ just run
 NOTE: A user can only do this if they have been assigned to an NREN.
 
 ##Administrators 
-
 -Create and view surveys
 -Edit and delete surveys
 -Disable surveys
@@ -53,6 +52,26 @@ NOTE: A user can only do this if they have been assigned to an NREN.
 -view various reports connected to NRENs
 -Create users and assign rol
 -Edit their profile.
+
+## Functional requirements of the system
+
+- Users and admins should be able to sign into the system.
+- Users and admins should be authenticated basing on there roles.
+- Users should be able to fill in the survey forms 
+- Users should be able to view there responses.
+- Users should be able to view there reponses.
+- The app should be responsive to fit all screen sizes
+- All admin features should also be working.
+
+## Functional requirements of the system
+
+- Users and admins should be able to sign into the system.
+- Users and admins should be authenticated basing on there roles.
+- Users should be able to fill in the survey forms 
+- Users should be able to view there responses.
+- Users should be able to view there reponses.
+- The app should be responsive to fit all screen sizes
+- All admin features should also be working.
 
 
 ## Functional requirements of the system
