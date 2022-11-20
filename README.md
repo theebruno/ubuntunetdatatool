@@ -94,3 +94,5 @@ A database is usually a fundamental component of the information system, especia
 
 To check the mapping of all routes and functions refer to web.php
 ![mapping Screenshot](https://github.com/theebruno/ubuntunetdatatool/blob/175401c734045de20be46cbcbba4fd7d1fa8c900/public/screenshots/mapping.png)
+
+## the overall process
