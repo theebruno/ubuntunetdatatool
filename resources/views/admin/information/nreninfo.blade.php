@@ -131,36 +131,6 @@
     <script>
     $('#basic-1').DataTable(
 
-        {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: [ 0, 1]
-                },  messageTop: 'NREN lists'
-            },
-            {
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [ 0, 1]
-                },  messageTop: 'NREN lists'
-            },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1]
-                },  messageTop: 'NREN lists'
-            },
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: [ 0, 1]
-                },  messageTop: 'NREN lists'
-            },
-            
-        ]
-    } 
      );
     </script>
 @endsection
