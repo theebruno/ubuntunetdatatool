@@ -47,4 +47,6 @@ Route::post('/destroynren', [infocontroller::class, 'destroynren'])->name('destr
 Route::get('/exportnren/{values}', [infocontroller::class, 'exportnren'])->name('exportnren');
 Route::get('/exportall/{values}', [infocontroller::class, 'exportall'])->name('exportall');
 Route::get('/singlereport', [infocontroller::class, 'singlereport'])->name('singlereport');
+Route::get('/csvsingle/{nren}/{year}/{name}/{surveyid}', [infocontroller::class, 'csvsingle'])->name('csvsingle');
+Route::get('/csvall', [infocontroller::class, 'csvall'])->name('csvall');
 

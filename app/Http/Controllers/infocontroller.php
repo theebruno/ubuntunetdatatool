@@ -262,7 +262,139 @@ class infocontroller extends Controller
         $statuscount= DB::table('surveystatus')->where('userid',$request->input('nrenid'))->where('surveyid',$request->input('surveyid'))->count();
         if($statuscount>0){
 
-            return redirect('answers')->with('fail', "Response exists!");
+           
+   //updating status
+
+
+        //inserting answers
+        $templates = DB::table('template')->get();
+          foreach($templates as $template){
+
+
+
+           
+            if($template->id==40){
+// if ($request->hasFile($template->id)) {
+//     /
+//                     return "yes";
+// }
+//  else{
+//     return "No";
+
+//  }
+                if($request->hasFile($template->id)){
+                $destinationPath = 'info';
+               
+                $myimage = $request->file($template->id)->getClientOriginalName();
+                if( $myimage){
+                $request->file($template->id)->move(public_path($destinationPath), $myimage);
+
+                $data=array('name'=>$myimage,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                DB::table('answers')->insert($data);}
+                }
+
+                
+            }
+
+            else{
+                if($request->input($template->id)){
+// these are the fields that have check boxes being encoded then saved
+                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
+                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
+                    $template->id==85 || $template->id==91 ){
+
+                  $name=json_encode($request->input($template->id));
+                    
+
+                }
+//
+                else{
+                    $name=$request->input($template->id);
+                }
+
+
+
+                }
+
+
+                else{
+
+
+//              
+                if($template->type=='number'){
+                  
+                  $name=0;
+                    
+
+                }
+                else{
+
+
+                if($template->id==10 || $template->id==12 || $template->id==20 || $template->id==28 || $template->id==31 || $template->id==39 || $template->id==50 || 
+                    $template->id==56 || $template->id==58 || $template->id==61 || $template->id==63 || $template->id==65 || $template->id==67 || $template->id==83 || 
+                    $template->id==85 || $template->id==91 ){
+                  $value=["none","empty"];
+                  $name=json_encode($value);
+                    
+
+                }
+                else{
+                    $name="N/A";
+
+                }
+                  
+                }
+
+                }
+                // $data=array('name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"created_at"=>DB::raw('CURRENT_TIMESTAMP'));
+                // DB::table('answers')->insert($data);
+
+                $update = DB::table('answers')->where('surveyid',$request->input('surveyid'))->where('questionid',$template->id)->where('userid',$request->input('nrenid'))->update(['name'=>$name,'surveyid'=>$request->input('surveyid'),"questionid"=>$template->id,"userid"=>$request->input('nrenid'),"updated_at"=>DB::raw('CURRENT_TIMESTAMP')]);
+    
+            }
+             
+
+
+
+
+        }
+
+            return redirect('answers')->with('success', "Response had been updated!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         }
         else{
@@ -584,7 +716,7 @@ if($name=="nren"){
         $nrenusers = DB::table('nrenuser')->get();
         $surveyss = DB::table('surveys')->get();
         $templates = DB::table('template')->get();
-        $answers = DB::table('saved')->where('surveyid',$id)->where('userid',$nrenid)->get();
+        $answers = DB::table('answers')->where('surveyid',$id)->where('userid',$nrenid)->get();
         // var_dump($surveys);
     
         if($request->input('load')){
@@ -824,5 +956,82 @@ $nrens = DB::table('nren')->get();
 
 
     }
-    
+
+    public function csvsingle($id,$year,$name,$surveyid)
+{
+
+   // $fileName = $year.'by'.$name.'.csv';
+   // $tasks=DB::table('answers')->where('userid',$id)->where('surveyid',$surveyid)->get();
+   //      $templates = DB::table('template')->get();
+   //      $headers = array(
+   //          "Content-type"        => "text/csv",
+   //          "Content-Disposition" => "attachment; filename=$fileName",
+   //          "Pragma"              => "no-cache",
+   //          "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+   //          "Expires"             => "0"
+   //      );
+
+   //      $columns = array('Question','Answer');
+
+   //      $callback = function() use($tasks, $columns) {
+
+   //          $file = fopen('php://output', 'w');
+   //          fputcsv($file, $columns);
+
+   //          foreach ($tasks as $task) {
+   //              foreach ($templates as $template) {
+   //                  if ($template->id==$task->questionid) {
+   //                         $row['Question']  = $template->name;
+   //                  }
+   //              }
+             
+   //              $row['Answer'] = $task->name;
+          
+
+   //              fputcsv($file, array($row['Question'], $row['Answer']));
+   //          }
+
+   //          fclose($file);
+   //      };
+
+   //      return response()->stream($callback, 200, $headers);
+   //  }
+ //      $fileName = 'tasks.csv';
+ //   $tasks = DB::table('answers')->where('userid',$id)->where('surveyid',$surveyid)->get();
+ // $templates = DB::table('template')->get();
+
+ //        $headers = array(
+ //            "Content-type"        => "text/csv",
+ //            "Content-Disposition" => "attachment; filename=$fileName",
+ //            "Pragma"              => "no-cache",
+ //            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+ //            "Expires"             => "0"
+ //        );
+
+ //        $columns = array('question', 'answer',);
+
+ //        $callback = function() use($tasks, $columns) {
+ //            $file = fopen('php://output', 'w');
+ //            fputcsv($file, $columns);
+
+ //            foreach ($tasks as $task) {
+ //                foreach ($templates as $template) {
+                 
+                        
+                         
+                    
+ //                }
+ //                  $row['question']  = $task->name;
+             
+ //                $row['answer'] = $task->name;
+
+ //                fputcsv($file, array($row['question'], $row['answer']));
+ //            }
+
+ //            fclose($file);
+ //        };
+
+ //        return response()->stream($callback, 200, $headers);
+ //    }
+}
 }

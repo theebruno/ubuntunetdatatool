@@ -25,8 +25,8 @@
                       <div class="card-header">
                             <div class="col-xl-6 col-sm-12">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                     
-                          <button class="btn btn-primary btn-lg" type="button">Export CSV</button>
+                     <!-- 
+                          <button class="btn btn-primary btn-lg" type="button">Export CSV</button> -->
                           <button class="btn btn-primary btn-lg" onclick="myFunction()">Export PDF</button>
                         </div>
                       </div>

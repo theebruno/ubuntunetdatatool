@@ -23,9 +23,44 @@
     <div class="col-sm-12">
                 <div class="card" >
                   <div class="card-header">
-                    <div class="pull-right">
-                    <button id="clickbind" type="button" class="btn btn-success "><i class="far fa-file-pdf"></i> EXPORT PDF</button>
-                  </div>
+                
+
+        @foreach ($surveys as $survey)
+                
+                                        @if($forall=='no')
+                      @foreach($nrenusers as $nrenuser)
+                      @foreach($nrens as $nren)
+
+                      @if($nrenuser->nrenid==$nren->id)
+                    
+                      <?php $csv=$nren->id."/".$survey->year."/".$nren->nren."/".$survey->id;?>
+                      @endif
+                      @endforeach
+                      @endforeach
+                      @endif
+
+                       @if($forall=='yes')
+                      @foreach($nrenusers as $nrenuser)
+                   
+                  
+                      <?php $csv=$nrenuser->id."/".$survey->year."/".$nrenuser->nren."/".$survey->id;?>
+                    
+                      @endforeach
+                      @endif
+                      @endforeach
+
+                           <div class="col-xl-6 col-sm-12">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                   
+                      
+                        <!--   <button data-href="/csvsingle/{{$csv}}" onclick ="exportTasks (event.target);" class="btn btn-primary btn-lg" type="button">Export CSV</button> -->
+                         
+                          <button class="btn btn-primary btn-lg" id="clickbind" type="button">Export PDF</button>
+                        </div>
+                      </div>
+
+                  <!--   <button id="clickbind" type="button" class="btn btn-success "><i class="far fa-file-pdf"></i> EXPORT PDF</button> -->
+               
                
                   </div>
                   <div class="card-body" id="content" >
@@ -64,7 +99,7 @@
                       @if($template->type=="text")
                         <div class="mb-3">
                           <label for="name">{{$template->name}}</label>
-                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+                          <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" readonly placeholder=""  value="
 @if($answers)
 @foreach($answers as $answer)
 
@@ -82,7 +117,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" readonly  name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -114,7 +149,7 @@
         @if($template->type=="text")
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+<input class="form-control invalid invalid invalid invalid invalid" readonly id="name" type="text" placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -133,7 +168,7 @@
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" readonly name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -152,7 +187,7 @@
 
 @foreach(json_decode($template->options) as $k => $v)
 <label class="d-block" for="chk-ani">
-<input class="checkbox_animated" id="chk-ani"
+<input class="checkbox_animated" id="chk-ani" readonly 
    @if($answers)
    @foreach($answers as $answer)
    @if($template->id==$answer->questionid)
@@ -179,7 +214,7 @@
                       <div class="col">
                         <div class="mb-3 m-t-15 custom-radio-ml">
                           <div class="form-check radio radio-success">
-                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" name="{{$template->id}}" value="Yes" 
+                            <input class="form-check-input" id="radio{{$template->id}}" type="radio" readonly  name="{{$template->id}}" value="Yes" 
 
   @if($answers)
    @foreach($answers as $answer)
@@ -198,7 +233,7 @@
                           </div>
                          
                           <div class="form-check radio radio-danger">
-                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" name="{{$template->id}}" value="No" 
+                            <input class="form-check-input" id="rad{{$template->id}}" type="radio" readonly  name="{{$template->id}}" value="No" 
   @if($answers)
    @foreach($answers as $answer)
    @if($template->id==$answer->questionid)
@@ -242,7 +277,7 @@
 @if($template->type=="text")
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+<input class="form-control invalid invalid invalid invalid invalid" id="name" readonly type="text" placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -259,7 +294,7 @@
 @if($template->type=="number")
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+<input class="form-control invalid invalid invalid invalid invalid" id="name" readonly type="number" placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -274,7 +309,7 @@
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" readonly name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -385,7 +420,7 @@
 @if($template->type=="text")
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" readonly placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -402,7 +437,7 @@
 @if($template->type=="number")
 <div class="mb-3" >
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly  placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -440,7 +475,7 @@
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" readonly name ="{{$template->id}}" value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -601,7 +636,7 @@
 @if($template->type=="text" && $template->id!=53)
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+<input class="form-control invalid invalid invalid invalid invalid" id="name" readonly type="text" placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -621,7 +656,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -638,7 +673,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -656,7 +691,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                            <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+                            <input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" readonly placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -680,7 +715,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -697,7 +732,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                              <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -717,7 +752,7 @@
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" readonly value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -826,7 +861,7 @@
 @if($template->type=="text" && $template->id!=80)
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" placeholder=""  value="
+<input class="form-control invalid invalid invalid invalid invalid" id="name" type="text" readonly placeholder=""  value="
 
 @if($answers)
 @foreach($answers as $answer)
@@ -843,7 +878,7 @@
 @if($template->type=="number" && $template->id!=89 && $template->id!==90)
 <div class="mb-3">
 <label for="name">{{$template->name}}</label>
-<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+<input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -859,7 +894,7 @@
        <div class="col">
        <div class="mb-3">
       <label>{{$template->name}}</label>
-<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" value="">@if($answers)
+<textarea class="form-control" id="exampleFormControlTextarea4" rows="3" name ="{{$template->id}}" readonly value="">@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 {{$answer->name}}
@@ -942,7 +977,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                         <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                         <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly  placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -959,7 +994,7 @@
                       <div class="mb-3 m-form__group">
                            
                             <div class="input-group"><span class="input-group-text">{{$template->name}}</span>
-                  <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" placeholder=""  value="@if($answers)
+                  <input class="form-control invalid invalid invalid invalid invalid" id="name" type="number" readonly placeholder=""  value="@if($answers)
 @foreach($answers as $answer)
 @if($template->id==$answer->questionid)
 <?php echo $answer->name;?>
@@ -1575,12 +1610,11 @@ element.addEventListener("click", onClick);
 
 
     </script>
-    <script type="text/javascript">
-   $(function() {
-    $('textarea').each(function() {
-        $(this).height($(this).prop('scrollHeight'));
-    });
-});
-    </script>
-  
+
+  <script>
+   function exportTasks(_this) {
+      let _url = $(_this).data('href');
+      window.location.href = _url;
+   }
+</script>
 @endsection
