@@ -53,7 +53,7 @@
                         <div class="btn-group" role="group" aria-label="Basic example">
                    
                       
-                        <!--   <button data-href="/csvsingle/{{$csv}}" onclick ="exportTasks (event.target);" class="btn btn-primary btn-lg" type="button">Export CSV</button> -->
+                          <button data-href="/csvsingle/{{$csv}}" onclick ="exportTasks (event.target);" class="btn btn-primary btn-lg" type="button">Export CSV</button>
                          
                           <button class="btn btn-primary btn-lg" id="clickbind" type="button">Export PDF</button>
                         </div>

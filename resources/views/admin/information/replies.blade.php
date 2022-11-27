@@ -26,7 +26,7 @@
                      <div class="col-xl-6 col-sm-12">
                         <div class="btn-group" role="group" aria-label="Basic example">
                      
-                         <!--  <button class="btn btn-primary btn-lg" type="button">Export CSV</button> -->
+                          <button class="btn btn-primary btn-lg" onclick="myFunctionTwo()">Export CSV</button>
                           <button class="btn btn-primary btn-lg" onclick="myFunction()">Export PDF</button>
                         </div>
                       </div>
@@ -135,5 +135,21 @@ for(var i=0; inputElements[i]; ++i){
 }
 
 </script>
+   <script>
+function myFunctionTwo() {
+ var checkedValue=""; 
+var inputElements = document.getElementsByClassName('export');
+for(var i=0; inputElements[i]; ++i){
+      if(inputElements[i].checked){
+           checkedValue += inputElements[i].value+',';
+          
+         
+      }
+}
+ window.location.href = '/csvall/'+checkedValue;
+}
+
+</script>
+
 
 @endsection

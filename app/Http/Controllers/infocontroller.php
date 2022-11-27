@@ -960,78 +960,169 @@ $nrens = DB::table('nren')->get();
     public function csvsingle($id,$year,$name,$surveyid)
 {
 
-   // $fileName = $year.'by'.$name.'.csv';
-   // $tasks=DB::table('answers')->where('userid',$id)->where('surveyid',$surveyid)->get();
-   //      $templates = DB::table('template')->get();
-   //      $headers = array(
-   //          "Content-type"        => "text/csv",
-   //          "Content-Disposition" => "attachment; filename=$fileName",
-   //          "Pragma"              => "no-cache",
-   //          "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-   //          "Expires"             => "0"
-   //      );
+   $fileName = $year.'by'.$name.'.csv';
 
-   //      $columns = array('Question','Answer');
+       $tasks=DB::table('answers')
+            ->join('template', 'template.id', '=', 'answers.questionid')
+            ->select('answers.name as answer', 'template.name as questionname')
+            ->where('answers.userid',$id)
+            ->where('answers.surveyid',$surveyid)
+            ->get();
+          
+        $templates = DB::table('template')->get();
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
 
-   //      $callback = function() use($tasks, $columns) {
+        $columns = array('Question','Answer');
 
-   //          $file = fopen('php://output', 'w');
-   //          fputcsv($file, $columns);
+        $callback = function() use($tasks, $columns) {
 
-   //          foreach ($tasks as $task) {
-   //              foreach ($templates as $template) {
-   //                  if ($template->id==$task->questionid) {
-   //                         $row['Question']  = $template->name;
-   //                  }
-   //              }
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+              
+                $row['Question']  = $task->questionname;
+               
              
-   //              $row['Answer'] = $task->name;
+                $row['Answer'] = $task->answer;
           
 
-   //              fputcsv($file, array($row['Question'], $row['Answer']));
-   //          }
+                fputcsv($file, array($row['Question'], $row['Answer']));
+            }
 
-   //          fclose($file);
-   //      };
+            fclose($file);
+        };
 
-   //      return response()->stream($callback, 200, $headers);
-   //  }
- //      $fileName = 'tasks.csv';
- //   $tasks = DB::table('answers')->where('userid',$id)->where('surveyid',$surveyid)->get();
- // $templates = DB::table('template')->get();
+        return response()->stream($callback, 200, $headers);
+    }
+        public function csvall($values)
+{
+       $nrenid="";
+        $nrenname="";
 
- //        $headers = array(
- //            "Content-type"        => "text/csv",
- //            "Content-Disposition" => "attachment; filename=$fileName",
- //            "Pragma"              => "no-cache",
- //            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
- //            "Expires"             => "0"
- //        );
+        $nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
+        foreach ($nrenids as $nrenid) {
+            
+        $nrenid=$nrenid->nrenid;
+        }
 
- //        $columns = array('question', 'answer',);
 
- //        $callback = function() use($tasks, $columns) {
- //            $file = fopen('php://output', 'w');
- //            fputcsv($file, $columns);
+        $nrens=DB::table('nren')->where('id',$nrenid)->get();
+        foreach ($nrens as $nren) {
+            
+        $nrenname=$nren->nren;
+        }
 
- //            foreach ($tasks as $task) {
- //                foreach ($templates as $template) {
-                 
-                        
-                         
-                    
- //                }
- //                  $row['question']  = $task->name;
+   // echo();
+
+$values=rtrim($values,',');
+
+
+$sql="Select answers.name AS answer,template.name AS question,nren.nren AS nren,surveys.year AS year FROM answers INNER JOIN template ON template.id=answers.questionid
+INNER JOIN nren ON nren.id=answers.userid
+INNER JOIN surveys ON surveys.id=answers.surveyid     
+WHERE answers.surveyid IN ($values) AND answers.userid=$nrenid";
+$tasks = DB::select($sql);
+
+
+   $fileName = $nrenname.'.csv';
+
+    
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('NREN','Year','Question','Answer');
+
+        $callback = function() use($tasks, $columns) {
+
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+              
+                $row['NREN']  = $task->nren;
+               
              
- //                $row['answer'] = $task->name;
+                $row['Year']  = $task->year;
+               
+             
+                $row['Question'] = $task->question;
+                $row['Answer'] = $task->answer;
+          
 
- //                fputcsv($file, array($row['question'], $row['answer']));
- //            }
+                fputcsv($file, array($row['NREN'], $row['Year'],$row['Question'],$row['Answer']));
+            }
 
- //            fclose($file);
- //        };
+            fclose($file);
+        };
 
- //        return response()->stream($callback, 200, $headers);
- //    }
-}
+        return response()->stream($callback, 200, $headers);
+    }
+
+            public function csv($values)
+{
+     
+
+$values=rtrim($values,',');
+
+
+$sql="Select answers.name AS answer,template.name AS question,nren.nren AS nren,surveys.year AS year FROM answers INNER JOIN template ON template.id=answers.questionid
+INNER JOIN nren ON nren.id=answers.userid
+INNER JOIN surveys ON surveys.id=answers.surveyid     
+WHERE answers.surveyid IN ($values)";
+$tasks = DB::select($sql);
+
+
+   $fileName = 'survey.csv';
+
+    
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('NREN','Year','Question','Answer');
+
+        $callback = function() use($tasks, $columns) {
+
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+              
+                $row['NREN']  = $task->nren;
+               
+             
+                $row['Year']  = $task->year;
+               
+             
+                $row['Question'] = $task->question;
+                $row['Answer'] = $task->answer;
+          
+
+                fputcsv($file, array($row['NREN'], $row['Year'],$row['Question'],$row['Answer']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+
+
 }
