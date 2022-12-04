@@ -716,13 +716,13 @@ if($name=="nren"){
         $nrenusers = DB::table('nrenuser')->get();
         $surveyss = DB::table('surveys')->get();
         $templates = DB::table('template')->get();
-        $answers = DB::table('answers')->where('surveyid',$id)->where('userid',$nrenid)->get();
+        $answers = DB::table('saved')->where('surveyid',$id)->where('userid',$nrenid)->get();
         // var_dump($surveys);
     
         if($request->input('load')){
             if($request->input('load')=="saved"){
-           return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,'nrens'=>$nrens,'nrenusers'=>$nrenusers,'allsurveys'=>$allsurveys]);
-                
+           return view('admin.information.addanswers',['surveys'=>$surveys,'id'=>$id,'templates'=>$templates,'answers'=>$answers,"id"=>$id,'nrens'=>$nrens,'nrenusers'=>$nrenusers,'allsurveys'=>$allsurveys])->with('fail', "Please select a year!");
+         
               
             }
             else{
@@ -1023,16 +1023,18 @@ $nrens = DB::table('nren')->get();
 
 $values=rtrim($values,',');
 
+$rows = array();
 
-$sql="Select answers.name AS answer,template.name AS question,nren.nren AS nren,surveys.year AS year FROM answers INNER JOIN template ON template.id=answers.questionid
-INNER JOIN nren ON nren.id=answers.userid
-INNER JOIN surveys ON surveys.id=answers.surveyid     
-WHERE answers.surveyid IN ($values) AND answers.userid=$nrenid";
-$tasks = DB::select($sql);
-
-
-   $fileName = $nrenname.'.csv';
-
+$split= explode(',', $values);
+$data=[];
+ foreach ($split as $split) {
+     # code...
+     $s=DB::table('surveys')->find($split);
+     array_push($data,$s->year);
+ }
+ $data = implode('-', $data);
+ $data=$nrenname.'('.$data.')';
+ $fileName = $data.'.csv';
     
         $headers = array(
             "Content-type"        => "text/csv",
@@ -1042,29 +1044,69 @@ $tasks = DB::select($sql);
             "Expires"             => "0"
         );
 
-        $columns = array('NREN','Year','Question','Answer');
 
-        $callback = function() use($tasks, $columns) {
 
+        
+$callback = function() use($values,$rows){
+ $id=0;
+$nrenids=DB::table('nrenuser')->where('userid',Auth::id())->get();
+        foreach ($nrenids as $nrenid) {
+            
+        $id=$nrenid->nrenid;
+        }
+
+        $columns = array('Question');
+               $values=rtrim($values,',');
+        
+ $split= explode(',', $values);
+ foreach ($split as $split) {
+     # code...
+     $s=DB::table('surveys')->find($split);
+     array_push($columns,$s->year);
+ }
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+fputcsv($file, $columns);
 
-            foreach ($tasks as $task) {
-              
-                $row['NREN']  = $task->nren;
-               
-             
-                $row['Year']  = $task->year;
-               
-             
-                $row['Question'] = $task->question;
-                $row['Answer'] = $task->answer;
-          
 
-                fputcsv($file, array($row['NREN'], $row['Year'],$row['Question'],$row['Answer']));
+ $s=DB::table('template')->get();
+
+foreach ($s as $s) {
+
+  array_push($rows, $s->name);
+ $splitt= explode(',', $values);  
+foreach ($splitt as $split){
+ 
+      $answers=DB::table('answers')
+            ->where('questionid',$s->id)
+            ->where('userid',$id)
+            ->where('surveyid',$split)
+            ->get();
+            foreach ($answers as $answer) {
+        
+            array_push($rows,$answer->name);
+
             }
+}
+   fputcsv($file, $rows);
+   $rows=[];
+ }
 
-            fclose($file);
+
+
+
+ 
+// foreach ($t as $t) {
+//     $s=DB::table('answers')
+//             ->join('template', 'template.id', '=', 'answers.questionid')
+//             ->select('answers.name as answer', 'template.name as questionname')
+//             ->where('answers.userid',$id)
+//             ->where('answers.surveyid',$surveyid)
+//             ->get();
+
+
+    
+ 
+fclose($file);
         };
 
         return response()->stream($callback, 200, $headers);
@@ -1084,7 +1126,18 @@ WHERE answers.surveyid IN ($values)";
 $tasks = DB::select($sql);
 
 
-   $fileName = 'survey.csv';
+
+
+$split= explode(',', $values);
+$data=[];
+ foreach ($split as $split) {
+     # code...
+     $s=DB::table('surveys')->find($split);
+     array_push($data,$s->year);
+ }
+ $data = implode('-', $data);
+ $data='Surveys('.$data.')';
+ $fileName = $data.'.csv';
 
     
         $headers = array(
