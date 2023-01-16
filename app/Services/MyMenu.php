@@ -136,6 +136,7 @@ class MyMenu implements SidebarInterface
                 ],
                 'children' => $this->indexCreateChildren('role', \Pratiksh\Adminetic\Models\Admin\Role::class),
             ],
+            //removed
             // [
             //     'type' => 'menu',
             //     'name' => 'Permission',
