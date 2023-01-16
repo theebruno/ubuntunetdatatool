@@ -230,18 +230,48 @@ class MyMenu implements SidebarInterface
             //     'link' => 'https://github.com/pratiksh404/admineticl',
             // ],
 
-            [
-                'type' => 'link',
-                'name' => ' Reports',
-                'icon' => 'fa fa-tv',
-                'link' => route('reports'),
+            // [
+            //     'type' => 'link',
+            //     'name' => ' Reports',
+            //     'icon' => 'fa fa-tv',
+            //     'link' => route('reports'),
               
+            //     'conditions' => [
+            //         [
+            //             'type' => 'and',
+            //             'condition' => auth()->user()->hasRole('admin'),
+            //         ],
+            //     ],
+            // ],
+                     [
+                'type' => 'menu',
+                'name' => 'Reports',
+                'icon' => 'fa fa-tv',
+                'is_active' => request()->routeis('info*') ? 'active' : '',
+             
                 'conditions' => [
                     [
-                        'type' => 'and',
-                        'condition' => auth()->user()->hasRole('admin'),
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\User::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\User::class),
                     ],
                 ],
+                'children' => [
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Graphs',
+                        'link' => route('reports'),
+                    ],
+                    [
+                        'type' => 'submenu',
+                        'name' => 'Fiches',
+                        'link' => route('fiches'),
+                    ],
+                   
+                ]
             ],
             [
                 'type' => 'menu',

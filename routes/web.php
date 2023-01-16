@@ -50,4 +50,5 @@ Route::get('/singlereport', [infocontroller::class, 'singlereport'])->name('sing
 Route::get('/csvsingle/{nren}/{year}/{name}/{surveyid}', [infocontroller::class, 'csvsingle'])->name('csvsingle');
 Route::get('/csvall/{id}', [infocontroller::class, 'csvall'])->name('csvall');
 Route::get('/csv/{id}', [infocontroller::class, 'csv'])->name('csv');
+Route::get('/fiches', [infocontroller::class, 'fiches'])->name('fiches');
 

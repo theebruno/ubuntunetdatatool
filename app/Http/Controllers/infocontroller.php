@@ -1175,6 +1175,28 @@ $data=[];
 
         return response()->stream($callback, 200, $headers);
     }
+        public function fiches(Request  $request)
+{
+       
+
+       
+        $nrens = DB::table('nren')->get();
+
+        if($request->input('year')){
+           $year=$request->input('year');
+            $answers = DB::table('answers')->where('surveyid',$year)->get();
+             $theyear = DB::table('surveys')->where('id',$year)->get();
+        }
+        else{
+           $year=0;
+            $answers = [];
+            $theyear=[];
+        }
+        $surveys = DB::select('select * from surveys');
+
+        return view('admin.information.fiches',['surveys'=>$surveys,'answers'=>$answers,'nrens'=>$nrens,'year'=>$year,'theyear'=>$theyear]);
+        
+    }
 
 
 
